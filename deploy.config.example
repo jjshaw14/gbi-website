@@ -1,0 +1,27 @@
+# SFTP deploy configuration — DO NOT commit this file with real values.
+# Copy this to "deploy.config" and fill in your host details.
+
+# SFTP / SSH host (without sftp:// prefix)
+SFTP_HOST="staging.your-domain.com"
+
+# Username on the server
+SFTP_USER="your-username"
+
+# Port (22 is the SFTP default; some hosts use a different port)
+SFTP_PORT="22"
+
+# Absolute path on the server where files should land.
+# This should be your web root, e.g.:
+#   /home/youruser/public_html
+#   /var/www/html
+#   /home/youruser/staging.your-domain.com
+SFTP_REMOTE_PATH="/home/your-username/public_html"
+
+# Authentication: choose ONE.
+#
+# Option A — SSH key (recommended). Path to your private key:
+#   SSH_KEY="$HOME/.ssh/id_ed25519"
+# Option B — Password. Leave SSH_KEY empty and rsync will prompt
+#   you for the password the first time. (Add `sshpass` if you want
+#   it to remember the password, but key auth is far better.)
+SSH_KEY=""

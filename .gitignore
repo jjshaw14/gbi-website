@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+._*
+
+# Deploy secrets — never commit
+deploy.config
+*.bak
+
+# Backup / archived folders (not part of the live site)
+_archive/
+_archive-bad-*/
+
+# Source material handed off to us — not the deployable site
+content-handoff/
+photos-raw/
+elementor-kit/
+
+# Original client-provided PDFs & scratch docs
+*.pdf
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node (if anyone ever adds a build tool later)
+node_modules/
+dist/
