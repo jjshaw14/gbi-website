@@ -31,3 +31,11 @@ dist/
 __pycache__/
 *.pyc
 dist/
+
+# Legacy Cloudways deploy tooling — kept locally for interim deploys,
+# not needed in the repo after Azure cutover.
+deploy.sh
+deploy-watch.sh
+deploy.config.example
+photo-nominations.html
+DEV_NOTES.md
