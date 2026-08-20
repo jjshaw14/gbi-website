@@ -1,0 +1,70 @@
+# =============================================================================
+# Deploy GBI Website to Azure Static Web Apps (Path B — static fallback)
+# =============================================================================
+#
+# WHEN TO USE THIS WORKFLOW
+#   Use this ONLY if you're going the Static Web Apps route. SWA does not
+#   run PHP, so we first build a static version of the site with a small
+#   Python script that inlines the shared /partials/footer.php include and
+#   renames every .php → .html.
+#
+# WHEN NOT TO USE THIS WORKFLOW
+#   If you're on Azure App Service with the PHP runtime, ignore this file.
+#   It only runs on manual dispatch by default, so it will never fire on
+#   its own. You can also delete this file if you're committed to App Service.
+#
+# BEFORE FIRST RUN — ONE-TIME AZURE SETUP
+#   1. Provision an Azure Static Web App.
+#   2. When Azure asks for the source, connect it to this GitHub repo. Azure
+#      will offer to auto-generate a workflow file — SKIP that; we already
+#      have this one.
+#   3. Azure will create a secret in this repo named something like
+#      AZURE_STATIC_WEB_APPS_API_TOKEN_<RANDOM>. Copy the exact name.
+#   4. Edit the `azure_static_web_apps_api_token` line below to reference
+#      that exact secret name.
+#   5. Uncomment the `push:` trigger below to enable auto-deploy on push.
+#
+# WHAT THIS DOES
+#   1. Runs scripts/build-static.py which walks ./site, inlines the footer
+#      include on every page, rewrites .php links to .html, and outputs
+#      the built site to ./dist.
+#   2. Uploads ./dist to Static Web Apps.
+# =============================================================================
+
+name: Deploy to Azure Static Web Apps
+
+on:
+  # Uncomment once secret is configured (see step 5 above):
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    name: Build static site and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build static site (inline footer, rename .php → .html)
+        run: python scripts/build-static.py site dist
+
+      - name: Deploy to Azure Static Web Apps
+        id: deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          # TODO: replace with the exact secret name Azure created in this repo.
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'upload'
+          app_location: 'dist'          # our built output
+          skip_app_build: true          # we already built it above
+          output_location: ''           # not used when skip_app_build=true

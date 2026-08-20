@@ -1,0 +1,78 @@
+# =============================================================================
+# Deploy GBI Website to Azure App Service (Path A — PHP runtime)
+# =============================================================================
+#
+# WHEN TO USE THIS WORKFLOW
+#   Use this if you're hosting on Azure App Service with a PHP 8.x runtime.
+#   The site runs as-is — no build step, no conversion.
+#
+# BEFORE FIRST RUN — ONE-TIME AZURE SETUP
+#   1. Provision an App Service (Linux, PHP 8.2 or newer). B1 tier is fine.
+#   2. In the App Service > Deployment Center, download the "Publish Profile"
+#      (a small XML file).
+#   3. In this GitHub repo, go to Settings > Secrets and variables > Actions
+#      > New repository secret. Name it exactly:
+#         AZURE_WEBAPP_PUBLISH_PROFILE
+#      Paste the entire contents of the publish profile XML as the value.
+#   4. Edit the AZURE_WEBAPP_NAME env var below to match your App Service name.
+#   5. Delete the `deploy-static-web-app.yml` workflow file OR leave it —
+#      it only runs on manual dispatch, so it won't fire automatically.
+#
+# WHAT THIS DOES
+#   On every push to `main`, uploads the contents of ./site to the App
+#   Service's wwwroot via Azure's WebApp publish action.
+#
+# HOW TO TEST
+#   After configuring the secret, go to Actions tab > "Deploy to Azure App
+#   Service" > "Run workflow" (manual trigger). If it succeeds, subsequent
+#   pushes to `main` will auto-deploy.
+# =============================================================================
+
+name: Deploy to Azure App Service
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # allow manual runs from the Actions tab
+
+env:
+  # TODO: change this to your actual App Service name (the part before
+  # .azurewebsites.net in the default URL).
+  AZURE_WEBAPP_NAME: gbi-website
+  # The folder in this repo that contains the deployable site root.
+  AZURE_WEBAPP_PACKAGE_PATH: './site'
+  PHP_VERSION: '8.2'
+
+jobs:
+  deploy:
+    name: Build and deploy PHP site
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.webapp-url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP (for optional lint / composer if we add it later)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+
+      # Nothing to build — the site is plain PHP + HTML + CSS + JS.
+      # This step is here as a placeholder in case a build ever gets added.
+      - name: Verify site directory exists
+        run: |
+          if [ ! -d "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}" ]; then
+            echo "❌ Site directory not found at ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+            exit 1
+          fi
+          echo "✅ Ready to deploy $(find ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} -type f | wc -l) files"
+
+      - name: Deploy to Azure Web App
+        id: deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

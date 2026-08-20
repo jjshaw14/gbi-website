@@ -27,3 +27,7 @@ elementor-kit/
 # Node (if anyone ever adds a build tool later)
 node_modules/
 dist/
+
+__pycache__/
+*.pyc
+dist/
