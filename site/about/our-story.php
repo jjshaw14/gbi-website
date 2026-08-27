@@ -231,7 +231,7 @@
       
     </div>
 
-    <p>GBI is not trying to be the biggest contractor. It is trying to be the most trustworthy one, and to build a company worth handing to the next generation of builders when the time comes.</p>
+    <p>GBI is not trying to be the biggest contractor. It is trying to be the best one, and to build a company worth handing to the next generation of builders when the time comes.</p>
 <p>That shapes everything. How we grow, carefully, only where our quality can follow. How we hire, for character and craft, not just credentials. How we develop people, because a builder who gets better makes every project better. And how we think about scale, because growth that erodes what made this company great is not growth worth having.</p>
 <p>We intend to keep doing it the same way we always have: with quality, safety, and with people who are proud to put their name on the work. We are Building our Futures and America Stronger.</p>
   </div>
