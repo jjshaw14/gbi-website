@@ -150,7 +150,7 @@
         <div class="proj-scope">22 API 650 tanks (carbon and stainless), full fabrication, insulation, foundation, erection, and coatings. Pipe rack erection and insulated piping.</div>
       </li>
       <li>
-        <div class="proj-meta">Multiple Midstream Operators<span class="proj-loc">Permian Basin & Intermountain West</span></div>
+        <div class="proj-meta">Multiple Midstream Operators<span class="proj-loc">The Permian Basin &amp; The Bakken</span></div>
         <div class="proj-scope">Gathering facility construction, storage tank farms, process piping, and I&E for oil and gas production and processing.</div>
       </li>
       <li>
