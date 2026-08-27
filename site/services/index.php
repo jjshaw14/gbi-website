@@ -118,7 +118,7 @@
       <span class="eyebrow">Self-Perform Advantage</span>
       <h2>Why Self-Performance Matters</h2>
     </div>
-    <p>Every trade GBI self-performs is one less interface you manage. When the same company runs structural and mechanical and electrical and tanks, there is no gap between scopes, no finger-pointing on schedule, no ambiguity on responsibility. That is not theoretical. It is what our 75% repeat customer rate demonstrates, project after project.</p>
+    <p>Every trade GBI self-performs is one less interface you manage. When the same company runs structural and mechanical and electrical and tanks, there is no gap between scopes, no finger-pointing on schedule, no ambiguity on responsibility. That is not theoretical. It is what our 80% repeat customer rate demonstrates, project after project.</p>
     <div class="inline-pullquote">
       <p>Built right. Built safe. Built to last. That is our promise.</p>
     </div>

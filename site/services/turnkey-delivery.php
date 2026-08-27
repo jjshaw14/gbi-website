@@ -100,7 +100,7 @@
       <div class="material-copy">
         <span class="eyebrow">The Turnkey Test</span>
         <h2>When Owners Come Back</h2>
-        <p>More than 75% of GBI's work comes from customers who have hired us before. That is not a marketing number. It is the result of delivering on the promise — project after project, owner after owner.</p>
+        <p>More than 80% of GBI's work comes from customers who have hired us before. That is not a marketing number. It is the result of delivering on the promise — project after project, owner after owner.</p>
         <p>When the same engineers and plant managers bring GBI back to their hardest jobs, it is because the last one went the way we said it would.</p>
       </div>
     </div>
@@ -164,7 +164,7 @@
       <div class="process-step">
         <div class="num">06 / Partnerships</div>
         <h4>They Come Back</h4>
-        <p>Over 75% of GBI's work comes from repeat customers. That is not a marketing number. It is the result of delivering on the promise, project after project, owner after owner.</p>
+        <p>Over 80% of GBI's work comes from repeat customers. That is not a marketing number. It is the result of delivering on the promise, project after project, owner after owner.</p>
       </div>
     </div>
   </div>

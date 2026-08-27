@@ -150,7 +150,7 @@
         <div class="stat-label">Employees</div>
       </div>
       <div>
-        <div class="stat-num"><span data-count="75">0</span><span class="suf">%+</span></div>
+        <div class="stat-num"><span data-count="80">0</span><span class="suf">%+</span></div>
         <div class="stat-label">Repeat Customers</div>
       </div>
       <div>
@@ -270,7 +270,7 @@
     <div class="section-head">
       <span class="eyebrow">The GBI Difference</span>
       <h2>Why Customers Keep Coming Back</h2>
-      <p class="lead">Over 75% of our work comes from repeat customers. That's not a marketing number. It's the result of showing up the same way every time, through schedule pressure, weather delays, and scope changes.</p>
+      <p class="lead">Over 80% of our work comes from repeat customers. That's not a marketing number. It's the result of showing up the same way every time, through schedule pressure, weather delays, and scope changes.</p>
     </div>
     <div class="feature-grid">
       <div class="feature">
