@@ -47,7 +47,7 @@
           <a href="industries/mining.php" role="menuitem"><strong>Mining &amp; Minerals</strong><span>Built for the most demanding environments in industrial construction.</span></a>
           <a href="industries/power-renewables.php" role="menuitem"><strong>Power &amp; Renewables</strong><span>Carbon capture, renewables, and the next generation of energy infrastructure.</span></a>
           <a href="industries/oil-gas.php" role="menuitem"><strong>Oil, Gas &amp; Chemicals</strong><span>Maximum-consequence environments. Process safety as the operating standard.</span></a>
-          <a href="industries/water-wastewater.php" role="menuitem"><strong>Water &amp; Wastewater</strong><span>The work communities depend on. Built to last.</span></a>
+          <a href="industries/water-other.php" role="menuitem"><strong>Water &amp; Other</strong><span>The work communities depend on. Built to last.</span></a>
         </div>
       </div>
 

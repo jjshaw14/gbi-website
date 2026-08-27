@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Water & Wastewater</title>
+<title>Water & Other</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
           <a href="mining.php" role="menuitem"><strong>Mining &amp; Minerals</strong><span>Built for the most demanding environments in industrial construction.</span></a>
           <a href="power-renewables.php" role="menuitem"><strong>Power &amp; Renewables</strong><span>Carbon capture, renewables, and the next generation of energy infrastructure.</span></a>
           <a href="oil-gas.php" role="menuitem"><strong>Oil, Gas &amp; Chemicals</strong><span>Maximum-consequence environments. Process safety as the operating standard.</span></a>
-          <a href="water-wastewater.php" role="menuitem"><strong>Water &amp; Wastewater</strong><span>The work communities depend on. Built to last.</span></a>
+          <a href="water-other.php" role="menuitem"><strong>Water &amp; Other</strong><span>The work communities depend on. Built to last.</span></a>
         </div>
       </div>
 
@@ -68,9 +68,9 @@
     <span>Large water storage tank or clarifier under construction, elevated structure, concrete containment, or reservoir roof installation. Real GBI project preferred, Eastwood Reservoir or similar.</span>
   </div>
   <div class="container">
-    <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Water & Wastewater</div>
-    <span class="eyebrow on-dark">Industries / Water & Wastewater</span>
-    <h1>Water &amp; Wastewater</h1>
+    <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Water & Other</div>
+    <span class="eyebrow on-dark">Industries / Water & Other</span>
+    <h1>Water &amp; Other</h1>
     <p class="hero-sub">The Work That Communities Depend On. Built to Last.</p>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="container">
     <div class="editorial-row flip">
       <div class="editorial-text">
-        <span class="eyebrow">Water & Wastewater</span>
+        <span class="eyebrow">Water & Other</span>
         <h2>Code Compliance. Community Trust</h2>
         
         <p>Water and wastewater infrastructure is some of the most consequential work in industrial construction, and some of the most technically demanding. Tanks and clarifiers that store and treat drinking water or process municipal and industrial effluent must be built right the first time. Code compliance, material selection, and structural integrity are not negotiable when the asset serves a community.</p>
@@ -99,7 +99,7 @@
 <section class="bg-offwhite">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">What We Build for Water & Wastewater</span>
+      <span class="eyebrow">What We Build for Water & Other</span>
       <h2>Scope We Self-Perform</h2>
       
     </div>
@@ -136,7 +136,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Water & Wastewater Work</h2>
+      <h2>Recent Water & Other Work</h2>
       
     </div>
     <ul class="proj-list">

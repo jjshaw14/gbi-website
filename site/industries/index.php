@@ -47,7 +47,7 @@
           <a href="mining.php" role="menuitem"><strong>Mining &amp; Minerals</strong><span>Built for the most demanding environments in industrial construction.</span></a>
           <a href="power-renewables.php" role="menuitem"><strong>Power &amp; Renewables</strong><span>Carbon capture, renewables, and the next generation of energy infrastructure.</span></a>
           <a href="oil-gas.php" role="menuitem"><strong>Oil, Gas &amp; Chemicals</strong><span>Maximum-consequence environments. Process safety as the operating standard.</span></a>
-          <a href="water-wastewater.php" role="menuitem"><strong>Water &amp; Wastewater</strong><span>The work communities depend on. Built to last.</span></a>
+          <a href="water-other.php" role="menuitem"><strong>Water &amp; Other</strong><span>The work communities depend on. Built to last.</span></a>
         </div>
       </div>
 
@@ -101,9 +101,9 @@
         <p>Maximum-consequence environments. Process safety as the operating standard. Tanks, piping, structural, I&amp;E, and rail.</p>
         <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
       </a>
-      <a class="tile" href="water-wastewater.php">
+      <a class="tile" href="water-other.php">
         <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
-        <h3>Water &amp; Wastewater</h3>
+        <h3>Water &amp; Other</h3>
         <p>Work communities depend on, AWWA tanks, clarifiers, digesters, reservoir covers. Built to last.</p>
         <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
       </a>

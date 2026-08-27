@@ -42,7 +42,7 @@
           <li><a href="/industries/mining.php">Mining &amp; Minerals</a></li>
           <li><a href="/industries/power-renewables.php">Power &amp; Renewables</a></li>
           <li><a href="/industries/oil-gas.php">Oil, Gas &amp; Chemicals</a></li>
-          <li><a href="/industries/water-wastewater.php">Water &amp; Wastewater</a></li>
+          <li><a href="/industries/water-other.php">Water &amp; Other</a></li>
         </ul>
       </div>
       <div>

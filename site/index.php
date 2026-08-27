@@ -98,8 +98,8 @@
             <strong>Oil, Gas &amp; Chemicals</strong>
             <span>Maximum-consequence environments. Process safety as the operating standard.</span>
           </a>
-          <a href="industries/water-wastewater.php" role="menuitem">
-            <strong>Water &amp; Wastewater</strong>
+          <a href="industries/water-other.php" role="menuitem">
+            <strong>Water &amp; Other</strong>
             <span>The work communities depend on. Built to last.</span>
           </a>
         </div>
@@ -248,9 +248,9 @@
           <div class="tile-link">Explore →</div>
         </div>
       </a>
-      <a class="photo-tile" href="industries/water-wastewater.php" style="background-image:url('assets/images/industry-water.jpg')">
+      <a class="photo-tile" href="industries/water-other.php" style="background-image:url('assets/images/industry-water.jpg')">
         <div>
-          <h3>Water &amp; Wastewater</h3>
+          <h3>Water &amp; Other</h3>
           <div class="tile-link">Explore →</div>
         </div>
       </a>
