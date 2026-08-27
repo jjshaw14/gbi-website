@@ -282,11 +282,11 @@
 
 <section class="final-cta">
   <div class="container">
-    <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <span class="eyebrow on-dark">Join Great Basin Nation</span>
+    <h2>Do the work. Build the career. Take care of your own</h2>
     <div class="actions">
-      <a class="btn btn-lime" href="contact.php">Start a Project <span class="arr">→</span></a>
-      <a class="btn btn-ghost" href="contact.php">Contact Us <span class="arr">→</span></a>
+      <a class="btn btn-lime" href="https://apply.workable.com/mygbi/" target="_blank" rel="noopener">See Open Positions <span class="arr">↗</span></a>
+      <a class="btn btn-ghost" href="mailto:careers@mygbi.com">Send Us Your Resume <span class="arr">→</span></a>
     </div>
   </div>
 </section>
