@@ -133,7 +133,7 @@
   <div class="container">
     <span class="eyebrow on-dark" style="color:#144b9c;">Integrated Industrial Construction</span>
     <h1>Built by<br/>Builders</h1>
-    <p class="hero-sub">Integrated industrial construction, delivered right. From the most demanding craft in the industry, tanks, to structural, electrical, piping, and rail. One company. One standard. Every project.</p>
+    <p class="hero-sub">Integrated industrial construction, delivered right. From one of the most demanding crafts in the industry, tanks, to structural, mechanical, piping, electrical, and rail. One company. One standard. Every project.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="services/index.php">Our Services <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="projects/index.php">View Projects <span class="arr">→</span></a>
