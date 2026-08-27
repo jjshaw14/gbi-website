@@ -178,7 +178,7 @@
       <p>Today, GBI self-performs across tanks and plate steel, structural, mechanical and piping, instrumentation and electrical, and railroad. One contractor. One point of accountability. Less coordination burden for you.</p>
 
       <div class="pullquote">
-        We are not the biggest contractor. We are not the cheapest. We are the most accountable, built and led by people who have done the work, and committed to doing it right every time.
+        We're built to be the most accountable contractor you work with. Every project, one point of ownership. Built and led by people who have done the work.
       </div>
     </div>
   </div>
