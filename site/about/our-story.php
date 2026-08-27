@@ -68,7 +68,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="our-story.php">About</a><span>/</span>Our Story</div>
     <span class="eyebrow on-dark">About / Our Story</span>
-    <h1>Built by Builders.</h1>
+    <h1>Built by Builders</h1>
     <p class="hero-sub">Great Basin Industrial was not built in a boardroom. It was built in the field, by people who have done the work, who understand what it actually takes to complete a complex industrial project safely and on schedule.</p>
   </div>
 </section>
@@ -78,7 +78,7 @@
     <div class="editorial-row">
       <div class="editorial-text">
         <span class="eyebrow">Our Origin</span>
-        <h2>Where It Started.</h2>
+        <h2>Where It Started</h2>
         
         <p>GBI began in one of the most technically demanding trades in all of industrial construction: tank erection. API storage tanks, elevated clarifiers, pressure vessels, work where there's no margin for imprecision, where structural integrity and safety are inseparable.</p>
 <p>That discipline built the company. The quality controls, the safety culture, the systematic pre-planning and crew development that GBI developed in tank work, those became the foundation for everything else.</p>
@@ -100,10 +100,10 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">How We Grew</span>
-        <h2>Earned, Not Assumed.</h2>
+        <h2>Earned, Not Assumed</h2>
         
         <p>Every capability GBI has today was earned through the same process: a customer trusted us with difficult work, we delivered, and they asked us to take on more.</p>
-<p>Electrical wasn't added because a consultant said to diversify. It was added because a customer asked, 'Can you handle the I&E on this project?' and we said yes, and proved it. The same is true for structural and mechanical, for railroad, for fabrication.</p>
+<p>Electrical wasn't added because a consultant said to diversify. It was added because a customer asked, 'Can you handle the I&E on this project?' and we said yes, and proved it. The same is true for structural, mechanical, and piping, for railroad, for fabrication.</p>
 <p>We will continue to grow with the same discipline, by earning trust in the field, scope by scope, project by project.</p>
       </div>
 
@@ -121,7 +121,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Our Evolution</span>
-      <h2>From Tanks to Integrated Industrial Partner.</h2>
+      <h2>From Tanks to Integrated Industrial Partner</h2>
     </div>
     <div class="process process--3col" style="border-color:var(--rule);">
       <div class="process-step" style="color:var(--ink-soft); border-color:var(--rule);">
@@ -147,7 +147,7 @@
   <div class="container" style="max-width:1040px;">
     <div class="section-head">
       <span class="eyebrow">What We Are Today</span>
-      <h2>An Integrated Industrial Contractor.</h2>
+      <h2>An Integrated Industrial Contractor</h2>
       <p class="lead">Today, GBI self-performs across tanks and plate steel, SMP, I&E, and railroad. We deliver complex, multi-craft projects under a single organization.</p>
     </div>
     <div class="stat-callout-row"><div class="stat"><div class="num"><span>450</span><span class="suf">+</span></div><div class="label">Employees</div></div><div class="stat"><div class="num"><span>95</span><span class="suf">%+</span></div><div class="label">Repeat Customers</div></div><div class="stat"><div class="num"><span>40</span><span class="suf">+</span></div><div class="label">States Licensed</div></div></div>
@@ -179,7 +179,7 @@
     <div class="editorial-row">
       <div class="editorial-text">
         <span class="eyebrow">Built by Builders</span>
-        <h2>What That Means.</h2>
+        <h2>What That Means</h2>
         
         <p>The people who run GBI have run crews. They've been on the tools. They've managed shutdowns, handled field conditions, and made real-time decisions on active job sites. That background isn't incidental, it is the source of how this company operates.</p>
 <p>Leaders who've done the work make better decisions. They earn more respect on the job site. They hold a higher standard because they know what the standard actually looks like when the pressure is on. And they build the next generation of builders by example, not by management memo.</p>
@@ -200,10 +200,10 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Four Values</span>
-      <h2>Driven · Building · Excellence · Together.</h2>
-      <p class="lead">The principles that shape every hire, every crew, every project.</p>
+      <h2>Driven · Building · Excellence · Together</h2>
+      <p class="lead">The values that shape every hire, every crew, every project.</p>
     </div>
-    <div class="values-grid"><div class="value-card"><div class="marker"></div><div class="word">DRIVEN</div><h3>Find a way to win.</h3><p>Be passionate, accountable, and humbly confident. Own your results.</p></div><div class="value-card"><div class="marker"></div><div class="word">BUILDING</div><h3>Build people, teams, and America.</h3><p>Learn, share, and grow. Pass it on.</p></div><div class="value-card"><div class="marker"></div><div class="word">EXCELLENCE</div><h3>Skillfully execute, solve problems, stand firm.</h3><p>Self Discipline + Proven Process = Winning.</p></div><div class="value-card"><div class="marker"></div><div class="word">TOGETHER</div><h3>Ride for the brand.</h3><p>People first. Straight talk. Honest work.</p></div></div>
+    <div class="values-grid"><div class="value-card"><div class="marker"></div><div class="word">DRIVEN</div><h3>Find a way to win</h3><p class="value-chips">Passionate <span class="chip-sep">|</span> Accountable <span class="chip-sep">|</span> Humbly Confident</p></div><div class="value-card"><div class="marker"></div><div class="word">BUILDING</div><h3>Build people, teams, and America</h3><p class="value-chips">Learn <span class="chip-sep">|</span> Share <span class="chip-sep">|</span> Grow</p></div><div class="value-card"><div class="marker"></div><div class="word">EXCELLENCE</div><h3>Skillfully execute, solve problems, stand firm</h3><p class="value-chips">Discipline <span class="chip-sep">|</span> Process <span class="chip-sep">|</span> Winning</p></div><div class="value-card"><div class="marker"></div><div class="word">TOGETHER</div><h3>Ride for the brand</h3><p class="value-chips">People first <span class="chip-sep">|</span> Straight talk <span class="chip-sep">|</span> Honest work</p></div></div>
     <div class="inline-pullquote" style="margin-top:64px;">
       <p>'Priority number one is to feed families.' GBI has taken work at breakeven, and at times at a loss, to keep crews employed through slow seasons. Where other contractors cut deep, GBI keeps people working. That is who we are.</p>
 
@@ -227,11 +227,11 @@
     
     <div class="section-head">
       <span class="eyebrow">What We're Building Next</span>
-      <h2>The Mission Ahead.</h2>
+      <h2>The Mission Ahead</h2>
       
     </div>
 
-    <p>GBI is not trying to be the biggest contractor on the bid sheet. It is trying to be the most trustworthy one, and to build a company worth handing to the next generation of builders when the time comes.</p>
+    <p>GBI is not trying to be the biggest contractor. It is trying to be the most trustworthy one, and to build a company worth handing to the next generation of builders when the time comes.</p>
 <p>That shapes everything. How we grow, carefully, only where our quality can follow. How we hire, for character and craft, not just credentials. How we develop people, because a builder who gets better makes every project better. And how we think about scale, because growth that erodes what made this company great is not growth worth having.</p>
 <p>We intend to keep doing it the same way we always have: with quality, safety, and with people who are proud to put their name on the work. We are Building our Futures and America Stronger.</p>
   </div>
@@ -240,7 +240,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

@@ -89,7 +89,7 @@
         <p>The GBI team ran multiple shifts and overcame several challenges including work over water and completing work during the spring 2020 COVID-19 pandemic. It was a great job done with GBI safety and quality.</p>
         <div class="cs-scope cs-scope--inline">
           <span class="eyebrow">Scope of Work</span>
-          <h2 style="margin-bottom:24px;">Removal &amp; Replacement.</h2>
+          <h2 style="margin-bottom:24px;">Removal &amp; Replacement</h2>
 
           <h3>Removal of Existing Structure</h3>
           <ul>
@@ -136,7 +136,7 @@
 
 <section class="bg-offwhite">
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Project Images</span><h2>On Site.</h2></div>
+    <div class="section-head"><span class="eyebrow">Project Images</span><h2>On Site</h2></div>
     <div class="cs-gallery">
       <img src="../assets/images/case-studies/IMG_4066-1024x768.jpg" alt="Industrial plant conveyor construction" loading="lazy" />
       <img src="../assets/images/case-studies/soonerNightB50-1024x768.jpg" alt="Facility night construction lit for continuous shifts" loading="lazy" />
@@ -151,7 +151,7 @@
 
 <section>
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Video</span><h2>See It in Motion.</h2></div>
+    <div class="section-head"><span class="eyebrow">Video</span><h2>See It in Motion</h2></div>
     <div class="cs-video">
       <iframe src="https://player.vimeo.com/video/427189365" title="Elevated Conveyor Tear Down &amp; Replacement" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -161,7 +161,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

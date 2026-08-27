@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Industries Overview</div>
     <span class="eyebrow on-dark">Industries Overview</span>
-    <h1>Deep Experience Across the Industries That Power America.</h1>
+    <h1>Deep Experience Across the Industries That Power America</h1>
     <p class="hero-sub">GBI has worked in virtually every major heavy industrial sector, often in the most demanding projects those industries produce.</p>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Industries</span>
-      <h2>Where We've Built.</h2>
+      <h2>Where We've Built</h2>
       <p class="lead">That breadth of experience means our teams understand how different facilities operate, how different owners make decisions, and what it takes to deliver in environments where the margin for error is low.</p>
     </div>
     <div class="tile-grid tile-grid--4col">
@@ -114,7 +114,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

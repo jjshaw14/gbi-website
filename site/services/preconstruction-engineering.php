@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>Preconstruction Engineering</div>
     <span class="eyebrow on-dark">Services / Preconstruction Engineering</span>
-    <h1>The Field, Ahead of Problems.</h1>
+    <h1>The Field, Ahead of Problems</h1>
     <p class="hero-sub">In-house engineering: critical lift plans, erection drawings, design-build. Licensed PE, engineering PMs, and detailers working with the field crews who'll execute the plan.</p>
   </div>
 </section>
@@ -80,7 +80,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Preconstruction Engineering Support</span>
-        <h2>A Dedicated Team. Zero Ambiguity Going to Field.</h2>
+        <h2>A Dedicated Team. Zero Ambiguity Going to Field</h2>
         
         <p>GBI's team provides critical lift plans, crane location and radius studies, erection sequence drawings, and connection design.</p>
 <p>On a turnkey scope, this means critical lift plans, erection sequences, and constructability reviews happen before the mobilization truck leaves the yard.</p>
@@ -101,7 +101,7 @@
     
     <div class="section-head">
       <span class="eyebrow on-dark">What Makes This Different</span>
-      <h2>Engineering, Not Outsourced.</h2>
+      <h2>Engineering, Not Outsourced</h2>
       
     </div>
 
@@ -114,7 +114,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Scope</span>
-      <h2>What We Deliver.</h2>
+      <h2>What We Deliver</h2>
     </div>
     <div class="precon-deliverables-grid">
       <div class="precon-deliverable">
@@ -156,7 +156,7 @@
     
     <div class="section-head">
       <span class="eyebrow">Where This Capability Sits in GBI's Evolution</span>
-      <h2>Built In, Not Bolted On.</h2>
+      <h2>Built In, Not Bolted On</h2>
       
     </div>
 
@@ -168,7 +168,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

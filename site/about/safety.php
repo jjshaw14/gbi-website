@@ -68,7 +68,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="our-story.php">About</a><span>/</span>Safety</div>
     <span class="eyebrow on-dark">About / Safety</span>
-    <h1>Safety Is Not a Compliance Exercise.</h1>
+    <h1>Safety Is Not a Compliance Exercise</h1>
     <p class="hero-sub">It is the first measure of whether a project succeeds. At GBI, a project that finishes on schedule with an injury is not a success, regardless of any other outcome.</p>
   </div>
 </section>
@@ -77,7 +77,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">The GBI-SHARE System</span>
-      <h2>A Daily Habit. Not a Checklist.</h2>
+      <h2>A Daily Habit. Not a Checklist</h2>
       <p class="lead">GBI-SHARE is not a training program. It is a daily operating habit built into every pre-task plan, every toolbox talk, every site interaction. Every meeting or day starts with a GBI-SHARE moment, a safety observation, near-miss, lesson learned, or recognition. This is not optional.</p>
       <img class="program-logo" src="../assets/images/logos/GBI%20Share%20Logo.svg" alt="GBI-SHARE program logo" />
     </div>
@@ -114,7 +114,7 @@
   <div class="container" style="max-width:1040px;">
     <div class="section-head">
       <span class="eyebrow">Safety Performance</span>
-      <h2>A Record That Speaks for Itself.</h2>
+      <h2>A Record That Speaks for Itself</h2>
       <p class="lead">Industry average TRIR consistently above 3.5 for comparable craft work. In 2023, our TRIR was 0.30, on nearly 1.5 million manhours, more than ten times safer than the industry standard.</p>
     </div>
     <div class="stat-callout-row"><div class="stat"><div class="num"><span>0.30</span><span class="suf"></span></div><div class="label">Lowest Recorded TRIR</div></div><div class="stat"><div class="num"><span>7.8</span><span class="suf">M+</span></div><div class="label">Manhours, 2017–2024</div></div><div class="stat"><div class="num"><span>3.5</span><span class="suf">+</span></div><div class="label">Industry Average TRIR</div></div></div>
@@ -126,7 +126,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Training & Certifications</span>
-      <h2>Every Employee. Thoroughly Prepared.</h2>
+      <h2>Every Employee is Thoroughly Prepared</h2>
       <p class="lead">Safety training at GBI is not a one-time orientation. It is a continuous investment in the people who do the work.</p>
     </div>
     <ul class="cap-list" style="grid-template-columns:repeat(2,1fr);">
@@ -146,8 +146,8 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Pre-Qualification</span>
-      <h2>Trusted by the Industry's Best.</h2>
-      <p class="lead">GBI is a pre-qualified contractor through leading third-party networks including ISNetworld (ISN), Avetta, Browz, Veriforce, and GOLD Shovel Standard, required by the world-class engineering firms and asset owners we serve. Our safety record is a competitive advantage, not a checkbox.</p>
+      <h2>Trusted by the Industry's Best</h2>
+      <p class="lead">GBI is a pre-qualified contractor through leading third-party networks including ISNetworld (ISN), Avetta, Browz, Veriforce, and GOLD Shovel Standard, required by the world-class engineering firms and owners we serve. Our safety record is a competitive advantage, not a checkbox.</p>
     </div>
     <div class="cert-grid">
       <div class="cell"><img src="../assets/images/cert-isnetworld.png" alt="ISNetworld" /></div>
@@ -167,7 +167,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Safety Principles</span>
-      <h2>What We Believe.</h2>
+      <h2>What We Believe</h2>
       
     </div>
     <div class="values-grid"><div class="value-card"><div class="marker"></div><h3>A Condition of Employment</h3><p>Every person on a GBI site understands this before they start. Safety is not negotiable.</p></div><div class="value-card"><div class="marker"></div><h3>Right to Stop Work</h3><p>Every employee has the right and responsibility to stop unsafe acts, without threat of retaliation.</p></div><div class="value-card"><div class="marker"></div><h3>Planned, Not Reactive</h3><p>Safety is planned into every site, project, and task before work begins.</p></div><div class="value-card"><div class="marker"></div><h3>All Incidents Preventable</h3><p>We do not accept the idea that injuries are part of the job. We plan accordingly.</p></div></div>
@@ -177,7 +177,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

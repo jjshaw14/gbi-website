@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>Services Overview</div>
     <span class="eyebrow on-dark">Services Overview</span>
-    <h1>One Contractor. Multiple Trades.</h1>
+    <h1>One Contractor. Multiple Trades</h1>
     <p class="hero-sub">GBI self-performs across the full scope of industrial construction, structural, mechanical, electrical, tanks, rail, and fabrication, under a single project team with a single point of accountability.</p>
   </div>
 </section>
@@ -79,9 +79,9 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">What We Build</span>
-      <h2>One Accountable Contractor. Four Self-Performed Disciplines.</h2>
-      <p class="lead">Most industrial contractors do one or two things well. When a project requires more, the coordination burden falls on the owner, managing interfaces, resolving gaps, and absorbing the risk between contractors.</p>
-      <p class="lead">GBI is built differently. We self-perform across the full scope of industrial construction, structural, mechanical, electrical, tanks, rail, and fabrication, under a single project team with a single point of accountability. When GBI is on your job site, the left hand knows what the right hand is doing.</p>
+      <h2>One Accountable Contractor. Four Self-Performed Disciplines</h2>
+      <p class="lead">Most industrial contractors specialize in one or two disciplines. When a project requires more, the coordination burden falls on the owner, managing interfaces, resolving gaps, and absorbing the risk between contractors.</p>
+      <p class="lead">We self-perform across the full scope of industrial construction &mdash; structural, mechanical, electrical, tanks, rail, and fabrication &mdash; under one project team with one point of accountability. When GBI is on your job site, the left hand knows what the right hand is doing.</p>
     </div>
     <div class="tile-grid tile-grid--4col">
       <a class="tile" href="tanks-plate-steel.php">
@@ -116,11 +116,11 @@
   <div class="container" style="max-width:920px;">
     <div class="section-head">
       <span class="eyebrow">Self-Perform Advantage</span>
-      <h2>Why Self-Performance Matters.</h2>
+      <h2>Why Self-Performance Matters</h2>
     </div>
     <p>Every trade GBI self-performs is one less interface you manage. When the same company runs structural and mechanical and electrical and tanks, there is no gap between scopes, no finger-pointing on schedule, no ambiguity on responsibility. That is not theoretical. It is what our 75% repeat customer rate demonstrates, project after project.</p>
     <div class="inline-pullquote">
-      <p>&lsquo;We build it right. Safely. Completely.&rsquo; That is the GBI promise. Not a slogan, a standard we hold ourselves to on every project we take.</p>
+      <p>Built right. Built safe. Built to last. That is our promise.</p>
     </div>
   </div>
 </section>
@@ -128,7 +128,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

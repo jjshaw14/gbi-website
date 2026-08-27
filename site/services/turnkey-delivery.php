@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>Turnkey Delivery</div>
     <span class="eyebrow on-dark">Services / Turnkey Delivery</span>
-    <h1>When the Whole Project Is on the Line, You Need One Builder Who Owns All of It.</h1>
+    <h1>When the Whole Project Is on the Line, You Need One Builder Who Owns All of It</h1>
     <p class="hero-sub">Most industrial projects don't fail because of one bad trade. They fail in the gaps. GBI exists to close those gaps.</p>
   </div>
 </section>
@@ -80,7 +80,7 @@
     
     <div class="section-head">
       <span class="eyebrow">The GBI Difference</span>
-      <h2>One Company. Multiple Trades. One Point of Accountability.</h2>
+      <h2>One Company. Multiple Trades. One Point of Accountability</h2>
       
     </div>
 
@@ -99,7 +99,7 @@
       </div>
       <div class="material-copy">
         <span class="eyebrow">The Turnkey Test</span>
-        <h2>When Owners Come Back.</h2>
+        <h2>When Owners Come Back</h2>
         <p>More than 75% of GBI's work comes from customers who have hired us before. That is not a marketing number. It is the result of delivering on the promise — project after project, owner after owner.</p>
         <p>When the same engineers and plant managers bring GBI back to their hardest jobs, it is because the last one went the way we said it would.</p>
       </div>
@@ -112,7 +112,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Where This Capability Came From</span>
-        <h2>Born in the Most Challenging Craft.</h2>
+        <h2>Born in the Most Challenging Craft</h2>
         
         <p>GBI did not become a turnkey builder by adding management overhead. This capability was built from the ground up, in the field, in tanks and plate steel — one of the most technically demanding and least forgiving trades in industrial construction.</p>
 <p>Tank erection taught GBI what uncompromising looks like. A tank that fails after commissioning doesn't offer a second chance. The dimensional tolerances, weld quality, material documentation, and safety rigor — every standard GBI operates by today was shaped by the discipline tank work demands.</p>
@@ -133,7 +133,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow on-dark">What Turnkey Delivery Looks Like at GBI</span>
-      <h2>The Proven Partner Process.</h2>
+      <h2>The Proven Partner Process</h2>
     </div>
     <div class="process process--6col">
       <div class="process-step">
@@ -175,7 +175,7 @@
     
     <div class="section-head">
       <span class="eyebrow">Self-Performance Is the Differentiator</span>
-      <h2>Earned by Doing the Work.</h2>
+      <h2>Earned by Doing the Work</h2>
       
     </div>
 
@@ -190,7 +190,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Capabilities Under One Roof</span>
-      <h2>One Team. One Standard.</h2>
+      <h2>One Team. One Standard</h2>
       
     </div>
     <ul class="cap-list" style="grid-template-columns:repeat(2,1fr);">
@@ -208,7 +208,7 @@
     
     <div class="section-head">
       <span class="eyebrow">Built by Builders. Managed by Builders. Delivered by Builders.</span>
-      <h2>Field-Out, Not Top-Down.</h2>
+      <h2>Field-Out, Not Top-Down</h2>
       
     </div>
 
@@ -221,7 +221,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Turnkey Projects</span>
-      <h2>Recent Turnkey Work.</h2>
+      <h2>Recent Turnkey Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -249,7 +249,7 @@
     
     <div class="section-head">
       <span class="eyebrow">If You've Been Burned Before</span>
-      <h2>Here's What's Different.</h2>
+      <h2>Here's What's Different</h2>
       
     </div>
 
@@ -262,7 +262,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

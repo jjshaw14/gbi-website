@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>Railroad</div>
     <span class="eyebrow on-dark">Services / Railroad</span>
-    <h1>Industrial Rail. Done Right.</h1>
+    <h1>Industrial Rail. Done Right</h1>
     <p class="hero-sub">Industrial facilities depend on rail access for raw materials, finished products, and process chemicals. GBI builds, maintains, and repairs the industrial rail infrastructure that keeps those operations running.</p>
   </div>
 </section>
@@ -80,7 +80,7 @@
     <div class="editorial-row">
       <div class="editorial-text">
         <span class="eyebrow">Capabilities</span>
-        <h2>What We Build & Maintain.</h2>
+        <h2>What We Build & Maintain</h2>
         <p class="lead">The same quality and safety standards GBI applies across every craft, brought to industrial rail.</p>
         <p><strong>Construction.</strong> New rail spur, switches, and terminations. Grade crossing construction. Integration with civil, structural, and piping scopes for turnkey rail facility construction.</p>
 <p><strong>Rehabilitation.</strong> Tie replacement. Surface, alignment, and ballast work. Track geometry inspection support.</p>
@@ -106,7 +106,7 @@
       </div>
       <div class="material-copy">
         <span class="eyebrow">Turnkey Rail</span>
-        <h2>When the Rail Is Part of a Bigger Scope.</h2>
+        <h2>When the Rail Is Part of a Bigger Scope</h2>
         <p>GBI's rail group doesn't just lay track. We integrate rail with civil, structural, and piping scopes when the facility needs more than one trade.</p>
         <p>At Apache Nitrogen in St. David, Arizona, a new rail spur with 3 terminations and 12 offload stations was tied into storage tanks, process piping, and instrumentation — all under one GBI project team.</p>
       </div>
@@ -118,7 +118,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Rail Work.</h2>
+      <h2>Recent Rail Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -136,7 +136,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

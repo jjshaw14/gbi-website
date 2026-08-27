@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Water & Wastewater</div>
     <span class="eyebrow on-dark">Industries / Water & Wastewater</span>
-    <h1>Water &amp; Wastewater.</h1>
+    <h1>Water &amp; Wastewater</h1>
     <p class="hero-sub">The Work That Communities Depend On. Built to Last.</p>
   </div>
 </section>
@@ -80,7 +80,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Water & Wastewater</span>
-        <h2>Code Compliance. Community Trust.</h2>
+        <h2>Code Compliance. Community Trust</h2>
         
         <p>Water and wastewater infrastructure is some of the most consequential work in industrial construction, and some of the most technically demanding. Tanks and clarifiers that store and treat drinking water or process municipal and industrial effluent must be built right the first time. Code compliance, material selection, and structural integrity are not negotiable when the asset serves a community.</p>
 <p>GBI's capabilities in this sector are a direct extension of what we do best: tanks, plate steel, elevated structures, and complex geometry in code-governed, quality-controlled environments. Our ASME, API, AWWA, and National Board certifications apply directly to the materials and construction methods water and wastewater projects require.</p>
@@ -100,38 +100,32 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">What We Build for Water & Wastewater</span>
-      <h2>Scope We Self-Perform.</h2>
+      <h2>Scope We Self-Perform</h2>
       
     </div>
     <div class="cap-card-grid">
       <div class="cap-card">
-        <div class="num">01</div>
-        <h3>Potable Water Tanks</h3>
+                <h3>Potable Water Tanks</h3>
         <p>AWWA-compliant storage in ground-level and elevated configurations.</p>
       </div>
       <div class="cap-card">
-        <div class="num">02</div>
-        <h3>Reservoir Covers</h3>
+                <h3>Reservoir Covers</h3>
         <p>Removal and replacement of structural and membrane cover systems.</p>
       </div>
       <div class="cap-card">
-        <div class="num">03</div>
-        <h3>Clarifiers & Digesters</h3>
+                <h3>Clarifiers & Digesters</h3>
         <p>Elevated clarifiers up to 250'+, anaerobic and aerobic digesters in steel and concrete.</p>
       </div>
       <div class="cap-card">
-        <div class="num">04</div>
-        <h3>Process Piping & Mixing</h3>
+                <h3>Process Piping & Mixing</h3>
         <p>HDPE, stainless, and specialty piping for treatment. Aerators and mixing structures.</p>
       </div>
       <div class="cap-card">
-        <div class="num">05</div>
-        <h3>Structural & Mechanical</h3>
+                <h3>Structural & Mechanical</h3>
         <p>Process building frames, walkways, access. Pumps, blowers, and equipment setting.</p>
       </div>
       <div class="cap-card">
-        <div class="num">06</div>
-        <h3>Containment Structures</h3>
+                <h3>Containment Structures</h3>
         <p>Primary and secondary containment for treatment and process operations.</p>
       </div>
     </div>
@@ -142,7 +136,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Water & Wastewater Work.</h2>
+      <h2>Recent Water & Wastewater Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -168,7 +162,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

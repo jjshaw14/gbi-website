@@ -132,7 +132,7 @@
   <div class="hero-overlay"></div>
   <div class="container">
     <span class="eyebrow on-dark" style="color:#144b9c;">Integrated Industrial Construction</span>
-    <h1>Built by<br/>Builders.</h1>
+    <h1>Built by<br/>Builders</h1>
     <p class="hero-sub">Integrated industrial construction, delivered right. From the most demanding craft in the industry, tanks, to structural, electrical, piping, and rail. One company. One standard. Every project.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="services/index.php">Our Services <span class="arr">→</span></a>
@@ -170,7 +170,7 @@
   <div class="container two-col">
     <div>
       <span class="eyebrow">Who We Are</span>
-      <h2>Integrated Construction. Built by Builders.</h2>
+      <h2>Integrated Construction. Built by Builders</h2>
     </div>
     <div>
       <p>Great Basin Industrial is a turnkey construction partner serving the oil &amp; gas, mining, power, chemical, and infrastructure markets across the western United States and beyond.</p>
@@ -190,7 +190,7 @@
     <div class="section-head">
       <span class="eyebrow">Our Services</span>
       <h2>What We Build</h2>
-      <p class="lead">Four self-performed disciplines, one accountable contractor. Click any tile to explore the capability in depth.</p>
+      <p class="lead">Multiple self-performed disciplines, one accountable contractor. Click any tile to explore the capability in depth.</p>
     </div>
 
     <div class="tile-grid tile-grid--4col">
@@ -294,7 +294,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow on-dark">The Proven Partner Process</span>
-      <h2>Every Project, the Same Disciplined Approach.</h2>
+      <h2>Every Project, the Same Disciplined Approach</h2>
     </div>
     <div class="process">
       <div class="process-step">
@@ -335,7 +335,7 @@
 <section>
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Recent Work</span>
+      <span class="eyebrow">Built Work</span>
       <h2>Featured Projects</h2>
     </div>
 
@@ -375,7 +375,7 @@
     <div class="safety-row">
       <div>
         <span class="eyebrow on-dark">GBI-SHARE</span>
-        <h2>Safety Is How We Measure Success.</h2>
+        <h2>Safety Is How We Measure Success</h2>
         <p class="lead">A project that finishes on time with an injury isn't a success. Every crew on every GBI job site operates under GBI-SHARE, a proactive, behavior-based safety system that makes safety a daily habit, not a checklist.</p>
         <a class="btn btn-lime" href="about/safety.php">Our Safety Culture <span class="arr">→</span></a>
       </div>
@@ -424,7 +424,7 @@
   <div class="container two-col-flip" style="align-items:center; gap:120px;">
     <div>
       <span class="eyebrow">Careers</span>
-      <h2>This Is Great Basin Nation.</h2>
+      <h2>This Is Great Basin Nation</h2>
       <p class="lead">We build careers the same way we build everything else: one day at a time, with craft and with care. If you've done the work, you know what it means to do it right. That's who we're looking for.</p>
       <a class="btn btn-primary" href="careers.php">Explore Careers <span class="arr">→</span></a>
     </div>
@@ -436,7 +436,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="contact.php">Contact Us <span class="arr">→</span></a>

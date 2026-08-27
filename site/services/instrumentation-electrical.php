@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>I&E</div>
     <span class="eyebrow on-dark">Services / I&E</span>
-    <h1>The Intelligence Behind the Infrastructure.</h1>
+    <h1>The Intelligence Behind the Infrastructure</h1>
     <p class="hero-sub">Industrial facilities don't operate without reliable instrumentation and electrical systems. GBI's I&E services installs, terminates, and commissions the electrical backbone of industrial processes.</p>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Capabilities</span>
-      <h2>What Our I&E Group Builds.</h2>
+      <h2>What Our I&E Group Builds</h2>
       <p class="lead">The same craft discipline and attention to detail that defines every GBI trade, applied to the electrical backbone of industrial processes. That's our process. That's our signature.</p>
     </div>
     <ul class="cap-list" style="grid-template-columns:repeat(2,1fr);">
@@ -109,7 +109,7 @@
       </div>
       <div class="material-copy">
         <span class="eyebrow">What Scale Looks Like</span>
-        <h2>One Project. The Numbers Behind It.</h2>
+        <h2>One Project. The Numbers Behind It</h2>
         <p>275,000 linear feet of cable. 30,000 power terminations. 800 instruments. That is one of GBI's I&E scopes — the Jervois cobalt mine in Salmon, Idaho.</p>
         <p>When the project is large enough that other contractors would split the work across multiple firms, GBI's I&E group is qualified to take the whole thing.</p>
       </div>
@@ -121,7 +121,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent I&E Work.</h2>
+      <h2>I&E Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -147,7 +147,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

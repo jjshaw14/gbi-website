@@ -68,7 +68,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="our-story.php">About</a><span>/</span>Quality</div>
     <span class="eyebrow on-dark">About / Quality</span>
-    <h1>We Build It Right. Or We Don't Build It.</h1>
+    <h1>We Build It Right. Or We Don't Build It</h1>
     <p class="hero-sub">The standard at GBI is not what a customer will accept. It is what we are proud to leave behind. When the work is done, our name is on it. That means something.</p>
   </div>
 </section>
@@ -77,7 +77,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">The GBI-CHECK System</span>
-      <h2>Quality Is Built In, Not Inspected In.</h2>
+      <h2>Quality Is Built In, Not Inspected In</h2>
       <p class="lead">GBI-CHECK is our quality culture system, a daily practice that closes every day or meeting the same way GBI-SHARE opens it. Someone recognizes a quality win, calls out great craft, or shares a lesson that makes the next project better. This is how a quality culture grows: by naming and rewarding what right looks like.</p>
       <img class="program-logo" src="../assets/images/logos/GBI%20Check%20Logo.svg" alt="GBI-CHECK program logo" />
     </div>
@@ -114,7 +114,8 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Certifications &amp; Authorizations</span>
-      <h2>The Credentials Behind the Craft.</h2>
+      <h2>The Credentials Behind the Craft</h2>
+      <p class="lead">New build to repair, all to code. GBI fabricates to ASME (U, U2, S), API (650, 653), AWWA (D100), ASTM materials specifications, and NFPA fire-protection standards &mdash; with in-house Professional Engineers and the National Board R stamp covering everything from stamped new construction to in-service repairs. One QA program. One accountable contractor.</p>
     </div>
 
     <div class="cert-subhead">
@@ -163,7 +164,7 @@
       </div>
       <div class="material-copy">
         <span class="eyebrow">Material Control</span>
-        <h2>From Mill Cert to Completed Component.</h2>
+        <h2>From Mill Cert to Completed Component</h2>
         <p>GBI maintains 100% material traceability on all fabricated and pressure-containing work. Every piece of metal that goes into a pressure vessel or code vessel is documented from mill cert to completed component.</p>
         <p>Comprehensive document control ensures certifications, drawings, and inspection records are organized and available throughout the project lifecycle.</p>
       </div>
@@ -176,7 +177,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Alloy & Materials Expertise</span>
-        <h2>Working Where Others Won't.</h2>
+        <h2>Working Where Others Won't</h2>
         
         <p>GBI fabricates and installs work in carbon steel, stainless steel, and high-nickel alloys including Hastelloy C276 and other specialty materials required by chemical, mining, and processing applications.</p>
 <p>Our welders are qualified to the procedures the work demands.</p>
@@ -195,7 +196,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

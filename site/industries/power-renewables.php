@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Power & Renewables</div>
     <span class="eyebrow on-dark">Industries / Power & Renewables</span>
-    <h1>Power &amp; Renewables.</h1>
+    <h1>Power &amp; Renewables</h1>
     <p class="hero-sub">Built for the Projects That Keep America Running.</p>
   </div>
 </section>
@@ -80,7 +80,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Power & Renewables</span>
-        <h2>From Conventional Power to the Energy Transition.</h2>
+        <h2>From Conventional Power to the Energy Transition</h2>
         
         <p>Power generation and energy infrastructure demand construction at the highest level — complex structures, demanding materials, compressed schedules, and zero tolerance for safety failures in active or adjacent operating environments. GBI has built for power plant owners, renewable fuel producers, and energy infrastructure developers across the country.</p>
 <p>As the energy mix evolves toward natural gas, renewables, carbon capture, and alternative fuels, GBI's capabilities evolve with it. The craft discipline that built our reputation in conventional power applies directly to the newest generation of energy infrastructure.</p>
@@ -100,7 +100,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">What We Build for Power & Renewables</span>
-      <h2>Scope We Self-Perform.</h2>
+      <h2>Scope We Self-Perform</h2>
       
     </div>
     <div class="cap-card-grid">
@@ -142,7 +142,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Power & Renewables Work.</h2>
+      <h2>Recent Power & Renewables Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -168,7 +168,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

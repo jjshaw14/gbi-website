@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>SMP</div>
     <span class="eyebrow on-dark">Services / SMP</span>
-    <h1>The Backbone of Industrial Facilities.</h1>
+    <h1>The Backbone of Industrial Facilities</h1>
     <p class="hero-sub">Industrial projects don't succeed on any single trade. They succeed when structural, mechanical, and piping work is coordinated, sequenced correctly, and executed by crews who understand how the pieces connect.</p>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Capabilities</span>
-      <h2>Three Disciplines. One Coordinated Scope.</h2>
+      <h2>Three Disciplines. One Coordinated Scope</h2>
       <p class="lead">That's what GBI's SMP group delivers — structural, mechanical, and piping work coordinated under one project team, sequenced correctly, executed by crews who understand how the pieces connect.</p>
     </div>
     <div class="smp-cap-grid">
@@ -122,7 +122,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Preconstruction Engineering Support</span>
-        <h2>Engineering That Stays Ahead of the Field.</h2>
+        <h2>Engineering That Stays Ahead of the Field</h2>
         
         <p>GBI's team provides critical lift plans, crane location and radius studies, erection sequence drawings, and connection design. This keeps the field ahead of problems, not behind them.</p>
 <p><a href="preconstruction-engineering.php" class="inline-link">Preconstruction Engineering <span class="arr">→</span></a></p>
@@ -147,7 +147,7 @@
       </div>
       <div class="material-copy">
         <span class="eyebrow">Shutdown Discipline</span>
-        <h2>When the Schedule Is Unforgiving.</h2>
+        <h2>When the Schedule Is Unforgiving</h2>
         <p>Much of the most critical work in pulp, paper, and forest industries happens during planned shutdowns. Compressed windows. Facility offline. Every day of delay costs real money, and the pressure to cut corners is highest.</p>
         <p>The OGE Energy coal conveyor replacement, 2,100 linear feet, 90-day outage, 24/7 operations, approximately 50,000 manhours, zero recordable incidents — that is the standard GBI brings to every shutdown, in every industry.</p>
       </div>
@@ -159,7 +159,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent SMP Work.</h2>
+      <h2>Recent SMP Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -181,7 +181,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

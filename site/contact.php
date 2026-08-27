@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="index.php">Home</a><span>/</span>Contact</div>
     <span class="eyebrow on-dark">Contact</span>
-    <h1>Let's Talk.</h1>
+    <h1>Let's Talk</h1>
     <p class="hero-sub">Whether you have a project to bid, a question about our capabilities, or want to connect with our team, we're easy to reach and we respond quickly.</p>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="container two-col">
     <div>
       <span class="eyebrow">Reach Our Team Directly</span>
-      <h2>By Department.</h2>
+      <h2>By Department</h2>
       <div style="margin-top:24px;">
         <div style="margin-bottom:14px;">
           <div style="font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:700;">Bidding & Project Inquiries</div>
@@ -131,7 +131,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Office Locations</span>
-      <h2>Offices Across the West.</h2>
+      <h2>Offices Across the West</h2>
       <p class="lead">Headquartered north of Salt Lake City. Field offices and warehouses positioned for the work we serve across the western United States.</p>
     </div>
     <div class="office-grid">
@@ -165,7 +165,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="contact.php">Contact Us <span class="arr">→</span></a>

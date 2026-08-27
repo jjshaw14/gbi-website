@@ -104,7 +104,7 @@
 
 <section>
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Project Images</span><h2>On Site.</h2></div>
+    <div class="section-head"><span class="eyebrow">Project Images</span><h2>On Site</h2></div>
     <div class="cs-gallery">
       <img src="../assets/images/case-studies/wetscrubber9.jpg" alt="Open scrubber tank under construction" loading="lazy" />
       <img src="../assets/images/case-studies/wetscrubber8.jpg" alt="Tank interior with scaffolding" loading="lazy" />
@@ -122,7 +122,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

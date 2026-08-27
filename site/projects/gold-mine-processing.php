@@ -89,7 +89,7 @@
         <p>Once on site, GBI's crews were immediately recognized by Oceana and M3 for their excellent safety, quality and work ethic. With a tight timeline and schedule to meet, GBI was able to take over additional contractual responsibilities and ultimately complete all of the following scope in under 9 months.</p>
         <div class="cs-scope cs-scope--inline">
           <span class="eyebrow">Scope of Work</span>
-          <h2 style="margin-bottom:24px;">What GBI Delivered.</h2>
+          <h2 style="margin-bottom:24px;">What GBI Delivered</h2>
           <ul>
             <li>18 process tanks of various sizes</li>
             <li>Full exterior / interior coatings</li>
@@ -120,7 +120,7 @@
 
 <section class="bg-offwhite">
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Project Images</span><h2>On Site.</h2></div>
+    <div class="section-head"><span class="eyebrow">Project Images</span><h2>On Site</h2></div>
     <div class="cs-gallery">
       <img src="../assets/images/case-studies/2016-09-0111.17.40.jpg" alt="Industrial facility aerial view of the Haile gold processing plant" loading="lazy" />
       <img src="../assets/images/case-studies/DSC_5098-1024x363.jpg" alt="Plant construction site progress" loading="lazy" />
@@ -132,7 +132,7 @@
 
 <section>
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Video</span><h2>See It in Motion.</h2></div>
+    <div class="section-head"><span class="eyebrow">Video</span><h2>See It in Motion</h2></div>
     <div class="cs-video">
       <iframe src="https://player.vimeo.com/video/190766969" title="OceanaGold Haile Gold Mine Processing Plant" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -142,7 +142,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

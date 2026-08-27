@@ -64,8 +64,8 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span>Projects</div>
     <span class="eyebrow on-dark">Projects</span>
-    <h1>The Work Speaks.</h1>
-    <p class="hero-sub">GBI has built in 40+ states for some of the world's most demanding owners and engineering firms. Filter by trade, industry, or location to find what's relevant to you.</p>
+    <h1>The Work Speaks</h1>
+    <p class="hero-sub">GBI has built in 40+ states for some of the world's most demanding owners and engineering firms. Filter by product or industry to find what's relevant to you.</p>
   </div>
 </section>
 
@@ -74,7 +74,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Featured Case Studies</span>
-      <h2>The Work Behind the Stories.</h2>
+      <h2>The Work Behind the Stories</h2>
       <p class="lead">Four flagship projects — with full narrative, spec, and image detail.</p>
     </div>
     <div class="project-grid">
@@ -119,7 +119,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Project Gallery</span>
-      <h2>Explore the Portfolio.</h2>
+      <h2>Explore the Portfolio</h2>
       <p class="lead">Browse GBI's project archive by industry or by the discipline that delivered it.</p>
     </div>
 
@@ -467,7 +467,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Two Decades on the Map</span>
-      <h2>Where We've Built.</h2>
+      <h2>Where We've Built</h2>
       <p class="lead">Every dot is a GBI project. Watch the footprint grow from 2007 through today.</p>
     </div>
     <div class="gbi-map-card">
@@ -490,7 +490,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

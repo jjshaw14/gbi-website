@@ -70,8 +70,8 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>Tanks & Plate Steel</div>
     <span class="eyebrow on-dark">Services / Tanks & Plate Steel</span>
-    <h1>Our Founding Craft. Our Highest Standard.</h1>
-    <p class="hero-sub">Before GBI became an integrated industrial contractor, it became known for one thing: building tanks others wouldn't touch. Complex geometry. Demanding alloys. Tight tolerances in hostile conditions.</p>
+    <h1>Our Founding Craft and Highest Standard</h1>
+    <p class="hero-sub">Before GBI became an integrated industrial contractor, it built a reputation on one thing: tanks others wouldn't touch. Complex geometry. Demanding alloys. Tight tolerances in hostile conditions.</p>
   </div>
 </section>
 
@@ -79,7 +79,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Capabilities</span>
-      <h2>What We Build.</h2>
+      <h2>What We Build</h2>
       <p class="lead">That reputation was earned weld by weld, and we only built from there. Today GBI fabricates and erects tanks across every major industrial sector.</p>
     </div>
     <ul class="cap-list" style="grid-template-columns:repeat(2,1fr);">
@@ -106,7 +106,7 @@
       </div>
       <div class="material-copy">
         <span class="eyebrow">The Founding Craft</span>
-        <h2>Where GBI's Standard Was Forged.</h2>
+        <h2>Where GBI's Standard Was Forged</h2>
         <p>Tank erection taught GBI what uncompromising looks like. A tank that fails after commissioning doesn't offer a second chance.</p>
         <p>The dimensional tolerances, weld quality, material documentation, and safety rigor every standard GBI operates by today was shaped by the discipline this trade demands.</p>
       </div>
@@ -119,7 +119,7 @@
     <div class="editorial-row">
       <div class="editorial-text">
         <span class="eyebrow">Plymouth, UT Facility</span>
-        <h2>A Shop Built for Code Work.</h2>
+        <h2>A Shop Built for Code Work</h2>
 
         <p>GBI operates a dedicated fabrication facility capable of handling both ASME code work and custom industrial plate steel. The shop is equipped for heavy plate work, pressure vessel construction, and precision weldments.</p>
 <p>It runs under GBI's full quality management system: 100% material traceability, documented inspection records, and ASME code compliance on all stamped work.</p>
@@ -139,7 +139,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Why Shop Fabrication</span>
-      <h2>Three Reasons It Wins.</h2>
+      <h2>Three Reasons It Wins</h2>
     </div>
     <div class="fab-benefit-grid">
       <div class="fab-benefit">
@@ -166,10 +166,10 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Alloy & Materials Expertise</span>
-        <h2>The Materials Expertise That Separates GBI.</h2>
+        <h2>The Materials Expertise That Separates GBI</h2>
         
         <p>GBI has welded and fabricated in carbon steel, 304/316 stainless, Duplex 2205, Super Duplex 2507, Hastelloy C276, and other high-nickel alloys demanded by chemical and pharmaceutical processes.</p>
-<p>Most industrial contractors can work in carbon and standard stainless. The work that defines GBI's reputation in pulp and paper requires more — specialty alloys that demand specific welding procedures, qualified personnel, and documented quality controls from raw material to finished installation.</p>
+<p>Most industrial contractors can work in carbon and standard stainless. The work that defines GBI's reputation requires more — specialty alloys that demand specific welding procedures, qualified personnel, and documented quality controls from raw material to finished installation.</p>
 <p>Our welders are procedure-qualified. Our quality management system maintains 100% material traceability. When the spec calls for a material other contractors pass on, GBI takes the work, and builds it right.</p>
       </div>
 
@@ -187,7 +187,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Certifications</span>
-      <h2>Code Work. Done Right.</h2>
+      <h2>Code Work. Done Right</h2>
     </div>
     <div class="cert-grid cert-grid--4">
       <div class="cell cell--text"><span class="name">NB &amp; R</span><span class="sub">National Board Stamp</span></div>
@@ -202,7 +202,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Work That Speaks for Itself.</h2>
+      <h2>Work That Speaks for Itself</h2>
       
     </div>
     <ul class="proj-list">
@@ -212,11 +212,11 @@
       </li>
       <li>
         <div class="proj-meta">Musket Corp / Cargill, Renewable Fuels Plant<span class="proj-loc">Hastings, NE</span></div>
-        <div class="proj-scope">24 API tanks, full scope</div>
+        <div class="proj-scope">24 API tanks, fabrication, erection, coatings</div>
       </li>
       <li>
         <div class="proj-meta">Artesia Renewable Diesel<span class="proj-loc">Artesia, NM</span></div>
-        <div class="proj-scope">22 API650 tanks, full fabrication, insulation, coatings</div>
+        <div class="proj-scope">22 API650 tanks, carbon and stainless, fabrication, insulation, coatings</div>
       </li>
       <li>
         <div class="proj-meta">Barrick / Westech<span class="proj-loc">Carlin, NV</span></div>
@@ -236,7 +236,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

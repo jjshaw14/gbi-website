@@ -68,7 +68,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="our-story.php">About</a><span>/</span>Management Team</div>
     <span class="eyebrow on-dark">About / Management Team</span>
-    <h1>A company built and run by builders.</h1>
+    <h1>A company built and run by builders</h1>
     <p class="hero-sub">Every person on the GBI leadership team has done the work. Field history first, role second.</p>
   </div>
 </section>
@@ -272,7 +272,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

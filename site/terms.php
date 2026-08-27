@@ -64,7 +64,7 @@
   <div class="container">
     <div class="crumbs"><a href="index.php">Home</a><span>/</span>Terms &amp; Conditions</div>
     <span class="eyebrow">Legal</span>
-    <h1>Terms &amp; Conditions.</h1>
+    <h1>Terms &amp; Conditions</h1>
     <p class="lead">Last updated March 2026.</p>
   </div>
 </section>

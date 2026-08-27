@@ -3081,3 +3081,109 @@ body.hide-photo-specs .photo-specs-toggle::before { color: rgba(255,255,255,.25)
   .section-head .program-logo { max-width: 180px; margin-top: 20px; }
   .section-head .program-logo--sm { max-width: 130px; margin-top: 16px; }
 }
+
+/* ---------- Careers page — new sections (Caliber, Milestones, Floater) ---------- */
+
+/* Section 4: The Caliber We Hire — 2×2 value grid (bigger cards than Our Story) */
+.values-grid--2col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) {
+  .values-grid--2col { grid-template-columns: 1fr; }
+}
+.caliber-closer {
+  max-width: 780px;
+  margin: 48px auto 0;
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* Section 5 / Section 7 pullquote supporting copy (below the big quote) */
+.photo-band .pulled-quote-sub {
+  max-width: 780px;
+  margin: 20px auto 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,.9);
+  text-align: center;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Section 6: We Remember the Years — milestone blocks */
+.milestone-block {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+.milestone-block h3 {
+  font-size: 1.5rem;
+  color: var(--gbi-navy);
+  margin: 0 0 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.milestone-block p {
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+.milestone-block--secondary h3 { font-size: 1.15rem; }
+.milestone-close {
+  margin: 40px 0 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.55;
+}
+
+/* Floating Apply button — persistent on Careers page while scrolling */
+.careers-apply-floater {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  background: var(--gbi-lime);
+  color: var(--gbi-navy);
+  padding: 14px 24px;
+  border-radius: 40px;
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(9,25,51,.28), 0 2px 6px rgba(9,25,51,.16);
+  transition: transform .2s ease, box-shadow .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.careers-apply-floater:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(9,25,51,.34), 0 3px 8px rgba(9,25,51,.2);
+}
+.careers-apply-floater .arr { font-weight: 700; }
+@media (max-width: 640px) {
+  .careers-apply-floater {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 18px;
+    font-size: 12px;
+  }
+}
+
+/* Our Story values grid — short chip-style labels (e.g. "Passionate | Accountable | Humbly Confident") */
+.value-card .value-chips {
+  color: var(--gbi-blue);
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0;
+  margin: 0;
+  line-height: 1.5;
+}
+.value-card .value-chips .chip-sep {
+  color: var(--rule);
+  font-weight: 500;
+  margin: 0 4px;
+}

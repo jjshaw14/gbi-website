@@ -70,7 +70,7 @@
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Mining & Minerals</div>
     <span class="eyebrow on-dark">Industries / Mining & Minerals</span>
-    <h1>Mining &amp; Minerals.</h1>
+    <h1>Mining &amp; Minerals</h1>
     <p class="hero-sub">Built for the Most Demanding Environments in Industrial Construction.</p>
   </div>
 </section>
@@ -80,7 +80,7 @@
     <div class="editorial-row flip">
       <div class="editorial-text">
         <span class="eyebrow">Mining & Minerals</span>
-        <h2>The Standard Mining Owners Demand.</h2>
+        <h2>The Standard Mining Owners Demand</h2>
         
         <p>Mining projects don't offer second chances. Remote locations, compressed schedules, difficult materials, and round-the-clock operations create a construction environment that rewards only contractors with serious craft capability and disciplined execution.</p>
 <p>GBI has built for the mining industry's most demanding owners — Barrick, Newmont, OceanaGold, Freeport-McMoRan, Rio Tinto, and others — across the full spectrum of process facility construction.</p>
@@ -100,7 +100,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">What We Build for Mining</span>
-      <h2>Scope We Self-Perform.</h2>
+      <h2>Scope We Self-Perform</h2>
       
     </div>
     <div class="cap-card-grid">
@@ -142,7 +142,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Mining Work.</h2>
+      <h2>Recent Mining Work</h2>
       
     </div>
     <ul class="proj-list">
@@ -172,7 +172,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>
