@@ -167,7 +167,7 @@
     <span>GBI crew coming off shift, or families at a company event with kids visible. Warm light, candid, not staged. End-of-day feel, not marketing day. [Photo pending from client.]</span>
   </div>
   <div class="container">
-    <p class="pulled-quote">&ldquo;Priority number one is to feed families. Everything else follows from that.&rdquo;</p>
+    <p class="pulled-quote">&ldquo;Priority number one is feeding families. Everything else follows from that.&rdquo;</p>
     <span class="source">Dan Clegg, Founder</span>
     <p class="pulled-quote-sub">GBI has taken work at breakeven &mdash; and at times at a loss &mdash; to keep crews employed through the slow seasons. Where other contractors cut deep, we keep people working. When you sign on here, that's what stands behind your paycheck.</p>
   </div>

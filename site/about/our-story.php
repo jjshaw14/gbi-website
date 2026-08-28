@@ -158,7 +158,7 @@
 <section class="bg-offwhite tight">
   <div class="container" style="max-width:920px; text-align:center;">
     <div class="pullquote" style="font-size:1.5rem; border-left:none; border-top:4px solid var(--gbi-lime); padding:32px 0; margin:0;">
-      'Priority number one is to feed families.' That phrase has guided this company since the beginning. It's not a slogan. It's how decisions get made.
+      'Priority number one is feeding families.' That phrase has guided this company since the beginning. It's not a slogan. It's how decisions get made.
       <cite>Dan Clegg, Founder</cite>
     </div>
   </div>
@@ -205,7 +205,7 @@
     </div>
     <div class="values-grid"><div class="value-card"><div class="marker"></div><div class="word">DRIVEN</div><h3>Find a way to win</h3><p class="value-chips">Passionate <span class="chip-sep">|</span> Accountable <span class="chip-sep">|</span> Humbly Confident</p></div><div class="value-card"><div class="marker"></div><div class="word">BUILDING</div><h3>Build people, teams, and America</h3><p class="value-chips">Learn <span class="chip-sep">|</span> Share <span class="chip-sep">|</span> Grow</p></div><div class="value-card"><div class="marker"></div><div class="word">EXCELLENCE</div><h3>Skillfully execute, solve problems, stand firm</h3><p class="value-chips">Discipline <span class="chip-sep">|</span> Process <span class="chip-sep">|</span> Winning</p></div><div class="value-card"><div class="marker"></div><div class="word">TOGETHER</div><h3>Ride for the brand</h3><p class="value-chips">People first <span class="chip-sep">|</span> Straight talk <span class="chip-sep">|</span> Honest work</p></div></div>
     <div class="inline-pullquote" style="margin-top:64px;">
-      <p>'Priority number one is to feed families.' GBI has taken work at breakeven, and at times at a loss, to keep crews employed through slow seasons. Where other contractors cut deep, GBI keeps people working. That is who we are.</p>
+      <p>'Priority number one is feeding families.' GBI has taken work at breakeven, and at times at a loss, to keep crews employed through slow seasons. Where other contractors cut deep, GBI keeps people working. That is who we are.</p>
 
     </div>
   </div>
