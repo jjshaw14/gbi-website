@@ -32,7 +32,7 @@
       <div class="nav-item has-dropdown">
         <a href="index.php" class="nav-parent is-active" aria-haspopup="true" aria-expanded="false">Services <span class="caret">▾</span></a>
         <div class="nav-dropdown" role="menu">
-          <a href="index.php" class="dd-overview" role="menuitem"><strong>All Services</strong><span>Four self-performed disciplines under one accountable contractor.</span></a>
+          <a href="index.php" class="dd-overview" role="menuitem"><strong>All Services</strong><span>Multiple self-performed disciplines under one accountable contractor.</span></a>
           <a href="tanks-plate-steel.php" role="menuitem"><strong>Tanks &amp; Plate Steel</strong><span>API & AWWA tanks, clarifiers, scrubbers, stacks. Shop and field fabrication.</span></a>
           <a href="structural-mechanical-piping.php" role="menuitem"><strong>Structural, Mechanical &amp; Piping</strong><span>Industrial structures, process piping, mechanical installation.</span></a>
           <a href="instrumentation-electrical.php" role="menuitem"><strong>Instrumentation &amp; Electrical</strong><span>I&amp;E construction, MCC buildings, controls, data centers.</span></a>

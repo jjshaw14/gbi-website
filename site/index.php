@@ -58,7 +58,7 @@
         <div class="nav-dropdown" role="menu">
           <a href="services/index.php" class="dd-overview" role="menuitem">
             <strong>All Services</strong>
-            <span>Four self-performed disciplines under one accountable contractor.</span>
+            <span>Multiple self-performed disciplines under one accountable contractor.</span>
           </a>
           <a href="services/tanks-plate-steel.php" role="menuitem">
             <strong>Tanks &amp; Plate Steel</strong>
