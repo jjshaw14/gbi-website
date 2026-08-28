@@ -174,7 +174,7 @@
     </div>
     <div>
       <p>Great Basin Industrial is a turnkey construction partner serving the oil &amp; gas, mining, power, water, advanced facilities, and infrastructure markets across the United States and beyond.</p>
-      <p>We started in tanks, one of the most technically demanding crafts in industrial construction, and we built everything that came after on the same foundation: disciplined crews, uncompromising quality, and accountability that runs through every layer of the company.</p>
+      <p>We started in tanks, a technically demanding craft, and we built everything that came after on the same foundation: disciplined crews, uncompromising quality, and accountability that runs through every layer of the company.</p>
       <p>Today, GBI self-performs across tanks and plate steel, structural, mechanical and piping, instrumentation and electrical, and railroad. One contractor. One point of accountability. Less coordination burden for you.</p>
 
       <div class="pullquote">
