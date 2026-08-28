@@ -80,7 +80,7 @@
         <span class="eyebrow">Our Origin</span>
         <h2>Where It Started</h2>
         
-        <p>GBI began in one of the most technically demanding trades in all of industrial construction: tank erection. API storage tanks, elevated clarifiers, pressure vessels, work where there's no margin for imprecision, where structural integrity and safety are inseparable.</p>
+        <p>GBI began in one of the most technically demanding trades within industrial construction: tank erection. API storage tanks, elevated clarifiers, pressure vessels, work where there's no margin for imprecision, where structural integrity and safety are inseparable.</p>
 <p>That discipline built the company. The quality controls, the safety culture, the systematic pre-planning and crew development that GBI developed in tank work, those became the foundation for everything else.</p>
       </div>
 
