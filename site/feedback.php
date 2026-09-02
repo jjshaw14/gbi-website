@@ -8,11 +8,29 @@
    "Feedback" button on every page that pre-selects the page being viewed.
    ============================================================================ */
 
+// DIAGNOSTIC: write checkpoint progress + any fatal errors to a log file
+// we can read separately via /feedback-test.php?showlog=1. Cloudways strips
+// PHP output on 500 status, so we can't rely on browser output.
+// Use feedback-data/ (confirmed writable) instead of webroot.
+@mkdir(__DIR__ . '/feedback-data', 0755, true);
+$__log = __DIR__ . '/feedback-data/_fb_debug.log';
+@file_put_contents($__log, "\n\n---- new request at " . date('c') . " ----\n", FILE_APPEND);
+function __fblog($msg) {
+  @file_put_contents($GLOBALS['__log'], $msg . "\n", FILE_APPEND);
+}
+register_shutdown_function(function() {
+  $e = error_get_last();
+  if ($e && in_array($e['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR])) {
+    __fblog("FATAL: " . $e['message'] . " in " . $e['file'] . " on line " . $e['line']);
+  } else {
+    __fblog("shutdown OK");
+  }
+});
+__fblog("CHECKPOINT 1: reached top of file, PHP " . phpversion());
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('log_errors', '1');
-// Kill any output buffers so error output isn't discarded on fatal.
-// Cloudways enables output_buffering by default in PHP-FPM.
 while (ob_get_level()) { ob_end_flush(); }
 ini_set('output_buffering', '0');
 if (isset($_GET['debug'])) {
@@ -20,6 +38,7 @@ if (isset($_GET['debug'])) {
   echo "CHECKPOINT 1: reached top of file\n"; flush();
 }
 header('X-Content-Type-Options: nosniff');
+__fblog("CHECKPOINT 1b: past error_reporting + headers");
 
 $DATA_DIR   = __DIR__ . '/feedback-data';
 $UPLOAD_DIR = $DATA_DIR . '/uploads';
