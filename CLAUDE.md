@@ -24,21 +24,37 @@ AZURE_SETUP.md               ← full Azure migration guide
 
 ## The shared partials
 
-Every `.php` page includes two shared partials — the header at the top and the footer via a single line at the
-bottom:
+Every `.php` page includes two shared partials — the header at the top
+and the footer at the bottom. Together those two include lines are the
+only PHP anywhere on the site.
+
+**Header (top of every page):**
+
+```php
+<?php $NAV_ACTIVE = 'about'; // 'about' | 'services' | 'industries' | 'projects' | 'careers'
+      include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
+```
+
+`$NAV_ACTIVE` marks which top-level nav item gets the `is-active` class.
+Homepage, contact, terms, and resources/literature-press don't set it —
+those pages don't correspond to a single top-level nav item, and the
+bare `<?php include … ?>` line is fine.
+
+**Footer (bottom of every page):**
 
 ```php
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/partials/footer.php'; ?>
 ```
 
-Those two lines are the only PHP anywhere on the site. If you edit
-`partials/footer.php`, the change appears on every page automatically.
+Edit `partials/header.php` or `partials/footer.php` once and the change
+propagates to every page.
 
 ## Making edits
 
 - **Content, layout, styling**: edit files in `site/` directly.
 - **Global styles**: `site/assets/css/styles.css`
 - **Client-side JS**: `site/assets/js/site.js`
+- **Shared header / nav**: `site/partials/header.php`
 - **Shared footer**: `site/partials/footer.php`
 
 ## Deploying
