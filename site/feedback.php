@@ -357,7 +357,7 @@ if (isset($_GET['debug'])) { echo "CHECKPOINT 8: about to render HTML — if you
           </div>
         <?php endforeach; ?>
       </div>
-    <?php endforeach; ?>
+    <?php endforeach; endforeach; ?>
     <?php if (!$shown): ?><div class="empty">No feedback yet — be the first. Use the form above.</div><?php endif; ?>
   </div>
 </div>
