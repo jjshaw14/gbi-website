@@ -146,7 +146,7 @@
   <div class="container">
     <div class="stats-grid">
       <div>
-        <div class="stat-num"><span data-count="450">0</span><span class="suf">+</span></div>
+        <div class="stat-num"><span data-count="600">0</span><span class="suf">+</span></div>
         <div class="stat-label">Employees</div>
       </div>
       <div>

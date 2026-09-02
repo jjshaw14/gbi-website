@@ -24,6 +24,8 @@
           <a href="leadership.php" role="menuitem"><strong>Management Team</strong><span>A company built and run by builders. Meet the leaders.</span></a>
           <a href="safety.php" role="menuitem"><strong>Safety</strong><span>GBI-SHARE — safety isn't a checkbox, it's a daily operating habit.</span></a>
           <a href="quality.php" role="menuitem"><strong>Quality</strong><span>GBI-CHECK — built right the first time. ASME, API, AWWA, AISC.</span></a>
+          <a href="../services/turnkey-delivery.php" role="menuitem"><strong>Turnkey Delivery</strong><span>Full-scope project execution, coordinating all trades as needed from planning through startup.</span></a>
+          <a href="../services/preconstruction-engineering.php" role="menuitem"><strong>Preconstruction Engineering</strong><span>In-house engineering: critical lift plans, erection drawings, design-build.</span></a>
         </div>
       </div>
 
@@ -150,7 +152,7 @@
       <h2>An Integrated Industrial Contractor</h2>
       <p class="lead">Today, GBI self-performs across tanks and plate steel, SMP, I&E, and railroad. We deliver complex, multi-craft projects under a single organization.</p>
     </div>
-    <div class="stat-callout-row"><div class="stat"><div class="num"><span>450</span><span class="suf">+</span></div><div class="label">Employees</div></div><div class="stat"><div class="num"><span>80</span><span class="suf">%+</span></div><div class="label">Repeat Customers</div></div><div class="stat"><div class="num"><span>40</span><span class="suf">+</span></div><div class="label">States Licensed</div></div></div>
+    <div class="stat-callout-row"><div class="stat"><div class="num"><span>600</span><span class="suf">+</span></div><div class="label">Employees</div></div><div class="stat"><div class="num"><span>80</span><span class="suf">%+</span></div><div class="label">Repeat Customers</div></div><div class="stat"><div class="num"><span>40</span><span class="suf">+</span></div><div class="label">States Licensed</div></div></div>
     <p>More than 80% of our work comes from repeat customers. That number reflects not just competence, it reflects trust and what we're all about. It means engineers, plant managers, and capital project leaders have brought GBI back to their hardest jobs, year after year.</p>
   </div>
 </section>

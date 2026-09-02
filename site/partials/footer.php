@@ -52,7 +52,7 @@
           <li><a href="/careers.php">Careers</a></li>
           <li><a href="/contact.php">Contact</a></li>
           <li><a href="/resources/literature-press.php">Literature &amp; Press</a></li>
-          <li><a href="#">LinkedIn &#8599;</a></li>
+          <li><a href="https://www.linkedin.com/company/great-basin-industrial/" target="_blank" rel="noopener">LinkedIn &#8599;</a></li>
         </ul>
       </div>
     </div>
