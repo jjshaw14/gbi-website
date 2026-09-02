@@ -8,7 +8,9 @@
    "Feedback" button on every page that pre-selects the page being viewed.
    ============================================================================ */
 
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('log_errors', '1');
 header('X-Content-Type-Options: nosniff');
 
 $DATA_DIR   = __DIR__ . '/feedback-data';
