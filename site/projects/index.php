@@ -28,7 +28,7 @@
     <div class="section-head">
       <span class="eyebrow">Featured Case Studies</span>
       <h2>The Work Behind the Stories</h2>
-      <p class="lead">Four flagship projects — with full narrative, spec, and image detail.</p>
+      <p class="lead">Five flagship projects — with full narrative, spec, and image detail.</p>
     </div>
     <div class="project-grid">
       <a class="project-card" href="gold-mine-processing.php"
@@ -61,6 +61,14 @@
         <div>
           <h3>(2) 62&prime;&Oslash; Elevated Tanks</h3>
           <div class="pc-meta">Onsite fabrication and erection</div>
+        </div>
+      </a>
+      <a class="project-card" href="coors-g150.php"
+         style="background-image:url('../assets/images/case-studies/coors-g150-hero.jpg')">
+        <div class="pc-tag">Golden, CO</div>
+        <div>
+          <h3>Coors G150 Brewery Tank Project</h3>
+          <div class="pc-meta">118 stainless tanks, ~120K craft manhours, ASME + food-grade sanitary</div>
         </div>
       </a>
     </div>
@@ -109,6 +117,7 @@
     </div>
 
     <div class="gallery-grid" data-gallery-grid>
+<div class="gallery-tile" data-industry="water-other" data-product=""><a href="coors-g150.php"><img src="../assets/images/case-studies/coors-g150-hero.jpg" alt="Coors G150 Brewery Tank Project" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Coors G150 Brewery Tank Project</div><div class="gtd">Ziemann Holvrieka / Molson Coors &middot; Golden, CO. On-site fabrication &amp; installation of 118 stainless steel process tanks to ASME and food-grade sanitary standards.</div></div></a></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product=""><img src="../assets/images/gallery/CUSTOMERAPPROVEDDroneShot.jpg" alt="Tanks, Structural, Piping for Renewable Diesel" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Tanks, Structural, Piping for Renewable Diesel</div><div class="gtd">Design, Fabrication, Foundations, Erection, Exteriors for 20+ API 650 Carbon &amp; Stainless Tanks; Construction of piping and structural</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product=""><img src="../assets/images/gallery/Terminal-scaled.jpg" alt="Oil Gas &amp; Chemical" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil Gas &amp; Chemical</div><div class="gtd">(2) 160′ x 70′ API 650 Tanks with EFR</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical power" data-product=""><img src="../assets/images/gallery/IMG_0219-min-1-scaled.jpg" alt="Power Generation" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Power Generation</div><div class="gtd">1/2 mile elevated coal conveyor demo and rebuild</div></div></div>

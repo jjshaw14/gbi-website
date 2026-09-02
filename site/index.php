@@ -272,6 +272,13 @@
           <div class="pc-meta">CPS Energy J.K. Spruce, San Antonio, TX</div>
         </div>
       </a>
+      <a class="project-card" href="projects/coors-g150.php" style="background-image:url('assets/images/case-studies/coors-g150-hero.jpg')">
+        <div class="pc-tag">Food &amp; Beverage</div>
+        <div>
+          <h3>Coors G150 Brewery Tank Project</h3>
+          <div class="pc-meta">Golden, CO &middot; 118 stainless tanks, ~120K craft manhours</div>
+        </div>
+      </a>
     </div>
 
     <div style="text-align:center; margin-top:40px;">
