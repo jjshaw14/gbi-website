@@ -191,9 +191,14 @@ The following review-phase tools are living in the repo during the
 draft-site feedback window. They must be removed before the site goes
 live on Azure — none of them are meant for the public site.
 
-**1. Bradford's gallery tag review page**
+**1a. Bradford's gallery tag review page**
 - Delete: `site/tag-review.php`
 - One file, no side effects. Verify `/tag-review.php` returns a 404
+  after removal.
+
+**1b. JJ's gallery duplicate review page**
+- Delete: `site/dupe-review.php`
+- One file, no side effects. Verify `/dupe-review.php` returns a 404
   after removal.
 
 **2. Feedback board (from client's IT team)**
