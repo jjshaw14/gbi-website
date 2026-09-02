@@ -39,3 +39,7 @@ deploy-watch.sh
 deploy.config.example
 photo-nominations.html
 DEV_NOTES.md
+
+# Feedback board runtime data (review-phase tool from client's IT team).
+# Remove the folder entirely before Azure launch.
+site/feedback-data/

@@ -79,3 +79,8 @@
 </div>
 
 <script src="/assets/js/site.js"></script>
+
+<!-- REVIEW PHASE ONLY — remove this include (and delete
+     site/feedback.php + site/feedback-widget.php + site/feedback-data/)
+     before the site goes live on Azure. -->
+<?php include dirname(__DIR__) . '/feedback-widget.php'; ?>
