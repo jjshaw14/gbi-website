@@ -11,6 +11,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('log_errors', '1');
+// DIAGNOSTIC MODE: send everything as text/plain so we see checkpoints
+// even if a later fatal aborts output. Comment this out when working.
+if (isset($_GET['debug'])) {
+  header('Content-Type: text/plain; charset=UTF-8');
+  echo "CHECKPOINT 1: reached top of file\n"; flush();
+}
 header('X-Content-Type-Options: nosniff');
 
 $DATA_DIR   = __DIR__ . '/feedback-data';
@@ -19,18 +25,23 @@ $STORE      = $DATA_DIR . '/feedback.json';
 $MAX_IMG_BYTES = 8 * 1024 * 1024;   // 8 MB per image
 $MAX_IMGS_PER_COMMENT = 3;
 
+if (isset($_GET['debug'])) { echo "CHECKPOINT 2: about to mkdir\n"; flush(); }
 /* ---- one-time setup ---- */
 if (!is_dir($DATA_DIR))   { @mkdir($DATA_DIR, 0755, true); }
 if (!is_dir($UPLOAD_DIR)) { @mkdir($UPLOAD_DIR, 0755, true); }
+if (isset($_GET['debug'])) { echo "CHECKPOINT 3: mkdir done, writing .htaccess (WITHOUT php_flag)\n"; flush(); }
 $ht = $UPLOAD_DIR . '/.htaccess';
 if (!file_exists($ht)) {
+  // php_flag directive REMOVED — invalid under PHP-FPM (which Cloudways uses)
+  // and causes 500s when Apache tries to parse it. The FilesMatch directive
+  // below already denies script execution, which is what we actually need.
   @file_put_contents($ht,
-    "php_flag engine off\n" .
     "RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps\n" .
-    "<FilesMatch \"\\.(php|phtml|php3|php4|php5|php7|phps|cgi|pl|py|sh)$\">\n" .
+    "<FilesMatch \"\\.(php|phtml|php3|php4|php5|php7|phps|cgi|pl|py|sh)\$\">\n" .
     "  Require all denied\n" .
     "</FilesMatch>\n");
 }
+if (isset($_GET['debug'])) { echo "CHECKPOINT 4: setup complete\n"; flush(); }
 
 /* ---- the site's page index (mirrors the draft's navigation) ---- */
 $PAGES = array(
@@ -152,7 +163,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
+if (isset($_GET['debug'])) { echo "CHECKPOINT 5: about to loadItems\n"; flush(); }
 $items = loadItems($STORE);
+if (isset($_GET['debug'])) { echo "CHECKPOINT 6: loadItems done, " . count($items) . " items\n"; flush(); }
 $prefPage = isset($_GET['page']) ? (string)$_GET['page'] : '';
 /* map a raw URI (from the widget) to a page key */
 if ($prefPage !== '') {
@@ -164,8 +177,10 @@ if ($prefPage !== '') {
 }
 if (isset($_GET['saved'])) $notice = 'Thanks — feedback saved.';
 
+if (isset($_GET['debug'])) { echo "CHECKPOINT 7: about to count opens\n"; flush(); }
 /* counts for the header */
 $openCount = 0; foreach ($items as $it) { if ($it['status'] === 'open') $openCount++; }
+if (isset($_GET['debug'])) { echo "CHECKPOINT 8: about to render HTML — if you see this, PHP got all the way through\n"; flush(); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="en">
