@@ -43,6 +43,7 @@
           <li><a href="/industries/power-renewables.php">Power &amp; Renewables</a></li>
           <li><a href="/industries/oil-gas.php">Oil, Gas &amp; Chemicals</a></li>
           <li><a href="/industries/water-other.php">Water &amp; Other</a></li>
+          <li><a href="/industries/advanced-facilities.php">Advanced Facilities</a></li>
         </ul>
       </div>
       <div>

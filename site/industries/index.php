@@ -60,6 +60,12 @@
         <p>Work communities depend on, AWWA tanks, clarifiers, digesters, reservoir covers. Built to last.</p>
         <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
       </a>
+      <a class="tile" href="advanced-facilities.php">
+        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="7" y1="8" x2="7" y2="16"/><line x1="11" y1="8" x2="11" y2="16"/><line x1="15" y1="8" x2="15" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+        <h3>Advanced Facilities</h3>
+        <p>Data centers and semiconductor plants. Power, water, and precision at industrial scale.</p>
+        <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
+      </a>
     </div>
   </div>
 </section>

@@ -159,6 +159,12 @@
           <div class="tile-link">Explore →</div>
         </div>
       </a>
+      <a class="photo-tile" href="industries/advanced-facilities.php" style="background-image:url('assets/images/industry-power.jpg')">
+        <div>
+          <h3>Advanced Facilities</h3>
+          <div class="tile-link">Explore →</div>
+        </div>
+      </a>
       <a class="photo-tile" href="industries/index.php" style="background-image:url('assets/images/industry-food-nyzai.png')">
         <div>
           <h3>Food, Beverage &amp; Agriculture</h3>
