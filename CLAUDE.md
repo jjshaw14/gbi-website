@@ -22,16 +22,16 @@ scripts/build-static.py      ← PHP → HTML converter (Static Web Apps path)
 AZURE_SETUP.md               ← full Azure migration guide
 ```
 
-## The one PHP thing
+## The shared partials
 
-Every `.php` page includes the shared footer via a single line at the
+Every `.php` page includes two shared partials — the header at the top and the footer via a single line at the
 bottom:
 
 ```php
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/partials/footer.php'; ?>
 ```
 
-That's the *only* PHP anywhere on the site. If you edit
+Those two lines are the only PHP anywhere on the site. If you edit
 `partials/footer.php`, the change appears on every page automatically.
 
 ## Making edits
