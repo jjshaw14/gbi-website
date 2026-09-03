@@ -31,8 +31,12 @@
 name: Deploy to Azure App Service
 
 on:
-  push:
-    branches: [main]
+  # NOTE: auto-deploy on push is DISABLED until Azure App Service is
+  # provisioned and the AZURE_WEBAPP_PUBLISH_PROFILE secret is set.
+  # Until then, Cloudways is the live host (deployed via ./deploy.sh).
+  # When ready for Azure cutover, uncomment the two lines below:
+  # push:
+  #   branches: [main]
   workflow_dispatch: # allow manual runs from the Actions tab
 
 env:
