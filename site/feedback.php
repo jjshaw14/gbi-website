@@ -182,6 +182,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     saveItems($STORE, $items);
     header('Content-Type: application/json'); echo '{"ok":true}'; exit;
   }
+
+  if ($action === 'delete') {
+    $id = (string)$_POST['id'];
+    $items = loadItems($STORE);
+    $kept = array();
+    foreach ($items as $it) {
+      if ($it['id'] === $id) {
+        // Remove any uploaded screenshots for this item.
+        if (!empty($it['imgs']) && is_array($it['imgs'])) {
+          foreach ($it['imgs'] as $im) {
+            $path = $UPLOAD_DIR . '/' . basename($im);
+            if (is_file($path)) @unlink($path);
+          }
+        }
+        continue; // drop this item
+      }
+      $kept[] = $it;
+    }
+    saveItems($STORE, $kept);
+    header('Content-Type: application/json'); echo '{"ok":true}'; exit;
+  }
 }
 
 if (isset($_GET['debug'])) { echo "CHECKPOINT 5: about to loadItems\n"; flush(); }
@@ -253,8 +274,22 @@ if (isset($_GET['debug'])) { echo "CHECKPOINT 8: about to render HTML — if you
   .item .txt{font-size:14px;margin-top:6px;white-space:pre-wrap}
   .item .shots{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
   .item .shots a img{height:90px;border-radius:5px;border:1px solid var(--line)}
-  .item .foot{margin-top:8px;display:flex;justify-content:flex-end}
+  .item .foot{margin-top:8px;display:flex;justify-content:flex-end;gap:8px;align-items:center}
   .item select{width:auto;font-size:12px;padding:4px 8px}
+  .del-btn{background:#fff;color:#b91c1c;border:1px solid #fecaca;border-radius:4px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer}
+  .del-btn:hover{background:#fee2e2;border-color:#dc2626}
+  /* confirmation dialog */
+  .modal-bg{position:fixed;inset:0;background:rgba(22,34,44,.55);display:none;align-items:center;justify-content:center;z-index:9999}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff;border-radius:8px;padding:22px 24px;max-width:420px;width:calc(100% - 40px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  .modal h3{margin:0 0 8px;font-size:16px}
+  .modal p{margin:0 0 16px;font-size:14px;color:var(--soft);line-height:1.45}
+  .modal .actions{display:flex;gap:8px;justify-content:flex-end}
+  .modal .actions button{border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer}
+  .modal .cancel{background:#f0ede8;color:var(--ink)}
+  .modal .cancel:hover{background:#e4e0d5}
+  .modal .confirm{background:#dc2626;color:#fff}
+  .modal .confirm:hover{background:#b91c1c}
   .empty{color:var(--soft);font-style:italic;font-size:13.5px;padding:14px}
   a{color:var(--accent)}
 </style>
@@ -350,6 +385,7 @@ if (isset($_GET['debug'])) { echo "CHECKPOINT 8: about to render HTML — if you
               </div>
             <?php endif; ?>
             <div class="foot">
+              <button type="button" class="del-btn" data-id="<?php echo h($it['id']); ?>" data-who="<?php echo h($it['name']); ?>" title="Delete this feedback">Delete</button>
               <select class="st-sel" data-id="<?php echo h($it['id']); ?>">
                 <?php foreach ($STATUSES as $k => $lbl): ?><option value="<?php echo h($k); ?>"<?php echo $k === $it['status'] ? ' selected' : ''; ?>><?php echo h($lbl); ?></option><?php endforeach; ?>
               </select>
@@ -359,6 +395,18 @@ if (isset($_GET['debug'])) { echo "CHECKPOINT 8: about to render HTML — if you
       </div>
     <?php endforeach; endforeach; ?>
     <?php if (!$shown): ?><div class="empty">No feedback yet — be the first. Use the form above.</div><?php endif; ?>
+  </div>
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal-bg" id="del-modal">
+  <div class="modal">
+    <h3>Delete this feedback?</h3>
+    <p id="del-msg">This will permanently remove the comment and any screenshots. This can't be undone.</p>
+    <div class="actions">
+      <button type="button" class="cancel" id="del-cancel">Cancel</button>
+      <button type="button" class="confirm" id="del-confirm">Delete</button>
+    </div>
   </div>
 </div>
 
@@ -420,6 +468,28 @@ if (isset($_GET['debug'])) { echo "CHECKPOINT 8: about to render HTML — if you
       var fd=new FormData(); fd.append('action','status'); fd.append('id',sel.dataset.id); fd.append('status',sel.value);
       fetch(location.pathname,{method:'POST',body:fd}).then(function(){ location.reload(); });
     });
+  });
+
+  /* delete with confirmation modal */
+  var modal=document.getElementById('del-modal');
+  var msg=document.getElementById('del-msg');
+  var pendingId=null;
+  function openModal(id,who){
+    pendingId=id;
+    msg.textContent='This will permanently remove '+(who?who+"'s ":'this ')+"comment and any screenshots. This can't be undone.";
+    modal.classList.add('show');
+  }
+  function closeModal(){ pendingId=null; modal.classList.remove('show'); }
+  document.querySelectorAll('.del-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){ openModal(btn.dataset.id, btn.dataset.who); });
+  });
+  document.getElementById('del-cancel').addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&modal.classList.contains('show')) closeModal(); });
+  document.getElementById('del-confirm').addEventListener('click',function(){
+    if(!pendingId) return;
+    var fd=new FormData(); fd.append('action','delete'); fd.append('id',pendingId);
+    fetch(location.pathname,{method:'POST',body:fd}).then(function(){ location.reload(); });
   });
 })();
 </script>
