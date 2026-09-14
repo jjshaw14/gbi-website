@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Platform selection, security posture, and cost estimate for migrating the Great Basin Industrial marketing site (mygbi.com) to Azure.">
+<title>mygbi.com on Azure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --stock:#EBEDEE;
+  --sheet:#F7F8F9;
+  --sheet-2:#FFFFFF;
+  --ink:#15181B;
+  --ink-2:#454D54;
+  --muted:#6B747C;
+  --rule:#C5CCD1;
+  --hair:#DBE0E3;
+  --oxide:#B8431F;
+  --oxide-soft:#F4DED6;
+  --go:#2C6A4C;
+  --go-soft:#DDEBE3;
+  --warn:#7E5A0E;
+  --warn-soft:#F0E7CE;
+  --stop:#9E2B1B;
+  --stop-soft:#F3DCD8;
+  --shadow:0 1px 2px rgba(21,24,27,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --stock:#111416;
+    --sheet:#191D20;
+    --sheet-2:#202528;
+    --ink:#E8EBED;
+    --ink-2:#B4BCC2;
+    --muted:#8B949B;
+    --rule:#343B41;
+    --hair:#262C30;
+    --oxide:#E3714B;
+    --oxide-soft:#3A2119;
+    --go:#63B389;
+    --go-soft:#1B3025;
+    --warn:#D3A548;
+    --warn-soft:#2F2714;
+    --stop:#E2705B;
+    --stop-soft:#361D1A;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --stock:#111416;
+  --sheet:#191D20;
+  --sheet-2:#202528;
+  --ink:#E8EBED;
+  --ink-2:#B4BCC2;
+  --muted:#8B949B;
+  --rule:#343B41;
+  --hair:#262C30;
+  --oxide:#E3714B;
+  --oxide-soft:#3A2119;
+  --go:#63B389;
+  --go-soft:#1B3025;
+  --warn:#D3A548;
+  --warn-soft:#2F2714;
+  --stop:#E2705B;
+  --stop-soft:#361D1A;
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--stock);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:940px;
+  margin:0 auto;
+  padding-inline:20px;
+  padding-block:28px 64px;
+}
+
+/* ---- title block (engineering drawing convention) ---- */
+.titleblock{
+  border:1.5px solid var(--ink);
+  background:var(--sheet-2);
+  margin-bottom:40px;
+}
+.tb-main{
+  padding:22px 24px 20px;
+  border-bottom:1.5px solid var(--ink);
+}
+.tb-eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--oxide);
+  font-weight:500;
+  margin:0 0 10px;
+}
+h1{
+  font-family:"Oswald",Impact,sans-serif;
+  font-weight:600;
+  font-size:clamp(30px,6vw,46px);
+  line-height:1.04;
+  letter-spacing:.005em;
+  margin:0 0 10px;
+  text-wrap:balance;
+  text-transform:uppercase;
+}
+.tb-sub{
+  margin:0;
+  color:var(--ink-2);
+  font-size:15.5px;
+  max-width:62ch;
+}
+.tb-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.tb-cell{
+  padding:11px 14px;
+  border-right:1px solid var(--hair);
+}
+.tb-cell:last-child{border-right:none}
+.tb-k{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:block;
+  margin-bottom:3px;
+}
+.tb-v{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12.5px;
+  font-weight:500;
+  color:var(--ink);
+}
+
+/* ---- sections ---- */
+section{margin-bottom:46px}
+.sec-head{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  border-bottom:1.5px solid var(--ink);
+  padding-bottom:7px;
+  margin-bottom:20px;
+}
+.sec-num{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  font-weight:500;
+  color:var(--oxide);
+  letter-spacing:.06em;
+}
+h2{
+  font-family:"Oswald",Impact,sans-serif;
+  font-weight:500;
+  font-size:21px;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+  margin:0;
+  flex:1;
+}
+h3{
+  font-family:"Oswald",Impact,sans-serif;
+  font-weight:500;
+  font-size:15px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  margin:28px 0 10px;
+  color:var(--ink);
+}
+p{margin:0 0 14px;max-width:68ch}
+.lead{font-size:16.5px;color:var(--ink-2);max-width:66ch}
+strong{font-weight:600}
+code{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.875em;
+  background:var(--sheet);
+  border:1px solid var(--hair);
+  padding:1px 5px;
+  color:var(--ink);
+  word-break:break-word;
+}
+a{color:var(--oxide);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--oxide);outline-offset:2px}
+
+/* ---- verdict callout ---- */
+.verdict{
+  background:var(--sheet-2);
+  border:1.5px solid var(--ink);
+  border-left:6px solid var(--oxide);
+  padding:20px 24px;
+  margin-bottom:22px;
+}
+.verdict p:last-child{margin-bottom:0}
+.verdict .big{
+  font-family:"Oswald",Impact,sans-serif;
+  font-weight:600;
+  font-size:clamp(19px,3.4vw,25px);
+  line-height:1.2;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  margin:0 0 12px;
+  max-width:24ch;
+}
+
+/* ---- data tables (bill-of-materials styling) ---- */
+.tablewrap{overflow-x:auto;margin:0 0 16px;border:1px solid var(--rule);background:var(--sheet-2)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
+th{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:500;
+  text-align:left;
+  padding:9px 13px;
+  border-bottom:1.5px solid var(--ink);
+  white-space:nowrap;
+  background:var(--sheet);
+}
+td{padding:10px 13px;border-bottom:1px solid var(--hair);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.tot td{border-top:1.5px solid var(--ink);font-weight:600;background:var(--sheet)}
+td.nm{font-weight:500}
+.dim{color:var(--muted)}
+
+/* ---- pills ---- */
+.pill{
+  display:inline-block;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  font-weight:500;
+  padding:2.5px 7px;
+  border:1px solid currentColor;
+  white-space:nowrap;
+}
+.p-go{color:var(--go);background:var(--go-soft)}
+.p-warn{color:var(--warn);background:var(--warn-soft)}
+.p-stop{color:var(--stop);background:var(--stop-soft)}
+.p-ox{color:var(--oxide);background:var(--oxide-soft)}
+
+/* ---- cost bars ---- */
+.bars{display:flex;flex-direction:column;gap:2px;margin:0 0 18px;border:1px solid var(--rule);background:var(--sheet-2);padding:16px 18px}
+.bar-row{display:grid;grid-template-columns:minmax(120px,1.35fr) minmax(90px,3fr) auto;gap:12px;align-items:center}
+.bar-lbl{font-size:12.5px;font-weight:500;line-height:1.3}
+.bar-track{background:var(--hair);height:19px;position:relative}
+.bar-fill{height:100%;background:var(--muted)}
+.bar-fill.rec{background:var(--oxide)}
+.bar-val{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:500;white-space:nowrap;min-width:72px;text-align:right}
+.bar-note{font-size:11.5px;color:var(--muted);margin-top:10px;font-family:"IBM Plex Mono",monospace;letter-spacing:.02em}
+
+/* ---- punch list ---- */
+ol.punch{list-style:none;counter-reset:pl;padding:0;margin:0}
+ol.punch > li{
+  counter-increment:pl;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--hair);
+}
+ol.punch > li:last-child{border-bottom:none}
+ol.punch > li::before{
+  content:counter(pl,decimal-leading-zero);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  font-weight:500;
+  color:var(--oxide);
+  padding-top:2px;
+}
+.pl-t{font-weight:600;margin:0 0 4px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.pl-b{margin:0;color:var(--ink-2);font-size:14px;max-width:64ch}
+
+ul.plain{padding-left:19px;margin:0 0 14px;max-width:66ch}
+ul.plain li{margin-bottom:7px}
+
+.note{
+  border-left:3px solid var(--rule);
+  padding:2px 0 2px 15px;
+  color:var(--muted);
+  font-size:13.5px;
+  margin:18px 0;
+  max-width:64ch;
+}
+footer{
+  margin-top:52px;
+  border-top:1px solid var(--rule);
+  padding-top:16px;
+  color:var(--muted);
+  font-size:12px;
+  font-family:"IBM Plex Mono",monospace;
+  line-height:1.65;
+}
+@media (max-width:640px){
+  .tb-grid{grid-template-columns:repeat(2,1fr)}
+  .tb-cell{border-bottom:1px solid var(--hair)}
+  .tb-cell:nth-child(2n){border-right:none}
+  .tb-cell:nth-child(n+3){border-bottom:none}
+  .bar-row{grid-template-columns:1fr auto;gap:5px 10px}
+  .bar-track{grid-column:1/-1;order:3}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- standalone document reset (supplied by the artifact host when published) ---- */
+html{color-scheme:light dark}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* ---- print / PDF ---- */
+@media print{
+  :root{
+    --stock:#FFFFFF; --sheet:#F4F5F6; --sheet-2:#FFFFFF;
+    --ink:#000000; --ink-2:#2B2F33; --muted:#555D64;
+    --rule:#8C949A; --hair:#C8CDD1;
+    --oxide:#8F3416; --oxide-soft:#F2E2DC;
+    --go:#1F4E37; --go-soft:#E3EDE7;
+    --warn:#5E430A; --warn-soft:#F0E9D6;
+    --stop:#7A2114; --stop-soft:#F2DEDA;
+    --shadow:none;
+  }
+  body{font-size:11pt}
+  .wrap{max-width:none;padding-inline:0;padding-block:0}
+  .verdict,.tablewrap,.bars,ol.punch > li,.sec-head{break-inside:avoid}
+  .sec-head{break-after:avoid}
+  h3{break-after:avoid}
+  table{min-width:0}
+  a{text-decoration:none}
+  footer{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="titleblock">
+  <div class="tb-main">
+    <p class="tb-eyebrow">Infrastructure Recommendation · Great Basin Industrial</p>
+    <h1>mygbi.com<br>on Azure</h1>
+    <p class="tb-sub">Platform selection, security posture, and cost estimate for moving the marketing site off Cloudways into GBI-owned Azure infrastructure.</p>
+  </div>
+  <div class="tb-grid">
+    <div class="tb-cell"><span class="tb-k">Repo</span><span class="tb-v">gbi-home</span></div>
+    <div class="tb-cell"><span class="tb-k">Built by</span><span class="tb-v">makingnoyze</span></div>
+    <div class="tb-cell"><span class="tb-k">Reviewed</span><span class="tb-v">2026-09-14</span></div>
+    <div class="tb-cell"><span class="tb-k">Status</span><span class="tb-v" style="color:var(--oxide)">Pre-cutover</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>What the site actually is</h2></div>
+
+  <div class="verdict">
+    <p class="big">This is a static site wearing a PHP costume.</p>
+    <p>All 30 production pages are plain HTML. PHP appears on them for exactly two things — a <code>header.php</code> include and a <code>footer.php</code> include. There is no database, no session state, no mail handler, no login, and no form that posts anywhere. <strong>Nothing on this site requires a server runtime.</strong></p>
+  </div>
+
+  <p>That single fact decides the platform, the security model, and roughly 90% of the cost. Here is the evidence from the repo:</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Capability</th><th>What I found</th><th>Needs a server?</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Contact form</td><td><code>site/contact.php:56</code> — <code>&lt;form onsubmit="return false;"&gt;</code>. Inputs have no <code>name</code> attributes and there is no handler. It is a visual mockup that submits nowhere.</td><td><span class="pill p-go">No</span></td></tr>
+      <tr><td class="nm">Job applications</td><td>Handed off to <code>apply.workable.com</code> — an external ATS.</td><td><span class="pill p-go">No</span></td></tr>
+      <tr><td class="nm">Database</td><td>No <code>PDO</code>, <code>mysqli</code>, or connection string anywhere in the repo.</td><td><span class="pill p-go">No</span></td></tr>
+      <tr><td class="nm">Email / <code>mail()</code></td><td>Zero occurrences. Contact routes to <code>mailto:</code> links.</td><td><span class="pill p-go">No</span></td></tr>
+      <tr><td class="nm">Dependencies</td><td>No <code>package.json</code>, <code>composer.json</code>, or lockfile. Nothing to build, nothing to patch.</td><td><span class="pill p-go">No</span></td></tr>
+      <tr><td class="nm">Projects map</td><td><code>projects-map.js</code> (76 KB) with d3 + topojson, rendered entirely client-side.</td><td><span class="pill p-go">No</span></td></tr>
+      <tr><td class="nm">Review tooling</td><td><code>feedback.php</code>, <code>fb-board.php</code>, <code>feedback-widget.php</code>, <code>feedback-test.php</code>, <code>tag-review.php</code> — these <em>do</em> use <code>$_POST</code>, <code>$_FILES</code> and write to disk. They are pre-launch scaffolding and should not ship.</td><td><span class="pill p-warn">Yes — remove</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>So the question is not "where do we run PHP." It is "where do we serve 30 HTML pages and 135 MB of images." Those have very different answers and very different price tags.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Recommendation</h2></div>
+
+  <div class="verdict">
+    <p class="big">Azure Static Web Apps — Standard tier</p>
+    <p><strong>≈ $10/month, ≈ $120/year</strong>, all-in, including DNS. Global edge delivery, free auto-renewing TLS, per-pull-request preview environments, and a 99.95% SLA.</p>
+  </div>
+
+  <p>Static Web Apps is purpose-built for exactly this shape of site, and it deploys from the GitHub Actions workflow the repo already has. The decisive advantage is not price — it is that <strong>there is no server runtime to patch.</strong> No PHP interpreter, no web server config, no OS image, no CVE feed to track. That eliminates the entire class of risk a WAF would otherwise be compensating for.</p>
+
+  <h3>Why not App Service with PHP</h3>
+  <p>Running the site "as-is" on App Service sounds like the low-effort path, but it costs more, performs worse, and is <em>not actually as-is</em>:</p>
+  <ul class="plain">
+    <li><strong>Your <code>.htaccess</code> stops working.</strong> Azure App Service on Linux with PHP 8.x serves through <strong>nginx, not Apache</strong>. <code>site/.htaccess</code> is silently ignored — you lose the gzip rules, the one-year image cache headers, and <code>Options -Indexes</code> and get no error telling you. You would be rewriting that config regardless.</li>
+    <li><strong>Single region, no edge.</strong> A B1 instance serves 3.9 MB hero images from one datacenter. You would want Front Door in front anyway, which erases the price difference.</li>
+    <li><strong>You inherit a patch surface for zero benefit</strong> — a PHP runtime whose only job is to concatenate two HTML fragments.</li>
+    <li><strong>Defender for App Service</strong> then becomes a sensible add-on at ~$15/month, purely to watch a runtime you did not need.</li>
+  </ul>
+
+  <p class="note">There is a third pattern — Azure Storage static website behind Front Door. It is marginally cheaper on paper but gives up PR preview environments and managed certificates, and adds assembly work. Not worth the trade here.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>Cost comparison</h2></div>
+
+  <div class="bars">
+    <div class="bar-row">
+      <span class="bar-lbl">Static Web Apps Standard <span class="pill p-ox">Recommended</span></span>
+      <span class="bar-track"><span class="bar-fill rec" style="width:2.9%"></span></span>
+      <span class="bar-val">$120</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-lbl">+ Front Door Standard <span class="dim">(custom WAF rules)</span></span>
+      <span class="bar-track"><span class="bar-fill" style="width:12.8%"></span></span>
+      <span class="bar-val">$530</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-lbl">App Service B1 + Front Door + Defender</span>
+      <span class="bar-track"><span class="bar-fill" style="width:18.6%"></span></span>
+      <span class="bar-val">$770</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-lbl">+ Front Door <strong>Premium</strong> <span class="dim">(managed OWASP WAF)</span></span>
+      <span class="bar-track"><span class="bar-fill" style="width:100%"></span></span>
+      <span class="bar-val">$4,140</span>
+    </div>
+    <p class="bar-note">Estimated annual cost, USD · US region list price</p>
+  </div>
+
+  <h3>Recommended configuration — line items</h3>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Resource</th><th>Tier / SKU</th><th class="num">Monthly</th><th class="num">Annual</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Azure Static Web Apps</td><td>Standard, 1 app</td><td class="num">$9.00</td><td class="num">$108.00</td></tr>
+      <tr><td class="nm">Azure DNS</td><td>1 public zone + queries</td><td class="num">$0.90</td><td class="num">$10.80</td></tr>
+      <tr><td class="nm">Bandwidth</td><td>100 GB/mo included <span class="dim">— see below</span></td><td class="num">$0.00</td><td class="num">$0.00</td></tr>
+      <tr><td class="nm">TLS certificate</td><td>Azure-managed, auto-renew</td><td class="num">$0.00</td><td class="num">$0.00</td></tr>
+      <tr><td class="nm">Defender for Cloud</td><td>Foundational CSPM</td><td class="num">$0.00</td><td class="num">$0.00</td></tr>
+      <tr><td class="nm">GitHub Actions</td><td>Existing plan</td><td class="num">$0.00</td><td class="num">$0.00</td></tr>
+      <tr class="tot"><td>Total</td><td></td><td class="num">$9.90</td><td class="num">$118.80</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>The bandwidth question</h3>
+  <p>Standard includes 100 GB/month, then charges $0.20/GB. Whether you stay inside that envelope depends entirely on whether you compress the images:</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Scenario</th><th class="num">Page weight</th><th class="num">10k visits/mo</th><th class="num">Overage</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Images as they ship today</td><td class="num">~4.0 MB</td><td class="num">~100 GB</td><td class="num">At the cap</td></tr>
+      <tr><td class="nm">After WebP/AVIF + resize</td><td class="num">~0.4 MB</td><td class="num">~10 GB</td><td class="num">$0.00</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>The repo carries <strong>516 images totalling 135 MB</strong>, with seven hero images between 3.5 MB and 3.9 MB each. Converting them to WebP or AVIF at sensible dimensions typically cuts that by 8–10×. That one change keeps you inside the included bandwidth indefinitely, drops the deployed app from 136 MB to roughly 15–20 MB, and will do more for real-world page speed than any infrastructure choice on this page.</p>
+
+  <p class="note">Static Web Apps caps app size at <strong>500 MB</strong> on Standard (250 MB on Free). At 136 MB you fit comfortably today, but each new case study adds gallery images — compressing now buys years of headroom.</p>
+
+  <h3>If you want to try Free tier first</h3>
+  <p>The Free tier ($0) would technically host this site — 100 GB bandwidth, 250 MB app size, custom domains, managed TLS. It has <strong>no SLA</strong> and only 2 custom domains. For a company's primary web presence, $9/month for a 99.95% SLA and staging environments is the right call, but Free is a legitimate way to validate the deployment before committing.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>Security — spend proportional to the attack surface</h2></div>
+
+  <p class="lead">A WAF blocks SQL injection, command injection, path traversal, and server-side XSS. This site has no SQL, no command execution, no filesystem reads from user input, and no server to inject into. A managed WAF in front of it is <strong>$4,000/year of protection against attacks that have no target.</strong></p>
+
+  <p>That is not an argument against security spending — it is an argument for putting it where the real exposure is. For a static marketing site, the genuine risks are these, and the mitigations are almost all free configuration:</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Real risk</th><th>Mitigation</th><th class="num">Cost</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">Defacement via compromised deploy pipeline</td><td>OIDC federated credentials instead of long-lived publish-profile secrets; branch protection + required review on <code>main</code>; environment approval gate</td><td class="num">$0</td></tr>
+      <tr><td class="nm">Supply chain — third-party scripts</td><td>Add SRI hashes to the d3 and topojson tags, or self-host them. <strong>Currently neither.</strong></td><td class="num">$0</td></tr>
+      <tr><td class="nm">Clickjacking, MIME sniffing, mixed content</td><td>Security headers via <code>globalHeaders</code> in <code>staticwebapp.config.json</code> — CSP, HSTS, <code>X-Content-Type-Options</code>, <code>X-Frame-Options</code>, <code>Referrer-Policy</code></td><td class="num">$0</td></tr>
+      <tr><td class="nm">DNS hijack / subdomain takeover</td><td>Azure DNS with resource locks; MFA on registrar; remove CNAMEs when decommissioning Cloudways</td><td class="num">$0</td></tr>
+      <tr><td class="nm">Volumetric DDoS</td><td>Azure platform DDoS protection — always on, included with the edge</td><td class="num">$0</td></tr>
+      <tr><td class="nm">Secrets committed to the repo</td><td>GitHub push protection + secret scanning; <code>deploy.config</code> is already gitignored — verify it is not in history</td><td class="num">$0</td></tr>
+      <tr><td class="nm">Config drift / misconfiguration</td><td>Defender for Cloud foundational CSPM — secure score and recommendations</td><td class="num">$0</td></tr>
+      <tr><td class="nm">Bot scraping, targeted L7 flood, geo-restriction</td><td>Front Door Standard + custom WAF rules (rate limiting, geo-filter, IP blocks)</td><td class="num">~$530/yr</td></tr>
+      <tr><td class="nm">Policy mandate for managed OWASP ruleset</td><td>Front Door Premium — managed rulesets, bot protection, Private Link origin</td><td class="num">~$4,140/yr</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>On code and vulnerability scanning</h3>
+  <p>Worth knowing before anyone quotes you for it: this repo has <strong>no dependency manifest of any kind</strong> — no npm, no Composer, no lockfile. Software Composition Analysis has literally nothing to analyse, and SAST has no server-side code to walk. GitHub Advanced Security at roughly $30–49 per committer per month would return very little here.</p>
+  <p>What <em>is</em> worth turning on, all free or near-free: Dependabot (for GitHub Actions versions), secret scanning with push protection, and CodeQL for JavaScript — which would at least cover <code>site.js</code> and <code>projects-map.js</code>. Revisit paid SAST if the site ever grows a real backend.</p>
+
+  <h3>If a WAF is non-negotiable</h3>
+  <p>Industrial and energy customers increasingly send security questionnaires that ask "is your public web presence behind a WAF?" as a yes/no. If GBI needs to answer yes, the honest options are:</p>
+  <ul class="plain">
+    <li><strong>Front Door Standard + custom rules — ~$530/year.</strong> Gives you rate limiting, geo-filtering, and IP restrictions. Does <em>not</em> include Microsoft-managed OWASP rulesets. One caveat: without Private Link (a Premium feature) the Static Web Apps default hostname stays directly reachable, so the WAF can be bypassed by anyone who finds it.</li>
+    <li><strong>Front Door Premium — ~$4,140/year.</strong> Managed OWASP rulesets, bot protection, and Private Link to lock the origin so traffic <em>must</em> pass the WAF. This is the configuration that survives an auditor's follow-up question.</li>
+  </ul>
+  <p>My read: unless a contract or an insurer requires it in writing, put the $4,000 somewhere it buys more — and note that "static hosting with no server-side execution" is a stronger answer to most questionnaires than "PHP behind a WAF."</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>Punch list before cutover</h2></div>
+
+  <p class="lead">The Static Web Apps path in this repo is not deployable today. I ran <code>scripts/build-static.py</code> against <code>site/</code> and checked the output — these are ordered by what blocks the launch.</p>
+
+  <ol class="punch">
+    <li>
+      <div>
+        <p class="pl-t">Build script drops the site navigation <span class="pill p-stop">Blocker</span></p>
+        <p class="pl-b"><code>build-static.py</code> inlines only the <em>footer</em> include. Every page also has a <code>header.php</code> include carrying the entire top nav, plus a <code>feedback-widget.php</code> include. I confirmed it: <strong>all 33 generated HTML files still contain raw <code>&lt;?php&gt;</code></strong>. Deploy this as-is and every page ships with no navigation. The script needs to handle the header include and its <code>$NAV_ACTIVE</code> variable.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Review tooling must be excluded from the build <span class="pill p-stop">Blocker</span></p>
+        <p class="pl-b"><code>feedback.php</code>, <code>fb-board.php</code>, <code>feedback-widget.php</code>, <code>feedback-test.php</code> and <code>tag-review.php</code> accept unauthenticated file uploads and write to disk, gated only by a hardcoded cookie token (<code>'review-access'</code>). Inert on a static host, but they should not be published at all — add them to a skip list alongside <code>partials/</code>, and strip the widget include from every page.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">404 handling is contradictory and the page does not exist <span class="pill p-warn">Fix</span></p>
+        <p class="pl-b">The generated <code>staticwebapp.config.json</code> declares <code>responseOverrides.404 → /404.html</code>, but no 404 page exists in the repo. It also sets <code>navigationFallback</code> to rewrite unmatched routes to <code>/index.html</code>, which serves the homepage with a <strong>200</strong> for every bad URL — poor for users and actively harmful for SEO. Pick one behaviour, and author the 404 page.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Compress the image library <span class="pill p-warn">Fix</span></p>
+        <p class="pl-b">516 images, 135 MB. Ten are over 2 MB; <code>project-oge.jpg</code>, <code>project-ipa-kiewit.jpg</code> and <code>hero-smp.jpg</code> are 3.9 MB each. Convert to WebP/AVIF and resize to display dimensions. Biggest single win available — for page speed, bandwidth cost, and app-size headroom.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Add SRI to the CDN scripts <span class="pill p-warn">Fix</span></p>
+        <p class="pl-b"><code>site/projects/index.php:538-539</code> loads d3 7.8.5 and topojson 3.0.2 from cdnjs with no <code>integrity</code> attribute. If cdnjs is ever compromised, that is arbitrary script execution on your domain. Add SRI hashes or vendor the two files locally — this is the one genuine vulnerability I found in the codebase.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Port the <code>.htaccess</code> rules <span class="pill p-warn">Fix</span></p>
+        <p class="pl-b">Neither Azure path reads <code>.htaccess</code> — Static Web Apps uses <code>staticwebapp.config.json</code>, and Linux App Service on PHP 8 uses nginx. Move the cache headers and compression rules across, and set the security headers from section 04 at the same time. The current config only sets <code>cache-control: must-revalidate</code> globally, which would defeat the one-year asset caching you have today.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Decide the contact form <span class="pill p-warn">Decision</span></p>
+        <p class="pl-b">It currently renders a full project-inquiry form that silently discards everything typed into it. That is worse than having no form — a prospect fills it in and hears nothing back. Either wire it to an endpoint (Azure Function with an email relay, or an embedded form service) or replace it with the <code>mailto:</code> contacts already on the page. This is a business decision, not a technical one, but it should not survive launch.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Switch deploy auth to OIDC <span class="pill p-go">Hardening</span></p>
+        <p class="pl-b">Both workflows use long-lived credentials — a publish profile for App Service, a static API token for Static Web Apps. Azure federated credentials let GitHub Actions authenticate with short-lived tokens and no stored secret. Worth doing at provisioning time rather than retrofitting.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <p class="pl-t">Minor — build script crashes on Windows <span class="pill p-go">Hardening</span></p>
+        <p class="pl-b">The closing <code>print()</code> emits an emoji and raises <code>UnicodeEncodeError</code> under the cp1252 console encoding, after the build has already written its output. Harmless in GitHub Actions on Ubuntu, confusing when run locally on Windows.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>Provisioning order</h2></div>
+  <ul class="plain">
+    <li><strong>Resource group</strong> — e.g. <code>rg-gbi-web-prod</code>, tagged for cost tracking.</li>
+    <li><strong>Static Web App</strong>, Standard tier, region closest to your users (West US 2 or Central US). Content is edge-distributed regardless; the region only sets the management plane.</li>
+    <li><strong>Fix punch-list items 1–3</strong>, then deploy to a staging environment and verify navigation renders on every page.</li>
+    <li><strong>Custom domain</strong> — validate <code>mygbi.com</code> and <code>www</code>, let Azure issue managed certificates, confirm HTTPS redirect.</li>
+    <li><strong>Azure DNS zone</strong>, then cut the registrar nameservers over once records are verified. Keep Cloudways live until this resolves cleanly.</li>
+    <li><strong>Harden</strong> — OIDC deploy credentials, security headers, branch protection, resource locks on the DNS zone.</li>
+    <li><strong>Enable Defender for Cloud</strong> foundational CSPM and review the secure score.</li>
+    <li><strong>Decommission Cloudways</strong> after a week of clean traffic, and remove the stale SFTP credentials in <code>deploy.config</code>.</li>
+  </ul>
+</section>
+
+<footer>
+  Pricing reflects US-region Azure list prices and excludes tax, Enterprise Agreement discounts, and Azure credits. Verify against the Azure Pricing Calculator before budgeting — Azure list prices change, and EA terms may reduce these figures materially.<br>
+  Findings derived from the gbi-home repository at commit 869277b, 2026-09-14. Build-script behaviour verified by running scripts/build-static.py against site/ and inspecting the generated output.
+</footer>
+
+</div>
+</body>
+</html>
