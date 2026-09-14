@@ -187,31 +187,30 @@ On Path B the build script rewrites them to `.html` at build time.
 
 ## Pre-launch cleanup — REMOVE BEFORE GOING LIVE
 
-The following review-phase tools are living in the repo during the
-draft-site feedback window. They must be removed before the site goes
-live on Azure — none of them are meant for the public site.
-
 **1. Bradford's gallery tag review page**
 - Delete: `site/tag-review.php`
 - One file, no side effects. Verify `/tag-review.php` returns a 404
   after removal.
 
-**2. Feedback board (from client's IT team)**
-- Delete: `site/feedback.php`
-- Delete: `site/feedback-widget.php`
-- Delete: `site/feedback-data/` (JSON store + uploaded screenshots)
-- Remove the `<?php include dirname(__DIR__) . '/feedback-widget.php'; ?>`
-  line from `site/partials/footer.php` (the block right after the site.js
-  script tag, marked with the `REVIEW PHASE ONLY` comment).
-- Verify the floating "💬 Feedback" button no longer appears on any page.
-
-**3. Old Cloudways deploy artifacts (already gitignored, but worth
+**2. Old Cloudways deploy artifacts (already gitignored, but worth
 checking on the Azure host):**
 - `deploy.config`, `deploy.sh`, `deploy-watch.sh` should never have
   been uploaded to Azure. If they got there via a mistake, delete them.
 
-After all three removals, `git status` on the contractor machine should
+After these removals, `git status` on the contractor machine should
 show a clean set of deletions ready to commit as the pre-launch cleanup.
+
+### Feedback board — staying live (invite-gated)
+
+The feedback board (`site/feedback.php`, `site/feedback-widget.php`,
+`site/feedback-data/`) is **NOT** removed at launch. As of 2026-09-14,
+JJ chose to keep it on the live site as an internal tool. The floating
+button is hidden by default and only appears for visitors who arrive
+via the invite URL (`?fb=<token>` — see `feedback-widget.php` for the
+current token). `/feedback.php` itself remains publicly reachable if
+someone knows the URL; JJ accepted that trade-off. When it's time to
+retire the tool entirely, delete both PHP files, `feedback-data/`, and
+the include line in `site/partials/footer.php`.
 
 ---
 
