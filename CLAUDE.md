@@ -3,8 +3,13 @@
 ## What this repo is
 
 The Great Basin Industrial (GBI) marketing site at `mygbi.com`. Static
-HTML/CSS/JS with **one** small PHP include per page (the shared footer).
-No database, no framework, no build step in production.
+HTML/CSS/JS with **two** small PHP includes per page (a shared header
+and footer), plus a third that reaches every page transitively via the
+footer. No database, no framework, no build step in production.
+
+**Converting to static HTML?** Read `STATIC-CONVERSION.md` first. The
+include structure is deeper than it looks and the pieces that break are
+invisible until they reach production.
 
 ## Structure
 
@@ -12,6 +17,7 @@ No database, no framework, no build step in production.
 site/                        ← the deployable web root
 ├── index.php                ← homepage
 ├── about/ services/ industries/ projects/ resources/
+├── partials/header.php      ← shared header + nav (server-side include)
 ├── partials/footer.php      ← shared footer (server-side include)
 ├── assets/                  ← CSS, JS, images, staff photos, logos
 ├── careers.php contact.php terms.php
@@ -20,13 +26,29 @@ site/                        ← the deployable web root
 .github/workflows/           ← GitHub Actions deploy pipelines
 scripts/build-static.py      ← PHP → HTML converter (Static Web Apps path)
 AZURE_SETUP.md               ← full Azure migration guide
+STATIC-CONVERSION.md         ← include map + static conversion checklist
 ```
 
 ## The shared partials
 
 Every `.php` page includes two shared partials — the header at the top
-and the footer at the bottom. Together those two include lines are the
-only PHP anywhere on the site.
+and the footer at the bottom.
+
+Those two include lines are the only PHP **written on the pages
+themselves**, but they are not the only PHP on the site:
+
+- `partials/header.php` defines a function (`__gbi_nav_active`) and
+  calls it at five places, so the header renders differently on every
+  page depending on `$NAV_ACTIVE`. It is not a fixed block of HTML.
+- `partials/footer.php` ends with a third include pulling in
+  `feedback-widget.php`, which therefore reaches all 28 production
+  pages even though no page references it. **Review tooling — it must
+  not ship to production.**
+- Five files carry real server-side logic (`$_POST`, `$_FILES`, disk
+  writes): `feedback.php`, `fb-board.php`, `feedback-widget.php`,
+  `feedback-test.php`, `tag-review.php`. All are pre-launch scaffolding.
+
+`STATIC-CONVERSION.md` maps this in full.
 
 **Header (top of every page):**
 
