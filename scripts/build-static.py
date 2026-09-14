@@ -88,6 +88,15 @@ ROOT_HTML_PAGES = {"404.php"}
 FORM_ENDPOINT_PLACEHOLDER = "__GBI_FORM_ENDPOINT__"
 FORM_ENDPOINT = os.environ.get("GBI_FORM_ENDPOINT", "").strip()
 
+# Canonical origin. Every URL on the site changes in this migration, so
+# canonical tags and a sitemap are how search engines are told which host and
+# which URL shape is authoritative. www is canonical because the apex cannot
+# be a CNAME -- see STATIC-CONVERSION.md section 9.
+SITE_ORIGIN = os.environ.get("GBI_SITE_ORIGIN", "https://www.mygbi.com").rstrip("/")
+
+# Pages kept out of the sitemap and given no canonical tag.
+NOINDEX_PAGES = {"404.html"}
+
 
 # -----------------------------------------------------------------------------
 # Patterns
@@ -178,6 +187,10 @@ LEADING_PHP_BLOCK_RE = re.compile(r'^\s*<\?php.*?^\?>\s*', re.DOTALL | re.MULTIL
 # docblock leaks markup that contains "?>" but no "<?php".
 ANY_PHP_RE = re.compile(r'<\?php|\?>', re.IGNORECASE)
 
+HEAD_CLOSE_RE = re.compile(r'</head>', re.IGNORECASE)
+HAS_CANONICAL_RE = re.compile(r"""<link[^>]+rel=["']canonical["']""", re.IGNORECASE)
+HAS_ICON_RE = re.compile(r"""<link[^>]+rel=["'][^"']*icon[^"']*["']""", re.IGNORECASE)
+
 
 # -----------------------------------------------------------------------------
 # Static Web Apps config
@@ -248,6 +261,42 @@ def php_path_to_output(rel: Path) -> Path:
     if rel.name == "index.php":
         return rel.with_name("index.html")       # services/index.php -> services/index.html
     return rel.with_suffix("") / "index.html"    # about/x.php -> about/x/index.html
+
+
+def output_to_url(out_rel: Path) -> str:
+    """The public URL for a built file: about/our-story/index.html -> /about/our-story/."""
+    posix = out_rel.as_posix()
+    if posix == "index.html":
+        return "/"
+    if posix.endswith("/index.html"):
+        return "/" + posix[: -len("index.html")]
+    return "/" + posix
+
+
+def inject_canonical(text: str, url: str) -> str:
+    """Add <link rel="canonical"> unless the page already declares one."""
+    if HAS_CANONICAL_RE.search(text):
+        return text
+    tag = f'<link rel="canonical" href="{SITE_ORIGIN}{url}" />\n'
+    return HEAD_CLOSE_RE.sub(tag + "</head>", text, count=1)
+
+
+def inject_favicon(text: str) -> str:
+    """Add favicon links unless the page already declares one.
+
+    Injected here rather than added to 29 page heads by hand -- the shared
+    header partial is inside <body>, so it cannot carry <head> tags.
+    /favicon.ico at the root is auto-discovered by browsers even without
+    these; the explicit tags add the higher-resolution PNG.
+    """
+    if HAS_ICON_RE.search(text):
+        return text
+    tags = (
+        '<link rel="icon" href="/favicon.ico" sizes="any" />\n'
+        '<link rel="icon" type="image/png" href="/assets/images/favicon.png" />\n'
+        '<link rel="apple-touch-icon" href="/assets/images/favicon.png" />\n'
+    )
+    return HEAD_CLOSE_RE.sub(tags + "</head>", text, count=1)
 
 
 def page_base_dir(rel: Path) -> str:
@@ -383,6 +432,7 @@ def build(src_dir: Path, out_dir: Path) -> int:
     out_dir.mkdir(parents=True)
 
     pages, assets, skipped = 0, 0, 0
+    sitemap_urls: list[str] = []
 
     for src_path in sorted(src_dir.rglob("*")):
         if src_path.is_dir():
@@ -403,15 +453,19 @@ def build(src_dir: Path, out_dir: Path) -> int:
         if src_path.suffix.lower() == ".php":
             dest = out_dir / php_path_to_output(rel)
             dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_text(
-                rewrite_page(
-                    src_path.read_text(encoding="utf-8"),
-                    header_src,
-                    footer_html,
-                    page_base_dir(rel),
-                ),
-                encoding="utf-8",
+            out_rel = php_path_to_output(rel)
+            built = rewrite_page(
+                src_path.read_text(encoding="utf-8"),
+                header_src,
+                footer_html,
+                page_base_dir(rel),
             )
+            url = output_to_url(out_rel)
+            built = inject_favicon(built)
+            if out_rel.name not in NOINDEX_PAGES and out_rel.as_posix() not in NOINDEX_PAGES:
+                built = inject_canonical(built, url)
+                sitemap_urls.append(url)
+            dest.write_text(built, encoding="utf-8")
             pages += 1
             continue
 
@@ -424,7 +478,32 @@ def build(src_dir: Path, out_dir: Path) -> int:
         json.dumps(STATICWEBAPP_CONFIG, indent=2), encoding="utf-8"
     )
 
+    # sitemap.xml -- every indexable page, in the shape search engines should
+    # adopt. Generated rather than hand-maintained so it cannot drift.
+    sitemap_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    sitemap_lines += [
+        f"  <url><loc>{SITE_ORIGIN}{u}</loc></url>" for u in sorted(sitemap_urls)
+    ]
+    sitemap_lines.append("</urlset>")
+    (out_dir / "sitemap.xml").write_text(
+        "\n".join(sitemap_lines) + "\n", encoding="utf-8"
+    )
+
+    (out_dir / "robots.txt").write_text(
+        "\n".join([
+            "User-agent: *",
+            "Allow: /",
+            "",
+            f"Sitemap: {SITE_ORIGIN}/sitemap.xml",
+        ]) + "\n",
+        encoding="utf-8",
+    )
+
     print(f"Built {pages} pages, copied {assets} assets, skipped {skipped} server-only files -> {out_dir}/")
+    print(f"Canonical origin {SITE_ORIGIN}; sitemap.xml lists {len(sitemap_urls)} pages.")
     if not FORM_ENDPOINT:
         print("WARNING: GBI_FORM_ENDPOINT not set. The contact form will show its "
               "mailto fallback instead of posting to Power Automate.")

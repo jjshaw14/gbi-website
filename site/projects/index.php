@@ -535,8 +535,17 @@
     </div>
   </div>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<!-- Pinned versions with Subresource Integrity. If cdnjs is ever compromised,
+     the browser refuses to execute a script whose hash does not match, instead
+     of running attacker code on our domain. crossorigin is required for SRI to
+     be enforced on a cross-origin script. Regenerate the hash if the version
+     changes: curl -s <url> | openssl dgst -sha384 -binary | openssl base64 -A -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"
+        integrity="sha384-su5kReKyYlIFrI62mbQRKXHzFobMa7BHp1cK6julLPbnYcCW9NIZKJiTODjLPeDh"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"
+        integrity="sha384-9dCJK6nh7skY14HrcvlLYlFga9/MehJjL9ONWRflmiXNRuf8p2jiF4Y5PR881PTq"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/assets/js/projects-map.js"></script>
 
 <section class="final-cta">

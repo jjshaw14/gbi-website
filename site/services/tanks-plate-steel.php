@@ -126,7 +126,7 @@
 <p>Our welders are procedure-qualified. Our quality management system maintains 100% material traceability. When the spec calls for a material other contractors pass on, GBI takes the work, and builds it right.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/hero-fab.png');">
+      <div class="editorial-photo" style="background-image:url('../assets/images/hero-fab.jpg');">
         <div class="photo-direction">
           <strong>Photo</strong>
           <span>Welder working on a tank / high-nickel alloy fabrication.</span>

@@ -14,7 +14,7 @@
 <?php $NAV_ACTIVE = 'services'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-rail.png')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-rail.jpg')"></div>
   <div class="hero-overlay"></div>
   <div class="photo-direction">
     <strong>Photo · GBI crew on rail spur install</strong>
@@ -40,7 +40,7 @@
 <p><strong>Emergency Response.</strong> Derailment response, rerailing, and track repair. The call you don't want to make is the one GBI is built to answer.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/hero-rail.png');">
+      <div class="editorial-photo" style="background-image:url('../assets/images/hero-rail.jpg');">
         <div class="photo-direction">
           <strong>Photo</strong>
           <span>Industrial rail spur / GBI rail crew at a facility offload.</span>

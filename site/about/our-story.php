@@ -14,7 +14,7 @@
 <?php $NAV_ACTIVE = 'about'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-our-story.png')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-our-story.jpg')"></div>
   <div class="hero-overlay"></div>
   <div class="photo-direction">
     <strong>Photo · Full-width, Our Story hero</strong>

@@ -165,7 +165,7 @@
           <div class="tile-link">Explore →</div>
         </div>
       </a>
-      <a class="photo-tile" href="industries/index.php" style="background-image:url('assets/images/industry-food-nyzai.png')">
+      <a class="photo-tile" href="industries/index.php" style="background-image:url('assets/images/industry-food-nyzai.jpg')">
         <div>
           <h3>Food, Beverage &amp; Agriculture</h3>
           <div class="tile-link">Explore →</div>
@@ -346,7 +346,7 @@
       <p class="lead">We build careers the same way we build everything else: one day at a time, with craft and with care. If you've done the work, you know what it means to do it right. That's who we're looking for.</p>
       <a class="btn btn-primary" href="careers.php">Explore Careers <span class="arr">→</span></a>
     </div>
-    <div style="min-height:340px; background-image:url('assets/images/hero-fab.png'); background-size:cover; background-position:center; margin-top:48px;"></div>
+    <div style="min-height:340px; background-image:url('assets/images/hero-fab.jpg'); background-size:cover; background-position:center; margin-top:48px;"></div>
   </div>
 </section>
 

@@ -138,7 +138,7 @@
 <p>Our welders are qualified to the procedures the work demands.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/hero-fab.png');">
+      <div class="editorial-photo" style="background-image:url('../assets/images/hero-fab.jpg');">
         <div class="photo-direction">
           <strong>Photo</strong>
           <span>Welder working on high-nickel alloy / fabrication shop interior.</span>

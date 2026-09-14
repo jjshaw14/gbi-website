@@ -250,33 +250,39 @@ WAF can be bypassed by anyone who finds it.
 
 ### Open
 
-- [ ] **13a. Add a favicon.** There is none in the repo and no
-      `<link rel="icon">` on any page, so every page request logs a 404
-      for `/favicon.ico`.
-- [ ] **14. Verify the report-only CSP**, then enforce it. Watch the
-      browser console on a staging deploy, fix violations, then rename
-      the header to `content-security-policy`. Do not enforce it
-      untested — a wrong CSP breaks the site silently.
-- [ ] **14. Add SRI** to the two cdnjs tags at
-      `site/projects/index.php:538-539` (d3 7.8.5, topojson 3.0.2), or
-      vendor them locally.
-- [ ] **15. Compress images** — 516 files, 135 MB, seven heroes at
-      3.5–3.9 MB. WebP/AVIF plus resizing typically cuts this 8–10×.
-- [ ] **16. Add `canonical` tags, `sitemap.xml`, `robots.txt`.** None
-      exist today. See §7 — this is not optional on a URL change.
-- [x] **17. Wire up the contact form.** Was
-      `<form onsubmit="return false;">` with no `name` attributes —
-      it silently discarded every enquiry. Now posts to a Power Automate
-      HTTP-trigger flow, with an on-screen confirmation, a mailto
-      fallback carrying what the user typed if anything fails, a
-      honeypot, and proper labels/`autocomplete`. **See
-      `FORM-INTEGRATION.md`** — the flow itself and the
-      `GBI_FORM_ENDPOINT` secret are still to be built.
-- [ ] **18. Enable the deploy workflow.** `deploy-static-web-app.yml`
-      still has its `push:` trigger commented out and a placeholder
-      secret name. Uncomment and set the real token once the SWA exists.
-- [ ] **19. Lock the origin to Front Door** via
-      `forwardingGateway.requiredHeaders` (§5), once Front Door is up.
+- [x] **13a. Add a favicon.** Generated from the blue mountain mark in
+      `gbi-logo.png` (the wordmark is illegible at 16px). `favicon.ico` at
+      the site root plus a PNG for higher-DPI and apple-touch. Link tags are
+      injected at build time, because the shared header partial sits inside
+      `<body>` and cannot carry `<head>` tags.
+- [x] **14. Add SRI** to the two cdnjs tags in `site/projects/index.php`
+      (d3 7.8.5, topojson 3.0.2), with `crossorigin="anonymous"` — SRI is
+      not enforced on a cross-origin script without it.
+- [x] **15. Compress images** — 133.6 MB → 98 MB across 518 files, none
+      corrupted. Two findings made most of the difference:
+      the nine largest files were **MPO**, not JPEG (iPhone multi-picture
+      images named `.jpg`), so a naive format check skipped exactly the
+      files that mattered; and nine "PNGs" were opaque photos, 11.4 MB that
+      became 1.4 MB as JPEG. Heroes went from 3.5–3.9 MB to 0.6–1.2 MB,
+      which is the number that drives page weight and bandwidth cost.
+      `scripts/optimize-images.py` is re-runnable and idempotent.
+- [x] **16. Add `canonical` tags, `sitemap.xml`, `robots.txt`.** All
+      generated at build time from each page's own output path, so they
+      cannot drift from reality. Canonical origin is `https://www.mygbi.com`,
+      overridable with `GBI_SITE_ORIGIN`. The 404 page is excluded from both
+      the sitemap and canonical tagging.
+- [ ] **16a. Build the old → new redirect map.** Still outstanding and still
+      the biggest launch risk. `sitemap.xml` now says where every page
+      *will* live; what is missing is where each page *currently* lives on
+      the live site. Crawl `mygbi.com` or pull the URL list from Search
+      Console, then map old → new in `staticwebapp.config.json` or the Front
+      Door rules engine.
+- [ ] **16b. Review 17 unreferenced assets (9.8 MB).** Nothing on the site
+      links to them. **Do not bulk-delete**: `logos/gbi.png` and
+      `logos/hti.png` are in that list and are deliberately unreferenced —
+      other GBI projects hot-link them. The rest (`project-jervois-nyzai.png`
+      at 2.2 MB, `project-musket-nyzai.png` at 2.2 MB, `project-apache.png`,
+      `staff/joe.png`) need a human decision.
 - [ ] **20. Keep `/assets/images/logos/gbi.png` and `hti.png`
       resolving.** Not referenced by any page; other GBI projects
       hot-link them as public URLs. Do not prune as "unused assets".

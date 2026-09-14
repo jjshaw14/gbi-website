@@ -44,7 +44,7 @@
 <p>What we can tell you is this: the people here are real builders. The company is run by people who have done the work. Leadership knows your name. They know your situation. If you do good work for GBI, GBI will do good work for you. That is the deal, and you can count on it.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('assets/images/careers-crew-shop.png');">
+      <div class="editorial-photo" style="background-image:url('assets/images/careers-crew-shop.jpg');">
         <div class="photo-direction">
           <strong>Photo</strong>
           <span>GBI crew in branded jackets at a shop or facility. Real people, real work.</span>

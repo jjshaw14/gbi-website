@@ -81,7 +81,7 @@
 <p><a href="preconstruction-engineering.php" class="inline-link">Preconstruction Engineering <span class="arr">→</span></a></p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/hero-precon.png');">
+      <div class="editorial-photo" style="background-image:url('../assets/images/hero-precon.jpg');">
         <div class="photo-direction">
           <strong>Photo</strong>
           <span>Erection drawing / pre-con planning session on jobsite.</span>

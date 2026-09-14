@@ -14,7 +14,7 @@
 <?php $NAV_ACTIVE = 'services'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-precon.png')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-precon.jpg')"></div>
   <div class="hero-overlay"></div>
   <div class="photo-direction">
     <strong>Photo · Engineering drawings / critical lift planning</strong>
@@ -39,7 +39,7 @@
 <p>On a turnkey scope, this means critical lift plans, erection sequences, and constructability reviews happen before the mobilization truck leaves the yard.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/hero-precon.png');">
+      <div class="editorial-photo" style="background-image:url('../assets/images/hero-precon.jpg');">
         <div class="photo-direction">
           <strong>Photo</strong>
           <span>Pre-con engineer at a workstation with erection drawings / lift plan, or a planning session with crew.</span>
