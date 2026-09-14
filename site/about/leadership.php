@@ -102,21 +102,6 @@
         </div>
       </div>
       <div class="bio-card" data-color="5" data-card-id="bio-4"
-           data-name="Jeff Reading" data-role="Vice President, Tank Construction" data-bio="Jeff has been in the steel and tank industry since 1980. He spent a decade at Geneva Steel as a welder and ironworker, followed by 24 years at a tank and plate fabricator, moving from welder to construction warehouse manager to project manager. He joined GBI in 2014 as a Tank Project Manager, was promoted to Construction Manager, and became Vice President of Tank Construction in 2019. Jeff oversees all aspects of GBI's tank project mobilization and construction, the division that built this company's reputation. He has forgotten more about tank construction than most contractors will ever know. He hunts and fishes just about everything there is, and spends weekends at a remote family cabin in the mountains.">
-        <div class="bio-portrait"><img src="../assets/images/staff/Jeff Reading.png" alt="Jeff Reading" /></div>
-        <div class="bio-meta">
-          <div class="text">
-            <h3>Jeff Reading</h3>
-            <div class="role">Vice President, Tank Construction</div>
-          </div>
-          <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="panel-1" aria-label="Read bio for Jeff Reading">
-            <span class="icon">+</span>
-            <span class="label-read">Read Bio</span>
-            <span class="label-close">Close</span>
-          </button>
-        </div>
-      </div>
-      <div class="bio-card" data-color="6" data-card-id="bio-5"
            data-name="Scott Dahle, CSP" data-role="Vice President, Environmental, Health & Safety" data-bio="Scott joined GBI in 2014 as Environmental Health and Safety Director and was promoted to Vice President in 2021. He is a Certified Safety Professional with a career that reflects both the breadth and the seriousness of his discipline, beginning as an industrial hygienist at Nucor Steel, moving into regional construction safety leadership at CH2M Hill, then into consulting, and ultimately serving as corporate safety director for a division of Westinghouse before coming to GBI. He holds a BS in Industrial Hygiene and Safety from Utah State University, earned in 1996. Scott runs one of the strongest safety programs in the industrial construction industry, a TRIR that consistently outperforms the sector by a significant margin. Most evenings and weekends you'll find him coaching locally or cheering on one of his three Division I collegiate athletes.">
         <div class="bio-portrait"><img src="../assets/images/staff/Scott Dahle.png" alt="Scott Dahle, CSP" /></div>
         <div class="bio-meta">
@@ -125,6 +110,21 @@
             <div class="role">Vice President, Environmental, Health & Safety</div>
           </div>
           <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="panel-1" aria-label="Read bio for Scott Dahle, CSP">
+            <span class="icon">+</span>
+            <span class="label-read">Read Bio</span>
+            <span class="label-close">Close</span>
+          </button>
+        </div>
+      </div>
+      <div class="bio-card" data-color="6" data-card-id="bio-5"
+           data-name="Jeff Reading" data-role="Vice President, Tank Construction" data-bio="Jeff has been in the steel and tank industry since 1980. He spent a decade at Geneva Steel as a welder and ironworker, followed by 24 years at a tank and plate fabricator, moving from welder to construction warehouse manager to project manager. He joined GBI in 2014 as a Tank Project Manager, was promoted to Construction Manager, and became Vice President of Tank Construction in 2019. Jeff oversees all aspects of GBI's tank project mobilization and construction, the division that built this company's reputation. He has forgotten more about tank construction than most contractors will ever know. He hunts and fishes just about everything there is, and spends weekends at a remote family cabin in the mountains.">
+        <div class="bio-portrait"><img src="../assets/images/staff/Jeff Reading.png" alt="Jeff Reading" /></div>
+        <div class="bio-meta">
+          <div class="text">
+            <h3>Jeff Reading</h3>
+            <div class="role">Vice President, Tank Construction</div>
+          </div>
+          <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="panel-1" aria-label="Read bio for Jeff Reading">
             <span class="icon">+</span>
             <span class="label-read">Read Bio</span>
             <span class="label-close">Close</span>
