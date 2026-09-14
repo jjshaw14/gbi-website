@@ -2,47 +2,52 @@
 # Deploy GBI Website to Azure Static Web Apps (Path B — static fallback)
 # =============================================================================
 #
-# WHEN TO USE THIS WORKFLOW
-#   Use this ONLY if you're going the Static Web Apps route. SWA does not
-#   run PHP, so we first build a static version of the site with a small
-#   Python script that inlines the shared /partials/footer.php include and
-#   renames every .php → .html.
+# This is the live deploy path. Static Web Apps does not run PHP, so the
+# site is converted to static HTML first. See STATIC-CONVERSION.md for what
+# the converter handles and why -- the include graph is deeper than it looks.
 #
-# WHEN NOT TO USE THIS WORKFLOW
-#   If you're on Azure App Service with the PHP runtime, ignore this file.
-#   It only runs on manual dispatch by default, so it will never fire on
-#   its own. You can also delete this file if you're committed to App Service.
+# WHAT THIS DOES, on every push to main
+#   1. Builds ./site into ./dist: renders the header per page, inlines the
+#      footer, strips review tooling, resolves every internal URL to an
+#      absolute directory-style path, and generates the 404 page, sitemap,
+#      robots.txt and staticwebapp.config.json.
+#   2. Verifies the output. Fails before publishing anything if raw PHP
+#      survived, the form endpoint was not injected, review tooling leaked,
+#      or an expected file is missing.
+#   3. Publishes ./dist to Static Web Apps -- IF a deploy target exists.
 #
-# BEFORE FIRST RUN — ONE-TIME AZURE SETUP
-#   1. Provision an Azure Static Web App.
-#   2. When Azure asks for the source, connect it to this GitHub repo. Azure
-#      will offer to auto-generate a workflow file — SKIP that; we already
-#      have this one.
-#   3. Azure will create a secret in this repo named something like
-#      AZURE_STATIC_WEB_APPS_API_TOKEN_<RANDOM>. Copy the exact name.
-#   4. Edit the `azure_static_web_apps_api_token` line below to reference
-#      that exact secret name.
-#   5. Uncomment the `push:` trigger below to enable auto-deploy on push.
+# SECRETS
+#   GBI_FORM_ENDPOINT                 set. Power Automate HTTP-trigger URL for
+#                                     the contact form. See FORM-INTEGRATION.md.
+#   AZURE_STATIC_WEB_APPS_API_TOKEN   NOT SET YET. Until it is, the build still
+#                                     runs and is verified on every push, but
+#                                     the deploy step is skipped with a warning
+#                                     rather than failing on an auth error.
 #
-# WHAT THIS DOES
-#   1. Runs scripts/build-static.py which walks ./site, inlines the footer
-#      include on every page, rewrites .php links to .html, and outputs
-#      the built site to ./dist.
-#   2. Uploads ./dist to Static Web Apps.
+# TO ENABLE DEPLOYMENT
+#   1. Provision the Azure Static Web App. If Azure offers to auto-generate a
+#      workflow when you connect the repo, SKIP it -- this file is the one.
+#   2. Copy its deployment token (Azure portal > the SWA > Manage deployment
+#      token) into a repository secret named exactly
+#      AZURE_STATIC_WEB_APPS_API_TOKEN.
+#   3. Push, or run this workflow manually. No edits to this file needed.
 # =============================================================================
 
 name: Deploy to Azure Static Web Apps
 
 on:
-  # Uncomment once secret is configured (see step 5 above):
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   build_and_deploy:
     name: Build static site and deploy
     runs-on: ubuntu-latest
+    env:
+      # Read once here so the deploy step can test for its presence. A secret
+      # cannot be referenced directly in an `if:` expression.
+      SWA_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,14 +67,58 @@ jobs:
           GBI_FORM_ENDPOINT: ${{ secrets.GBI_FORM_ENDPOINT }}
         run: python scripts/build-static.py site dist
 
+      # Fails the run before anything is published if the build produced
+      # something that must never reach production. Each of these has been a
+      # real bug in this converter at some point.
+      - name: Verify build output
+        run: |
+          set -e
+          fail=0
+
+          if grep -rl '<?php' dist --include='*.html' | head -1 | grep -q .; then
+            echo "::error::Raw PHP survived into the build output."
+            grep -rl '<?php' dist --include='*.html' | head -10
+            fail=1
+          fi
+
+          if grep -rl '__GBI_FORM_ENDPOINT__' dist --include='*.html' | head -1 | grep -q .; then
+            echo "::error::Contact form endpoint placeholder was not replaced. Is the GBI_FORM_ENDPOINT secret set?"
+            fail=1
+          else
+            echo "Contact form endpoint injected."
+          fi
+
+          for f in dist/404.html dist/sitemap.xml dist/robots.txt dist/staticwebapp.config.json dist/index.html; do
+            [ -f "$f" ] || { echo "::error::Missing expected output: $f"; fail=1; }
+          done
+
+          if grep -rl 'feedback-widget\|photo-direction\|wf-strip' dist --include='*.html' | head -1 | grep -q .; then
+            echo "::error::Review tooling or authoring markers leaked into the output."
+            fail=1
+          fi
+
+          echo "Pages: $(find dist -name '*.html' | wc -l)  Sitemap URLs: $(grep -c '<url>' dist/sitemap.xml)"
+          exit $fail
+
       - name: Deploy to Azure Static Web Apps
         id: deploy
+        if: env.SWA_TOKEN != ''
         uses: Azure/static-web-apps-deploy@v1
         with:
-          # TODO: replace with the exact secret name Azure created in this repo.
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           app_location: 'dist'          # our built output
           skip_app_build: true          # we already built it above
           output_location: ''           # not used when skip_app_build=true
+
+      # Until the Static Web App exists, the build still runs and is verified
+      # on every push -- it just has nowhere to publish to. This says so
+      # plainly instead of failing the run with a confusing auth error.
+      - name: No deploy target configured
+        if: env.SWA_TOKEN == ''
+        run: |
+          echo "::warning::Build succeeded and was verified, but nothing was deployed."
+          echo "AZURE_STATIC_WEB_APPS_API_TOKEN is not set in this repository."
+          echo "Add it under Settings > Secrets and variables > Actions once the"
+          echo "Static Web App exists, and this workflow will publish on the next push."
