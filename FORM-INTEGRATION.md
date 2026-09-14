@@ -124,13 +124,38 @@ Leaving the compare value blank *does* work for an empty string, but it
 misses the case that actually matters: if the field is absent entirely the
 value is `null`, and `null` is not equal to `''`, so junk sails through.
 
-Use `empty()` instead, which catches both:
+This is the Condition action you already have — nothing new to create,
+just a change to what goes in the left-hand box.
+
+**Smallest fix, keeps your blank value.** Wrap the left side in `coalesce`,
+which turns a missing field into an empty string so the blank comparison
+becomes correct:
+
+| Field | Value | How to enter it |
+|---|---|---|
+| Left | `coalesce(body('Parse_JSON')?['email'], '')` | Expression tab |
+| Operator | is not equal to | dropdown |
+| Right | *(leave blank)* | — |
+
+To enter an expression: click the left value box, and in the flyout that
+opens choose the **Expression** tab (the `fx` icon in the newer designer)
+rather than Dynamic content. Paste the expression, then click **Add** /
+**OK**. It should show as a small function chip, not as literal text —
+if you can still read the raw `coalesce(...)` in the box afterwards, it
+went in as a string and the condition will never match.
+
+**Alternative**, if you prefer reading it as a plain test:
 
 | Field | Value |
 |---|---|
-| Left | `empty(body('Parse_JSON')?['email'])` |
+| Left | `empty(body('Parse_JSON')?['email'])` (Expression tab) |
 | Operator | is equal to |
 | Right | `false` |
+
+One caveat on this form: typing `false` in the right box gives you the
+*string* "false" rather than the boolean. Power Automate normally coerces
+this correctly, but if the condition behaves strangely, enter `false`
+through the Expression tab too so it is a real boolean.
 
 Worth adding a second row with **And**, on the same pattern, for
 `projectDescription`. Those two fields are what make an inquiry actionable,
