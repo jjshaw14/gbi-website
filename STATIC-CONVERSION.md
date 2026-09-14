@@ -264,10 +264,14 @@ WAF can be bypassed by anyone who finds it.
       3.5–3.9 MB. WebP/AVIF plus resizing typically cuts this 8–10×.
 - [ ] **16. Add `canonical` tags, `sitemap.xml`, `robots.txt`.** None
       exist today. See §7 — this is not optional on a URL change.
-- [ ] **17. Decide the contact form.** `site/contact.php:56` is
-      `<form onsubmit="return false;">` with no `name` attributes on any
-      input. It silently discards every enquiry. Wire it up or replace
-      it with the `mailto:` contacts already on the page.
+- [x] **17. Wire up the contact form.** Was
+      `<form onsubmit="return false;">` with no `name` attributes —
+      it silently discarded every enquiry. Now posts to a Power Automate
+      HTTP-trigger flow, with an on-screen confirmation, a mailto
+      fallback carrying what the user typed if anything fails, a
+      honeypot, and proper labels/`autocomplete`. **See
+      `FORM-INTEGRATION.md`** — the flow itself and the
+      `GBI_FORM_ENDPOINT` secret are still to be built.
 - [ ] **18. Enable the deploy workflow.** `deploy-static-web-app.yml`
       still has its `push:` trigger commented out and a placeholder
       secret name. Uncomment and set the real token once the SWA exists.

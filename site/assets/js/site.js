@@ -528,3 +528,121 @@
     apply(willHide);
   });
 })();
+
+
+// Contact form — posts the project inquiry to a Power Automate HTTP-trigger
+// flow, then confirms on screen. Never leaves a submitter without an answer:
+// on any failure it surfaces the error AND a mailto fallback carrying what
+// they typed, so the lead is not lost silently.
+//
+// CORS note, and it is load-bearing: the request is sent as text/plain, not
+// application/json. text/plain is a CORS "simple request", so the browser
+// skips the preflight OPTIONS call — which Power Automate HTTP triggers do
+// not answer. The body is still a JSON string; the flow parses it with
+// json(triggerBody()). The flow's Response action must return
+// Access-Control-Allow-Origin or the browser will block reading the reply.
+// See FORM-INTEGRATION.md.
+(function () {
+  const form = document.querySelector('[data-contact-form]');
+  if (!form) return;
+
+  const statusEl = form.querySelector('[data-form-status]');
+  const button = form.querySelector('[data-form-submit]');
+  const success = document.getElementById('contact-success');
+  const endpoint = form.dataset.endpoint || '';
+  const FALLBACK_EMAIL = 'sales@mygbi.com';
+  const renderedAt = Date.now();
+
+  // Unreplaced build placeholder counts as "not configured".
+  const configured = endpoint && !endpoint.includes('__GBI_FORM_ENDPOINT__');
+
+  function setStatus(message, isError) {
+    statusEl.textContent = message || '';
+    statusEl.classList.toggle('is-error', !!isError);
+  }
+
+  function values() {
+    const data = {};
+    new FormData(form).forEach((value, key) => {
+      data[key] = typeof value === 'string' ? value.trim() : value;
+    });
+    return data;
+  }
+
+  // Everything the submitter typed, as a mailto they can send in one click.
+  function mailtoFallback(data) {
+    const lines = [
+      ['Name', [data.firstName, data.lastName].filter(Boolean).join(' ')],
+      ['Company', data.company],
+      ['Title', data.jobTitle],
+      ['Phone', data.phone],
+      ['Email', data.email],
+      ['Project Location', data.projectLocation],
+      ['Project Type', data.projectType],
+      ['How they heard about us', data.referralSource],
+      ['', ''],
+      ['Project Description', data.projectDescription],
+    ]
+      .filter(([label, value]) => label === '' || value)
+      .map(([label, value]) => (label ? label + ': ' + value : ''))
+      .join('\n');
+
+    return (
+      'mailto:' + FALLBACK_EMAIL +
+      '?subject=' + encodeURIComponent('Project Inquiry — ' + (data.company || data.lastName || 'Website')) +
+      '&body=' + encodeURIComponent(lines)
+    );
+  }
+
+  function failed(data, message) {
+    const link = document.createElement('a');
+    link.href = mailtoFallback(data);
+    link.textContent = 'send it to ' + FALLBACK_EMAIL + ' instead';
+
+    statusEl.classList.add('is-error');
+    statusEl.textContent = message + ' You can ';
+    statusEl.appendChild(link);
+    statusEl.appendChild(document.createTextNode(' — we have kept what you typed.'));
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = values();
+
+    // Bot checks. Both fail silently: a real person never trips them, and a
+    // bot learns nothing from the response.
+    if (data.companyWebsite) return;
+    if (Date.now() - renderedAt < 3000) return;
+    delete data.companyWebsite;
+
+    if (!configured) {
+      failed(data, 'The inquiry form is not connected yet.');
+      return;
+    }
+
+    button.disabled = true;
+    setStatus('Sending your inquiry…', false);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        // See the CORS note above — do not change this to application/json.
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify({
+          ...data,
+          submittedAt: new Date().toISOString(),
+          sourcePage: window.location.href,
+        }),
+      });
+
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+
+      form.hidden = true;
+      success.hidden = false;
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      button.disabled = false;
+      failed(data, 'Something went wrong sending that.');
+    }
+  });
+})();

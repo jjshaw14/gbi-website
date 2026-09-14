@@ -27,6 +27,7 @@ site/                        ← the deployable web root
 scripts/build-static.py      ← PHP → HTML converter (Static Web Apps path)
 AZURE_SETUP.md               ← full Azure migration guide
 STATIC-CONVERSION.md         ← include map + static conversion checklist
+FORM-INTEGRATION.md          ← contact form → Power Automate contract
 ```
 
 ## The shared partials
@@ -87,9 +88,11 @@ for the full setup story.
 
 ## Conventions worth knowing
 
-- **Internal links use `.php`** (e.g. `href="/about/our-story.php"`). On
-  the Azure App Service path these resolve directly; on the Static Web
-  Apps path the build script rewrites them to `.html` at deploy time.
+- **Internal links use `.php`** (e.g. `href="/about/our-story.php"`), and
+  may be relative. The build script resolves every internal URL to an
+  absolute, directory-style path at deploy time —
+  `/about/our-story.php` becomes `/about/our-story/`. Do not hand-write
+  directory-style links in `site/`; the source stays `.php`.
 - **Every page has an `.hero-sm` header block** with a background image
   and a dark gradient overlay for text contrast. See any page in
   `site/about/` for the pattern.

@@ -54,7 +54,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build static site (inline footer, rename .php → .html)
+      - name: Build static site (render partials, resolve URLs, strip tooling)
+        env:
+          # Power Automate HTTP-trigger URL for the contact form. Carries a SAS
+          # signature, so it is a secret rather than committed. If unset, the
+          # form falls back to mailto instead of posting. See FORM-INTEGRATION.md
+          GBI_FORM_ENDPOINT: ${{ secrets.GBI_FORM_ENDPOINT }}
         run: python scripts/build-static.py site dist
 
       - name: Deploy to Azure Static Web Apps

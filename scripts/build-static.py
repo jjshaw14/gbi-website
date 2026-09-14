@@ -48,7 +48,9 @@ Usage
 
 from __future__ import annotations
 
+import html
 import json
+import os
 import posixpath
 import re
 import shutil
@@ -77,6 +79,14 @@ EXCLUDED_DIRS = {"partials", "feedback-data"}
 
 # Pages that map to a bare .html at the site root rather than a directory.
 ROOT_HTML_PAGES = {"404.php"}
+
+# The contact form posts to a Power Automate HTTP-trigger flow. That URL
+# carries a SAS signature, so it is injected at build time from the
+# GBI_FORM_ENDPOINT environment variable (a GitHub Actions secret) rather than
+# committed. If it is unset the placeholder stays put, and the form degrades to
+# a mailto fallback instead of failing silently. See FORM-INTEGRATION.md.
+FORM_ENDPOINT_PLACEHOLDER = "__GBI_FORM_ENDPOINT__"
+FORM_ENDPOINT = os.environ.get("GBI_FORM_ENDPOINT", "").strip()
 
 
 # -----------------------------------------------------------------------------
@@ -347,6 +357,10 @@ def rewrite_page(text: str, header_src: str, footer_html: str, base_dir: str) ->
     text = HEADER_INCLUDE_RE.sub(_header_sub, text)
     text = FOOTER_INCLUDE_RE.sub(lambda _m: footer_html, text)
     text = strip_prototype_markers(text)
+    if FORM_ENDPOINT:
+        # Escaped: the flow URL carries &api-version=...&sig=..., and a raw &
+        # in an HTML attribute value is invalid markup.
+        text = text.replace(FORM_ENDPOINT_PLACEHOLDER, html.escape(FORM_ENDPOINT, quote=True))
     return rewrite_links(text, base_dir)
 
 
@@ -411,6 +425,9 @@ def build(src_dir: Path, out_dir: Path) -> int:
     )
 
     print(f"Built {pages} pages, copied {assets} assets, skipped {skipped} server-only files -> {out_dir}/")
+    if not FORM_ENDPOINT:
+        print("WARNING: GBI_FORM_ENDPOINT not set. The contact form will show its "
+              "mailto fallback instead of posting to Power Automate.")
 
     # --- safety net: no PHP may survive into the output -----------------------
     leaked = [

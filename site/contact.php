@@ -53,28 +53,77 @@
       </div>
     </div>
     <div style="background:var(--gbi-offwhite); padding:32px; border:1px solid var(--rule);">
-      <form class="form-grid" onsubmit="return false;">
-        <div class="field"><label>First Name</label><input type="text" /></div>
-        <div class="field"><label>Last Name</label><input type="text" /></div>
-        <div class="field"><label>Company</label><input type="text" /></div>
-        <div class="field"><label>Title</label><input type="text" /></div>
-        <div class="field"><label>Phone</label><input type="tel" /></div>
-        <div class="field"><label>Email</label><input type="email" /></div>
-        <div class="field full"><label>Project Location</label><input type="text" placeholder="City, State" /></div>
-        <div class="field full"><label>Project Type</label>
-          <select>
+      <!-- Shown in place of the form once the inquiry is accepted. -->
+      <div class="form-success" id="contact-success" hidden>
+        <h3>Thank you &mdash; we have your inquiry.</h3>
+        <p>It is with our estimating team now. Someone will get back to you within <strong>one business day</strong>.</p>
+        <p class="form-success-alt">Need us sooner? Call <a href="tel:8015432100">801.543.2100 *1</a> or email <a href="mailto:sales@mygbi.com">sales@mygbi.com</a>.</p>
+      </div>
+
+      <!-- data-endpoint is replaced at build time from the GBI_FORM_ENDPOINT
+           env var (see scripts/build-static.py). If it is not set, the form
+           falls back to a mailto so an inquiry is never silently lost. -->
+      <form class="form-grid" id="contact-form" data-contact-form data-endpoint="__GBI_FORM_ENDPOINT__">
+        <div class="field">
+          <label for="cf-first">First Name</label>
+          <input type="text" id="cf-first" name="firstName" autocomplete="given-name" required />
+        </div>
+        <div class="field">
+          <label for="cf-last">Last Name</label>
+          <input type="text" id="cf-last" name="lastName" autocomplete="family-name" required />
+        </div>
+        <div class="field">
+          <label for="cf-company">Company</label>
+          <input type="text" id="cf-company" name="company" autocomplete="organization" />
+        </div>
+        <div class="field">
+          <label for="cf-title">Title</label>
+          <input type="text" id="cf-title" name="jobTitle" autocomplete="organization-title" />
+        </div>
+        <div class="field">
+          <label for="cf-phone">Phone</label>
+          <input type="tel" id="cf-phone" name="phone" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="field full">
+          <label for="cf-location">Project Location</label>
+          <input type="text" id="cf-location" name="projectLocation" placeholder="City, State" />
+        </div>
+        <div class="field full">
+          <label for="cf-type">Project Type</label>
+          <select id="cf-type" name="projectType">
             <option>Tank</option>
             <option>SMP</option>
-            <option>I&E</option>
+            <option>I&amp;E</option>
             <option>Railroad</option>
             <option>Coatings</option>
             <option>GC</option>
-            <option>Not Sure</option>
+            <option selected>Not Sure</option>
           </select>
         </div>
-        <div class="field full"><label>Project Description</label><textarea placeholder="Tell us about the scope, timeline, and any constraints..."></textarea></div>
-        <div class="field full"><label>How did you hear about us?</label><input type="text" /></div>
-        <div class="full"><button type="submit" class="btn btn-primary">Submit <span class="arr">→</span></button></div>
+        <div class="field full">
+          <label for="cf-description">Project Description</label>
+          <textarea id="cf-description" name="projectDescription" required placeholder="Tell us about the scope, timeline, and any constraints..."></textarea>
+        </div>
+        <div class="field full">
+          <label for="cf-referral">How did you hear about us?</label>
+          <input type="text" id="cf-referral" name="referralSource" />
+        </div>
+
+        <!-- Honeypot. Hidden from people, irresistible to bots. A submission
+             with this filled in is dropped client-side and never sent. -->
+        <div class="field full" hidden aria-hidden="true">
+          <label for="cf-website">Website</label>
+          <input type="text" id="cf-website" name="companyWebsite" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="full form-actions">
+          <button type="submit" class="btn btn-primary" data-form-submit>Submit <span class="arr">&rarr;</span></button>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </div>
       </form>
     </div>
   </div>
