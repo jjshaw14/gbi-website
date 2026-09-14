@@ -222,15 +222,24 @@ WAF can be bypassed by anyone who finds it.
       every bad URL. Replaced with a real `404` response override.
 - [x] **10. Update `CLAUDE.md`** — see §8.
 
+- [x] **11. Author a 404 page.** `site/404.php` added. Every path on it
+      is **absolute** — Azure serves `/404.html` for a missing URL at any
+      directory depth, so relative paths would resolve against the broken
+      URL and fail. Carries `robots: noindex`.
+- [x] **12. Strip the prototype markers at build time.** Corrected from
+      an earlier note: these were never visible — `styles.css` already
+      hides `.wf-strip`, `.photo-direction`, `.photo-note`, `.wf-note`
+      and `.photo-specs-toggle` with `display: none !important`. But the
+      text still shipped in the HTML source, where view-source exposed
+      internal photo shot-lists and agency notes. 43 blocks across 21
+      files. The build now removes them, which preserves the intent in
+      the `styles.css` comment: keep them in source for internal review,
+      keep them out of production. Removal balances nested `<div>`s —
+      `.wf-strip` wraps a `.container`, so a naive match to the first
+      `</div>` would orphan a closing tag.
+
 ### Open
 
-- [ ] **11. Author a 404 page.** `site/404.php` does not exist; the build
-      warns about it. The converter already special-cases it to emit
-      `/404.html` at the root when it appears.
-- [ ] **12. Remove the prototype banner.** `site/index.php` renders a
-      `.wf-strip` bar reading *"Prototype · Interactive wireframe · Home
-      / polished · Other pages skeleton"*. Homepage only. It must not go
-      live.
 - [ ] **13. Verify the report-only CSP**, then enforce it. Watch the
       browser console on a staging deploy, fix violations, then rename
       the header to `content-security-policy`. Do not enforce it

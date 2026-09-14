@@ -132,6 +132,21 @@ LINK_PHP_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Authoring aids that must not ship. These are photo shot-lists, agency notes
+# and the wireframe banner. styles.css already hides them with
+# `display: none !important`, so nothing renders -- but the text still ships in
+# the HTML source, where view-source shows internal production notes.
+#
+# They are stripped at BUILD time rather than deleted from the templates, which
+# preserves the intent recorded in the styles.css comment: keep them in source
+# so internal review can re-enable them, keep them out of production.
+MARKER_CLASSES = ("wf-strip", "photo-direction", "photo-note", "wf-note", "photo-specs-toggle")
+MARKER_OPEN_RE = re.compile(
+    r'[ \t]*<div\b[^>]*\bclass="[^"]*\b(?:' + "|".join(MARKER_CLASSES) + r')\b[^"]*"[^>]*>',
+    re.IGNORECASE,
+)
+DIV_TAG_RE = re.compile(r'<(/?)div\b[^>]*>', re.IGNORECASE)
+
 # Strips the leading <?php ... ?> docblock from a partial so only markup remains.
 #
 # The closing ?> must be anchored to the start of a line. Both partials embed a
@@ -253,13 +268,44 @@ def render_footer(footer_src: str) -> str:
     return body.strip() + "\n"
 
 
+def strip_prototype_markers(text: str) -> str:
+    """Remove authoring-aid blocks, balancing nested <div>s.
+
+    A non-greedy match to the first </div> is not enough: .wf-strip wraps a
+    .container div, so that approach would leave an orphaned closing tag.
+    """
+    out: list[str] = []
+    pos = 0
+    while True:
+        m = MARKER_OPEN_RE.search(text, pos)
+        if not m:
+            out.append(text[pos:])
+            return "".join(out)
+        out.append(text[pos:m.start()])
+
+        depth, end = 1, m.end()
+        for tag in DIV_TAG_RE.finditer(text, m.end()):
+            depth += -1 if tag.group(1) else 1
+            if depth == 0:
+                end = tag.end()
+                break
+
+        # Swallow the blank line the removed block leaves behind.
+        while end < len(text) and text[end] in " \t":
+            end += 1
+        if end < len(text) and text[end] == "\n":
+            end += 1
+        pos = end
+
+
 def rewrite_page(text: str, header_src: str, footer_html: str) -> str:
-    """Inline both partials into one page, then rewrite its links."""
+    """Inline both partials into one page, then clean and rewrite its links."""
     def _header_sub(m: re.Match[str]) -> str:
         return render_header(header_src, m.group("nav") or "")
 
     text = HEADER_INCLUDE_RE.sub(_header_sub, text)
     text = FOOTER_INCLUDE_RE.sub(lambda _m: footer_html, text)
+    text = strip_prototype_markers(text)
     return rewrite_links(text)
 
 
