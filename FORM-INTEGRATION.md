@@ -118,12 +118,114 @@ Two details worth getting right:
   inquiries. A personal inbox means inquiries stall when someone is on
   site or on leave.
 
-### Put the Response action last, but make it unconditional
+### The validity condition
 
-If the flow errors before the Response action, the page gets no reply and
-shows the fallback. Configure the Response to run regardless — otherwise
-a transient failure in, say, the SharePoint step makes a successful email
-look like a failure to the submitter.
+Leaving the compare value blank *does* work for an empty string, but it
+misses the case that actually matters: if the field is absent entirely the
+value is `null`, and `null` is not equal to `''`, so junk sails through.
+
+Use `empty()` instead, which catches both:
+
+| Field | Value |
+|---|---|
+| Left | `empty(body('Parse_JSON')?['email'])` |
+| Operator | is equal to |
+| Right | `false` |
+
+Worth adding a second row with **And**, on the same pattern, for
+`projectDescription`. Those two fields are what make an inquiry actionable,
+and requiring both filters most automated junk without ever affecting a real
+submitter — the browser already enforces both before the POST.
+
+### What to do in the False branch
+
+Yes, answer it. A False here means a direct POST that did not come from the
+form, so return a **Response** with status **400** and the same CORS header
+as the success path. The page treats any non-2xx as a failure and shows its
+mailto fallback, so nothing is lost even in the odd case that a real person
+lands there.
+
+Do not leave the False branch empty. A flow that ends with no Response
+returns a `502` the browser cannot read, which works by accident rather
+than on purpose.
+
+### The Response action, concretely
+
+Add **Response** (Request connector) as the **last** action on the True
+branch, after both emails:
+
+| Field | Value |
+|---|---|
+| Status Code | `200` |
+| Headers | `Access-Control-Allow-Origin` → `*` |
+| Headers | `Content-Type` → `application/json` |
+| Body | `{"ok": true}` |
+| Response Body JSON Schema | leave blank |
+
+On `*` versus a named origin: the endpoint is publicly POSTable no matter
+what this header says, and there is nothing to read back, so restricting it
+is not a security boundary. `*` also means SWA preview environments work
+without editing the flow each time. Tighten it to `https://www.mygbi.com`
+later if you prefer — just remember preview builds will then fail CORS.
+
+**Why last:** the Response is what tells the page it worked. Put it before
+the emails and a failed send still reports success, so the submitter is told
+someone has their inquiry when nobody does. Placing it last means a broken
+email step surfaces as a failure and the submitter gets the mailto fallback.
+
+You do **not** need to configure anything for `OPTIONS`. Because the page
+sends `text/plain`, the browser never issues a preflight, so there is no
+`OPTIONS` request for the flow to answer.
+
+---
+
+## 4a. Email templates
+
+Both bodies are in `email-templates/`, ready to paste into the **code view**
+(the `</>` button) of each *Send an email (V2)* action:
+
+| File | To | Subject |
+|---|---|---|
+| `01-internal-new-inquiry.html` | `sales@mygbi.com` | `New project inquiry — @{body('Parse_JSON')?['company']} — @{body('Parse_JSON')?['projectType']}` |
+| `02-autoreply-to-submitter.html` | `@{body('Parse_JSON')?['email']}` | `We received your inquiry — Great Basin Industrial` |
+
+Set **Reply To** under Advanced options on both: the submitter's address on
+the internal mail, `sales@mygbi.com` on the autoreply.
+
+Three things baked into the templates worth knowing about:
+
+- **Empty optional fields render as an em dash**, via
+  `if(empty(...), '—', ...)`, rather than leaving a blank row.
+- **The description keeps its line breaks.** A textarea sends `
+`, which
+  HTML ignores, so it goes through
+  `replace(..., decodeUriComponent('%0A'), '<br>')`.
+- **The autoreply has a different footer, deliberately.** The standard
+  internal footer names the Sophos button, the GBI help desk and HR, and
+  says "you are receiving this because your name was added to the request".
+  None of that is true for a prospect, and it advertises internal tooling
+  to people outside the company. Do not paste the standard footer into the
+  autoreply.
+
+### The logo URLs are a cutover dependency
+
+The existing template loads its logos from
+`https://mygbi.com/wp-content/uploads/2026/08/gbi.png` — a **WordPress**
+path on the current site. That path disappears at cutover, and every email
+using this wrapper starts showing broken images.
+
+The templates here point at the new location instead:
+
+```
+https://www.mygbi.com/assets/images/logos/gbi.png
+https://www.mygbi.com/assets/images/logos/hti.png
+```
+
+Those are the two files added to the repo in commit `ec762e1`, at 639x300
+and 640x300 — the same 2.13 aspect ratio the template's `width="136"
+height="64"` assumes. They will not resolve until the new site is live, so
+during testing the logos appear broken; that is expected. **Any other flow
+or template using the old WordPress logo URLs needs the same update.**
 
 ---
 

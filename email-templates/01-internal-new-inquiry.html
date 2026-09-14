@@ -1,0 +1,136 @@
+<!--
+  EMAIL 1 of 2 — INTERNAL NOTIFICATION
+  Power Automate → "Send an email (V2)"
+
+  To:        sales@mygbi.com
+  Subject:   New project inquiry — @{body('Parse_JSON')?['company']} — @{body('Parse_JSON')?['projectType']}
+  Reply To:  @{body('Parse_JSON')?['email']}        ← set this, under Advanced options
+
+  Reply-To matters. Without it, hitting Reply answers the service account
+  and the prospect never hears back.
+
+  Paste everything below into the email body's CODE VIEW (the </> button).
+-->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0;padding:0;background-color:#f4f5f7;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+<tr>
+<td style="padding:24px 12px;">
+
+<table cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#ffffff;border:1px solid #dfe3e8;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+
+<tr>
+<td style="padding:20px 28px 18px 28px;background-color:#ffffff;border-bottom:3px solid #114FA0;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+<tr>
+<td style="padding-right:270px;">
+<img src="https://www.mygbi.com/assets/images/logos/gbi.png" width="136" height="64" alt="Great Basin Industrial" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+</td>
+<td style="padding:0;">
+<img src="https://www.mygbi.com/assets/images/logos/hti.png" width="136" height="64" alt="Heat Tech Industrial" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="padding:28px 28px 10px 28px;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:20px;line-height:28px;font-weight:600;color:#1b1f23;">
+New project inquiry from the website
+</td>
+</tr>
+
+<tr>
+<td style="padding:0 28px 20px 28px;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:15px;line-height:23px;color:#3c4149;">
+<p style="margin:0;"><strong style="color:#1b1f23;">@{body('Parse_JSON')?['firstName']} @{body('Parse_JSON')?['lastName']}</strong> submitted the contact form on mygbi.com. Details below. Reply to this email to answer them directly.</p>
+</td>
+</tr>
+
+<tr>
+<td style="padding:0 28px 24px 28px;">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;border:1px solid #dfe3e8;">
+
+<tr>
+<td style="padding:10px 14px;background-color:#f4f5f7;border-bottom:1px solid #dfe3e8;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;" colspan="2">
+Contact
+</td>
+</tr>
+<tr>
+<td width="150" style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Name</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;font-weight:600;">@{body('Parse_JSON')?['firstName']} @{body('Parse_JSON')?['lastName']}</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Email</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;"><a href="mailto:@{body('Parse_JSON')?['email']}" style="color:#114FA0;text-decoration:none;font-weight:600;">@{body('Parse_JSON')?['email']}</a></td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Phone</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;">@{if(empty(body('Parse_JSON')?['phone']), '—', body('Parse_JSON')?['phone'])}</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Company</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;font-weight:600;">@{if(empty(body('Parse_JSON')?['company']), '—', body('Parse_JSON')?['company'])}</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #dfe3e8;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Title</td>
+<td style="padding:10px 14px;border-bottom:1px solid #dfe3e8;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;">@{if(empty(body('Parse_JSON')?['jobTitle']), '—', body('Parse_JSON')?['jobTitle'])}</td>
+</tr>
+
+<tr>
+<td style="padding:10px 14px;background-color:#f4f5f7;border-bottom:1px solid #dfe3e8;border-top:1px solid #dfe3e8;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;" colspan="2">
+Project
+</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Type</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;font-weight:600;">@{body('Parse_JSON')?['projectType']}</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Location</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;">@{if(empty(body('Parse_JSON')?['projectLocation']), '—', body('Parse_JSON')?['projectLocation'])}</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Description</td>
+<td style="padding:10px 14px;border-bottom:1px solid #eef0f2;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:21px;color:#1b1f23;">@{replace(body('Parse_JSON')?['projectDescription'], decodeUriComponent('%0A'), '<br>')}</td>
+</tr>
+<tr>
+<td style="padding:10px 14px;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#6b7280;vertical-align:top;">Heard about us</td>
+<td style="padding:10px 14px;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#1b1f23;">@{if(empty(body('Parse_JSON')?['referralSource']), '—', body('Parse_JSON')?['referralSource'])}</td>
+</tr>
+
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="padding:0 28px 24px 28px;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+<tr>
+<td style="background-color:#114FA0;padding:12px 28px;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:15px;line-height:20px;font-weight:600;">
+<a href="mailto:@{body('Parse_JSON')?['email']}?subject=RE:%20Your%20project%20inquiry%20-%20Great%20Basin%20Industrial" style="color:#ffffff;text-decoration:none;">Reply to @{body('Parse_JSON')?['firstName']}</a>
+</td>
+</tr>
+</table>
+<p style="margin:10px 0 0 0;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#6b7280;">Submitted @{body('Parse_JSON')?['submittedAt']} from <span style="color:#4b5563;word-break:break-all;">@{body('Parse_JSON')?['sourcePage']}</span></p>
+</td>
+</tr>
+
+<tr>
+<td style="padding:18px 28px;background-color:#f4f5f7;border-top:1px solid #dfe3e8;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
+<p style="margin:0 0 10px 0;">Automated notification from the mygbi.com contact form. It was sent to <a href="mailto:sales@mygbi.com" style="color:#6b7280;text-decoration:underline;">sales@mygbi.com</a> because that is the published address for bidding and project inquiries.</p>
+<p style="margin:0 0 10px 0;"><strong style="color:#4b5563;">The submitter has been sent an automatic confirmation</strong> telling them to expect a reply within one business day.</p>
+<p style="margin:0;padding-top:10px;border-top:1px solid #e4e7ea;">Details above were typed by a member of the public into a form on a public website. Treat links and attachments accordingly, and verify the sender before acting on anything unexpected.</p>
+</td>
+</tr>
+
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;border-collapse:collapse;">
+<tr>
+<td style="padding:14px 12px 0 12px;text-align:center;font-family:'Segoe UI',Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;color:#9aa1ab;">
+Great Basin Industrial &nbsp;&bull;&nbsp; Heat Tech Industrial
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
