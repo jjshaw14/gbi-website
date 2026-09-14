@@ -238,9 +238,22 @@ WAF can be bypassed by anyone who finds it.
       `.wf-strip` wraps a `.container`, so a naive match to the first
       `</div>` would orphan a closing tag.
 
+- [x] **13. Resolve every internal URL to an absolute path at build time.**
+      Caught in preview: directory-style output moves each page one level
+      deeper, so a page's own `../assets/css/styles.css` resolved to
+      `/about/assets/...` and 404'd -- pages rendered completely unstyled.
+      The same depth shift broke relative page links (`our-story.php` from
+      `/about/quality/` resolved to `/about/quality/our-story/`). Scope was
+      504 asset refs, 61 inline `url()`, ~110 page links. The build now
+      resolves all of them against each page's own source location.
+      Verified: 534 distinct internal URLs across 29 pages all resolve.
+
 ### Open
 
-- [ ] **13. Verify the report-only CSP**, then enforce it. Watch the
+- [ ] **13a. Add a favicon.** There is none in the repo and no
+      `<link rel="icon">` on any page, so every page request logs a 404
+      for `/favicon.ico`.
+- [ ] **14. Verify the report-only CSP**, then enforce it. Watch the
       browser console on a staging deploy, fix violations, then rename
       the header to `content-security-policy`. Do not enforce it
       untested — a wrong CSP breaks the site silently.

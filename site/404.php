@@ -18,7 +18,7 @@
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('/assets/images/hero-resources.jpg')"></div>
+  <div class="hero-media" style="background-image:url('/assets/images/hero-tanks.jpg')"></div>
   <div class="hero-overlay"></div>
   <div class="container">
     <span class="eyebrow on-dark">Error 404</span>

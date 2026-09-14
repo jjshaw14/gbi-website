@@ -49,6 +49,7 @@ Usage
 from __future__ import annotations
 
 import json
+import posixpath
 import re
 import shutil
 import sys
@@ -121,15 +122,21 @@ NAV_CALL_RE = re.compile(
     re.IGNORECASE,
 )
 
-# Rewrites href/src/action ending in .php to the directory-style URL.
-# External URLs (http://, https://, //, mailto:, tel:, #) are left alone.
-LINK_PHP_RE = re.compile(
-    r'((?:href|src|action)\s*=\s*)'
-    r'([\'"])'
-    r'((?!https?://|//|mailto:|tel:|#)[^\'"]*?)\.php'
-    r'([?#][^\'"]*)?'
-    r'\2',
-    re.IGNORECASE,
+# Every internal URL is resolved to an ABSOLUTE site path at build time.
+#
+# This is not cosmetic. Directory-style output moves each page one level
+# deeper: about/our-story.php is served at /about/our-story/, so the page's
+# own "../assets/css/styles.css" resolves to /about/assets/... and 404s. The
+# same shift breaks relative page links -- "our-story.php" from
+# /about/quality/ would resolve to /about/quality/our-story/.
+#
+# The source keeps its relative paths (504 asset refs, 61 inline url(), ~110
+# page links); the build resolves them all against each page's own location.
+ATTR_URL_RE = re.compile(r'\b(href|src|action)\s*=\s*(["\'])([^"\']*)\2', re.IGNORECASE)
+CSS_URL_RE = re.compile(r'url\(\s*(["\']?)([^"\')]+)\1\s*\)', re.IGNORECASE)
+
+EXTERNAL_PREFIXES = (
+    "http://", "https://", "//", "mailto:", "tel:", "#", "data:", "javascript:",
 )
 
 # Authoring aids that must not ship. These are photo shot-lists, agency notes
@@ -233,11 +240,45 @@ def php_path_to_output(rel: Path) -> Path:
     return rel.with_suffix("") / "index.html"    # about/x.php -> about/x/index.html
 
 
-def rewrite_links(text: str) -> str:
-    def _sub(m: re.Match[str]) -> str:
-        attr, quote, path, tail = m.group(1), m.group(2), m.group(3), m.group(4) or ""
-        return f'{attr}{quote}{php_link_to_url(path)}{tail}{quote}'
-    return LINK_PHP_RE.sub(_sub, text)
+def page_base_dir(rel: Path) -> str:
+    """The page's directory in URL space: about/our-story.php -> '/about/'."""
+    parent = rel.parent.as_posix()
+    return "/" if parent in (".", "") else f"/{parent}/"
+
+
+def resolve_url(raw: str, base_dir: str) -> str:
+    """Resolve one URL to an absolute site path, converting .php to directory style."""
+    if not raw or raw.startswith(EXTERNAL_PREFIXES):
+        return raw
+
+    split = re.match(r"([^?#]*)([?#].*)?$", raw)
+    path, tail = split.group(1), split.group(2) or ""
+    if not path:
+        return raw
+
+    if path.startswith("/"):
+        abs_path = posixpath.normpath(path)
+    else:
+        abs_path = posixpath.normpath(posixpath.join(base_dir, path))
+    if not abs_path.startswith("/"):
+        abs_path = "/" + abs_path.lstrip("./")
+
+    if abs_path.lower().endswith(".php"):
+        abs_path = php_link_to_url(abs_path[: -len(".php")])
+
+    return abs_path + tail
+
+
+def rewrite_links(text: str, base_dir: str) -> str:
+    def _attr(m: re.Match[str]) -> str:
+        attr, quote, url = m.group(1), m.group(2), m.group(3)
+        return f'{attr}={quote}{resolve_url(url, base_dir)}{quote}'
+
+    def _css(m: re.Match[str]) -> str:
+        quote, url = m.group(1), m.group(2)
+        return f'url({quote}{resolve_url(url.strip(), base_dir)}{quote})'
+
+    return CSS_URL_RE.sub(_css, ATTR_URL_RE.sub(_attr, text))
 
 
 # -----------------------------------------------------------------------------
@@ -298,7 +339,7 @@ def strip_prototype_markers(text: str) -> str:
         pos = end
 
 
-def rewrite_page(text: str, header_src: str, footer_html: str) -> str:
+def rewrite_page(text: str, header_src: str, footer_html: str, base_dir: str) -> str:
     """Inline both partials into one page, then clean and rewrite its links."""
     def _header_sub(m: re.Match[str]) -> str:
         return render_header(header_src, m.group("nav") or "")
@@ -306,7 +347,7 @@ def rewrite_page(text: str, header_src: str, footer_html: str) -> str:
     text = HEADER_INCLUDE_RE.sub(_header_sub, text)
     text = FOOTER_INCLUDE_RE.sub(lambda _m: footer_html, text)
     text = strip_prototype_markers(text)
-    return rewrite_links(text)
+    return rewrite_links(text, base_dir)
 
 
 # -----------------------------------------------------------------------------
@@ -349,7 +390,12 @@ def build(src_dir: Path, out_dir: Path) -> int:
             dest = out_dir / php_path_to_output(rel)
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(
-                rewrite_page(src_path.read_text(encoding="utf-8"), header_src, footer_html),
+                rewrite_page(
+                    src_path.read_text(encoding="utf-8"),
+                    header_src,
+                    footer_html,
+                    page_base_dir(rel),
+                ),
                 encoding="utf-8",
             )
             pages += 1
