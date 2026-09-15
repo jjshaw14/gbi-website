@@ -10,31 +10,61 @@ Audited against live DNS on 2026-09-15.
 
 | | Status |
 |---|---|
-| Static Web App | **Live** at `https://polite-forest-0d5b1771e.3.azurestaticapps.net` |
+| Static Web App | **Live** — `mygbi-home`, at `https://polite-forest-0d5b1771e.3.azurestaticapps.net` |
 | Deploy pipeline | Green on push to `main`, with a pre-publish verification gate |
 | Security headers, caching, sitemap, robots, 404 | Verified live |
 | Contact form | **Blocked** — flow trigger requires OAuth. See `FORM-INTEGRATION.md` §4b |
-| Custom domain | Not configured |
-| Front Door | Not created |
+| Enterprise Grade Edge | Enabling in progress — **$17.52/app/month** |
+| `www.mygbi.com` | Validating. Ownership TXT **published** |
+| `mygbi.com` (apex) | Validating. Ownership TXT **published**. Needs the routing record |
+| Separate Front Door profile | **Not needed** — EGE is Front Door |
+
+### Verified in DNS on 2026-09-15
+
+Both ownership tokens are already live, so validation should complete on
+its own:
+
+| Name | Type | Value |
+|---|---|---|
+| `www.mygbi.com` | TXT | `_ddp7r1l36bmmpr31prg07s7fklek8sr` |
+| `mygbi.com` | TXT | `_qcks35aejgrv1t1ezy67haozs8h4dda` |
+
+**What is still missing is the routing.** Ownership TXT records prove the
+domain is yours; they send no traffic. Neither host resolves to the site
+yet:
+
+| Name | Type | Current |
+|---|---|---|
+| `www.mygbi.com` | CNAME | **absent** — needs `polite-forest-0d5b1771e.3.azurestaticapps.net` |
+| `mygbi.com` | A | **absent** — needs the value from the portal's *Add a CNAME, ALIAS or A record* link |
 
 ---
 
-## 2. Correcting the Front Door assumption
+## 2. The apex — resolved, and no DNS migration needed
 
 > "Front Door would provide me an IP that I could point my A record to."
 
-That is not how Front Door works, and building the plan around it would
-lead somewhere frustrating.
+**This was closer to right than an earlier draft of this document allowed
+for.** The Custom domains blade offers, for the apex, *"Add a CNAME, ALIAS
+or A record"* — so Static Web Apps does support an **A record** at the
+apex, and the portal supplies the value.
 
-Front Door serves from **anycast IP addresses shared across the platform**.
-Microsoft does not assign your profile a stable IP and does not support
-you hardcoding one into an A record — the address you would see today can
-change, and the site would go dark when it does.
+That settles the question and removes the biggest risk in this migration:
 
-The supported way to point an apex at Front Door is an **Azure DNS alias
-record**: an `A`-type record set whose target is the Front Door *resource*
-rather than an address. Azure DNS resolves it dynamically. That requires
-the zone to be hosted in Azure DNS.
+- **The zone stays in Microsoft 365.** M365 DNS can create an A record and
+  a TXT record, which is all that is required.
+- **No Exchange Online / Duo / Sophos record migration.** The inventory in
+  §3 stays exactly where it is. Nothing to recreate, nothing to break.
+- **No Azure DNS zone**, and no separate Front Door profile.
+
+The general caution still holds for a *standalone* Front Door profile:
+that serves from shared anycast addresses and is pointed at with an Azure
+DNS alias record, not a hardcoded IP. It simply does not apply here,
+because the Static Web App's own apex support is doing the work.
+
+Take the value from the portal link rather than from a DNS lookup of the
+app's default hostname. They may differ, and the portal's is the supported
+one.
 
 This is not an Azure quirk. **No DNS provider can put a `CNAME` at a zone
 apex** — RFC 1034 forbids it coexisting with the `SOA` and `NS` records
@@ -160,6 +190,48 @@ every page carries `<link rel="canonical" href="https://www.mygbi.com/...">`,
 which is what search engines use to pick the canonical host. Given nothing
 is currently indexed at `mygbi.com` (§3), that is a reasonable place to
 land rather than paying for a second Front Door to get a redirect.
+
+---
+
+## 3b. Logo URLs for other flows and forms
+
+Anything in the tenant using the GBI/HTI email wrapper points at
+WordPress paths that are **already dead** — confirmed 2026-09-15, the old
+host does not resolve. Those emails are sending broken images right now.
+
+| | |
+|---|---|
+| Old, dead | `https://mygbi.com/wp-content/uploads/2026/08/gbi.png` |
+| Old, dead | `https://mygbi.com/wp-content/uploads/2026/08/hti.png` |
+| **New** | `https://www.mygbi.com/assets/images/logos/gbi.png` |
+| **New** | `https://www.mygbi.com/assets/images/logos/hti.png` |
+
+Both new paths are deployed and serving `image/png` with one-year
+immutable caching. They are byte-identical to the originals at 639x300 and
+640x300, so the wrapper's `width="136" height="64"` still fits.
+
+### Which host to use
+
+The new URLs resolve only once `www.mygbi.com` has its routing CNAME
+(§1). Until then they 404 — same as the WordPress paths they replace.
+
+**Use the `www.mygbi.com` form anyway.** The logos are already broken in
+production, so nothing regresses by waiting for DNS, and it avoids editing
+every flow twice. If a specific flow needs working images before DNS is
+finished, the app's default hostname works today:
+
+```
+https://polite-forest-0d5b1771e.3.azurestaticapps.net/assets/images/logos/gbi.png
+```
+
+Treat that as temporary — it is the deployment hostname, not a brand
+address, and it should not outlive the cutover.
+
+### Do not prune these files
+
+`site/assets/images/logos/gbi.png` and `hti.png` are referenced by no page
+on the site, so any "unused asset" sweep will flag them. They exist for
+exactly this purpose. See checklist item 25 in `STATIC-CONVERSION.md`.
 
 ---
 
