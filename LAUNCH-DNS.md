@@ -193,6 +193,57 @@ land rather than paying for a second Front Door to get a redirect.
 
 ---
 
+## 3a-2. The TXT record blocks the CNAME — and that is correct
+
+Having created the ownership `TXT` at `www.mygbi.com`, M365 will not let
+you add a `CNAME` there. **That is normal, and it is not an M365
+limitation.**
+
+A `CNAME` means "this name is an alias — look up everything at the target
+instead". It therefore **cannot coexist with any other record at the same
+name**: not TXT, not A, not MX. RFC 1034 states the rule and RFC 2181
+sharpens it. Every conforming DNS provider enforces it.
+
+**Moving to Azure DNS would change nothing.** Azure DNS refuses the same
+combination. So would Cloudflare, Route 53, or anyone else. This is not a
+reason to migrate the zone.
+
+Proof from your own zone: `portal.mygbi.com` works today with a `CNAME` to
+its Static Web App and **no TXT record at all**.
+
+```
+portal.mygbi.com   CNAME  black-beach-0713c821e.3.azurestaticapps.net
+portal.mygbi.com   TXT    (none)
+```
+
+### Why the apex is not affected
+
+The apex needs an **A** record, and `A` and `TXT` coexist perfectly well —
+only `CNAME` is exclusive. That is why `mygbi.com` happily carries 13 TXT
+records and can still take the A record for the site. The conflict exists
+at `www` and nowhere else.
+
+### The sequence
+
+The TXT is a **one-time ownership proof**, not a permanent fixture. Once
+Azure has banked it, it is no longer needed:
+
+1. Wait for the Custom domains blade to show `www.mygbi.com` as
+   **Validated** — not *Validating*. This is the only step that needs the
+   TXT.
+2. **Delete** the `TXT` at `www.mygbi.com`.
+3. **Create** the `CNAME`: `www` →
+   `polite-forest-0d5b1771e.3.azurestaticapps.net`.
+
+Order matters. Deleting the TXT while it still reads *Validating* removes
+the very thing being checked. Once validated, the CNAME pointing at the app
+is itself the ongoing proof of control.
+
+There is no risk in the gap between steps 2 and 3: nothing resolves at
+`www.mygbi.com` today, so there is no traffic to drop.
+
+---
+
 ## 3b. Logo URLs for other flows and forms
 
 Anything in the tenant using the GBI/HTI email wrapper points at
