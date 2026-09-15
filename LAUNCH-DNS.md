@@ -235,6 +235,55 @@ exactly this purpose. See checklist item 25 in `STATIC-CONVERSION.md`.
 
 ---
 
+## 3c. Pre-launch link audit
+
+All 46 external links on the built site were checked against the live
+deploy on 2026-09-15.
+
+### Fixed
+
+Seven links used plain `http://`. All seven serve identical content over
+`https://`, so they were upgraded — `cdn.sqhk.co`, `cdn-west.sqhk.co`,
+`elkodaily.com`, `construction-today.com`. No `http://` links remain.
+
+The legacy `sqhk.co` PDF hosting is alive and serving; those line cards and
+press releases still work.
+
+### Dead — needs a decision
+
+Three press links on `/resources/literature-press/` return **404** over
+both `http` and `https`. They are third-party pages that have moved or been
+removed; nothing on our side can fix them:
+
+| Link | Status |
+|---|---|
+| `construction-today.com/.../1342-great-basin-industrial` | 404 |
+| `abcnews.go.com/US/video/lit-americas-future-domestic-cobalt-mining-90240331` | 404 |
+| `news.conexpoconagg.com/news/utah-contractor-thinks-construction-has-an-image-problem/5948.article` | 404 |
+
+Each needs either a replacement URL — try the publisher's search or the
+Internet Archive — or removal from the page. Leaving them is the worst
+option: a press page full of dead links reads worse than a shorter one.
+
+### Worth checking
+
+`https://player.vimeo.com/video/308435993` returns **401**.
+`player.vimeo.com` is the *embed* endpoint, not a share URL — opening it
+directly in a tab is not what it is for, and this link has
+`target="_blank"`. It likely wants the `https://vimeo.com/308435993` form,
+assuming the video is still public.
+
+### Not problems
+
+The link checker flags these; they are all correct:
+
+- `https://www.mygbi.com/...` — the canonical tags, correctly naming the
+  future domain. They will resolve once routing is in place (§1).
+- `fonts.googleapis.com` / `fonts.gstatic.com` — `preconnect` hints. A bare
+  request to their root 404s by design.
+
+---
+
 ## 4. Two paths for the apex
 
 ### Path A — try the Static Web App first (recommended, zero risk)
