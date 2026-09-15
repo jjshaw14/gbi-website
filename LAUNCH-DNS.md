@@ -102,6 +102,67 @@ Sophos records are load-bearing.
 
 ---
 
+## 3a. Enterprise Grade Edge is on — use TXT validation
+
+Adding `www` with **CNAME** validation fails:
+
+> CNAME Validation for a custom domain is not allowed when Enterprise
+> Grade Edge is enabled or enabling. Please use TXT token validation.
+
+**Enterprise Grade Edge is Azure Front Door, built into Static Web Apps.**
+It is the "enterprise-grade edge" option on the SWA, and it is why the
+CNAME path is refused: with Front Door fronting the app, the CNAME-based
+ownership proof no longer works, so Azure requires a TXT token instead.
+
+A probe of the live site on 2026-09-15 returned no `x-azure-ref` or other
+Front Door headers, which matches the error's "enabled **or enabling**" —
+provisioning is still in flight. Give it time to finish before judging any
+edge behaviour.
+
+### The fix
+
+In the **Validate + add** step, change **Hostname record type** from
+`CNAME` to **`TXT`**. Then:
+
+1. Azure shows a TXT record — host is typically `_dnsauth.www`, value is a
+   one-time token.
+2. Create it in the M365 DNS admin centre.
+3. Wait for Azure to validate. This is ownership proof only; it routes no
+   traffic.
+4. Once validated, add the record that actually routes traffic:
+   `www` → `CNAME` → `polite-forest-0d5b1771e.3.azurestaticapps.net`.
+5. Repeat for the apex, and note which record type it asks for.
+
+The two steps are separate on purpose. TXT proves ownership without
+touching live traffic, which is what the dialog means by "set up the domain
+now and migrate the site later". Nothing is live at `mygbi.com` (§3), so
+there is no traffic to protect here — but EGE requires TXT regardless.
+
+### This changes the Front Door decision
+
+The earlier plan budgeted a **separate** Front Door Standard profile at
+roughly $540/year, to get apex support and the apex → www redirect. With
+Enterprise Grade Edge already on the Static Web App, Front Door is
+*already* in front of the site, so a second profile would be Front Door
+behind Front Door.
+
+Before provisioning anything more, check what EGE gives you:
+
+| Want | Likely covered by EGE? |
+|---|---|
+| Apex domain support | Yes — this is a main reason it exists |
+| Global edge caching, DDoS | Yes |
+| WAF policy | Check — EGE exposes a limited surface |
+| Apex → www `301` | **Probably not** — the managed Front Door does not give you rules-engine access |
+
+If the `301` turns out to be unavailable, the fallback is already in place:
+every page carries `<link rel="canonical" href="https://www.mygbi.com/...">`,
+which is what search engines use to pick the canonical host. Given nothing
+is currently indexed at `mygbi.com` (§3), that is a reasonable place to
+land rather than paying for a second Front Door to get a redirect.
+
+---
+
 ## 4. Two paths for the apex
 
 ### Path A — try the Static Web App first (recommended, zero risk)
