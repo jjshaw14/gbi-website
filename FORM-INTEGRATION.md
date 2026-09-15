@@ -233,6 +233,64 @@ anonymous POSTs, the `text/plain` content type avoided a CORS preflight,
 the validity condition works, and the False-branch Response returns
 readable. The whole transport chain is sound.
 
+### Open issue: the condition is always false
+
+A real submission with a valid email returns **`400 {"ok":false}`** — the
+False-branch Response. Reproduced against the live origin with a complete,
+valid payload. So the flow is reached, runs cleanly, and deliberately takes
+the False branch, meaning `body('Parse_JSON')?['email']` is **null**.
+
+Note it returns a *clean* 400 with the configured body, not a `502`. Parse
+JSON is therefore **succeeding** — it is just producing nulls for every
+declared property.
+
+#### Most likely cause: the `$content` envelope
+
+For a content type Logic Apps does not parse natively — which `text/plain`
+is — the trigger wraps the body rather than handing it over as a string:
+
+```json
+{ "$content-type": "text/plain", "$content": "eyJmaXJzdE5hbWUiOiJC..." }
+```
+
+`$content` is **base64**. Parse JSON validates that object happily against
+our schema and returns null for `email`, `projectDescription` and
+everything else, because none of those keys exist at the top level. The
+condition then correctly evaluates false.
+
+**Confirm it in one click:** open the failed run → the **Parse JSON**
+action → *Inputs*. If you see `$content-type` and a long base64 string,
+this is it.
+
+#### Fix
+
+Set Parse JSON's **Content** to decode the envelope first:
+
+```
+json(base64ToString(triggerBody()?['$content']))
+```
+
+Leave the schema in §3 as-is. If you would rather not depend on the
+envelope always being present, this form handles both shapes:
+
+```
+json(if(contains(string(triggerBody()), '$content'), base64ToString(triggerBody()?['$content']), string(triggerBody())))
+```
+
+#### If the run history shows something else
+
+Two other causes produce identical symptoms:
+
+- **The action is not named `Parse JSON`.** The reference
+  `body('Parse_JSON')` is built from the action's name with spaces as
+  underscores. Rename the action back, or update every reference — the
+  condition *and* both email bodies.
+- **Parse JSON ran but the condition reads a different field.** Check the
+  Condition's *Inputs* in the run history; it shows the resolved values
+  either side of the operator, which makes a null obvious.
+
+---
+
 ### What a real submission still has to prove
 
 The True branch — both emails sending and the `200` returning. Worth
