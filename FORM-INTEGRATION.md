@@ -120,47 +120,45 @@ Two details worth getting right:
 
 ### The validity condition
 
-Leaving the compare value blank *does* work for an empty string, but it
-misses the case that actually matters: if the field is absent entirely the
-value is `null`, and `null` is not equal to `''`, so junk sails through.
-
 This is the Condition action you already have — nothing new to create,
-just a change to what goes in the left-hand box.
+just a change to what goes in it.
 
-**Smallest fix, keeps your blank value.** Wrap the left side in `coalesce`,
-which turns a missing field into an empty string so the blank comparison
-becomes correct:
+**Use the length form.** It avoids every ambiguity the other shapes carry:
+no blank compare value to fumble in the UI, no boolean-versus-string
+coercion, and a numeric comparison that reads unambiguously in the run
+history.
 
 | Field | Value | How to enter it |
 |---|---|---|
-| Left | `coalesce(body('Parse_JSON')?['email'], '')` | Expression tab |
-| Operator | is not equal to | dropdown |
-| Right | *(leave blank)* | — |
+| Left | `length(coalesce(body('Parse_JSON')?['email'], ''))` | Expression tab |
+| Operator | **is greater than** | dropdown |
+| Right | `0` | type it |
 
-To enter an expression: click the left value box, and in the flyout that
-opens choose the **Expression** tab (the `fx` icon in the newer designer)
-rather than Dynamic content. Paste the expression, then click **Add** /
-**OK**. It should show as a small function chip, not as literal text —
-if you can still read the raw `coalesce(...)` in the box afterwards, it
-went in as a string and the condition will never match.
+To enter an expression: click the left value box, choose the **Expression**
+tab (the `fx` icon) rather than Dynamic content, paste, then **Add**. It
+should collapse into a small function chip — if you can still read the raw
+`length(...)` text in the box, it went in as a literal string and the
+condition will never match.
 
-**Alternative**, if you prefer reading it as a plain test:
+Add a second row with **And** on the same pattern for
+`projectDescription` if you want the stronger gate.
 
-| Field | Value |
-|---|---|
-| Left | `empty(body('Parse_JSON')?['email'])` (Expression tab) |
-| Operator | is equal to |
-| Right | `false` |
+#### If the condition is still false
 
-One caveat on this form: typing `false` in the right box gives you the
-*string* "false" rather than the boolean. Power Automate normally coerces
-this correctly, but if the condition behaves strangely, enter `false`
-through the Expression tab too so it is a real boolean.
+Open the failed run → the **Condition** action → **Inputs**. It shows the
+resolved values on both sides *and* the operator that was applied. A
+mismatch is obvious there in a way it is not in the designer, where the
+operator dropdown is easily clipped out of view in a narrow panel.
 
-Worth adding a second row with **And**, on the same pattern, for
-`projectDescription`. Those two fields are what make an inquiry actionable,
-and requiring both filters most automated junk without ever affecting a real
-submitter — the browser already enforces both before the POST.
+The three ways this goes wrong, in order of likelihood:
+
+1. **The operator is `is equal to` rather than `is not equal to`.** With
+   the earlier blank-value form, that inverts the whole test: a valid
+   email compares unequal to blank, so the True branch never runs.
+2. **The expression is sitting in the box as literal text** rather than a
+   committed function chip.
+3. **The action is not named `Parse JSON`,** so `body('Parse_JSON')`
+   resolves to null. The name with spaces as underscores has to match.
 
 ### What to do in the False branch
 
