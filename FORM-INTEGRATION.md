@@ -204,36 +204,51 @@ sends `text/plain`, the browser never issues a preflight, so there is no
 
 ---
 
-## 4b. BLOCKER: the trigger requires OAuth
+## 4b. Auth and CORS — verified live
 
-Tested against the live deploy on 2026-09-15. The POST reaches the flow and
-CORS is correct, but it is rejected:
+Resolved 2026-09-15. The trigger was initially set to **"Any user in my
+tenant"**, which requires an OAuth token no public visitor can have; every
+submission failed with `401 DirectApiAuthorizationRequired`. Changing
+**Who Can Trigger The Flow?** to **Anyone** fixed it.
+
+That change rotates the URL — the tenant-auth form has no signature, the
+anonymous form carries `?...&sig=...`, and the signature *is* the
+authorisation. `GBI_FORM_ENDPOINT` was updated to match and the site
+rebuilt. If that setting is ever changed again, the secret must be updated
+in the same breath or the form breaks silently.
+
+### What is confirmed against the live origin
+
+Probed with a deliberately empty `email`, which fails the flow's condition
+and takes the False branch, so nothing was emailed:
 
 ```
-401  {"error":{"code":"DirectApiAuthorizationRequired",
-      "message":"The OAuth authorization scheme is required."}}
+status: 400
+body:   {"ok":false}
+access-control-allow-origin: *
 ```
 
-The trigger is set to **"Any user in my tenant"**. That requires every
-caller to present an OAuth token — which a member of the public browsing
-mygbi.com does not have and cannot get. No form submission will ever
-succeed while that setting stands.
+That single response confirms four things at once: the endpoint accepts
+anonymous POSTs, the `text/plain` content type avoided a CORS preflight,
+the validity condition works, and the False-branch Response returns
+readable. The whole transport chain is sound.
 
-**Fix:** open the *When an HTTP request is received* trigger → **Who Can
-Trigger The Flow?** (under the trigger's advanced parameters — click
-**Show all** if it is collapsed) → change to **Anyone**.
+### What a real submission still has to prove
 
-Then **re-copy the HTTP POST URL and update the `GBI_FORM_ENDPOINT`
-secret.** The URL changes when this setting changes: the tenant-auth form
-is a `*.environment.api.powerplatform.com` address with no signature, while
-the anonymous form carries a `?...&sig=...` SAS signature that *is* the
-authorisation. Keeping the old URL in the secret leaves the form broken.
+The True branch — both emails sending and the `200` returning. Worth
+checking specifically when someone runs one:
 
-Push any commit afterwards to rebuild with the new value.
-
-The good news from the same test: `Access-Control-Allow-Origin: *` came
-back on the response, so the CORS design in §2 works exactly as intended.
-Authentication is the only thing in the way.
+- **`Reply-To` on the internal mail is the submitter**, not the service
+  account. This is the single easiest thing to get wrong and the most
+  costly: hitting Reply answers a mailbox nobody reads.
+- **A multi-line description keeps its line breaks.** Type a description
+  with a blank line in it. If it arrives as one run-on paragraph, the
+  `replace(..., decodeUriComponent('%0A'), '<br>')` expression did not take.
+- **Empty optional fields show an em dash**, not blank rows.
+- **The autoreply carries the external footer**, not the internal one
+  naming Sophos, the help desk and HR.
+- **Logos will render broken** until `www.mygbi.com` resolves. Expected —
+  see `LAUNCH-DNS.md` §3b.
 
 ---
 
