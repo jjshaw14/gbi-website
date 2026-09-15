@@ -231,48 +231,51 @@ anonymous POSTs, the `text/plain` content type avoided a CORS preflight,
 the validity condition works, and the False-branch Response returns
 readable. The whole transport chain is sound.
 
-### Open issue: the condition is always false
+### Working end to end — 2026-09-15
 
-A real submission with a valid email returns **`400 {"ok":false}`** — the
-False-branch Response. Reproduced against the live origin with a complete,
-valid payload. So the flow is reached, runs cleanly, and deliberately takes
-the False branch, meaning `body('Parse_JSON')?['email']` is **null**.
+Verified live: submission, both emails, and the `200` response. Three
+faults were found and fixed along the way, all worth knowing about because
+each produced a confusing symptom.
 
-Note it returns a *clean* 400 with the configured body, not a `502`. Parse
-JSON is therefore **succeeding** — it is just producing nulls for every
-declared property.
+**1. Parse JSON received a string, not an object.** `triggerBody()` on a
+`text/plain` request returns a string, and Parse JSON handed a string does
+not produce an object — every `?['field']` lookup returned null. Fixed by
+setting Content to `json(triggerBody())`.
 
-#### Cause, confirmed from the run history
+A wrong earlier guess is worth recording so nobody chases it again: this
+was *not* the Logic Apps `$content`/base64 envelope. The run history showed
+the body arriving as clean JSON text. The fault was the type, not the
+encoding.
 
-The Parse JSON action's *Inputs* show `content` arriving as a clean JSON
-**string**:
+**2. The second condition row used `is equal to`.** Row 1 tested `email`
+correctly; row 2 tested `projectDescription` with the operator inverted. As
+the rows are joined with **And**, a valid submission failed the whole
+condition and took the False branch — returning `400 {"ok":false}` on a
+payload where `email` resolved perfectly.
 
-```
-"content": "{\"firstName\":\"Brandon\",\"lastName\":\"Halliday - Testing Form\",…}"
-```
+This cost two debugging rounds because the operator dropdown is clipped out
+of view in a narrow designer panel. The `length(...) is greater than 0`
+form in §4 exists to make the direction unmistakable.
 
-So the body reaches the flow intact — no base64, no `$content` envelope.
-The problem is the *type*. `triggerBody()` on a `text/plain` request
-returns a **string**, and Parse JSON handed a string does not reliably
-produce an object. Every `body('Parse_JSON')?['field']` lookup then returns
-null, the condition evaluates false, and the flow takes the False branch
-exactly as written.
+**3. The email HTML was pasted into the rich-text body, not code view.**
+The template renders as literal markup rather than a formatted email.
+Paste into **code view** — the `</>` button on the *Send an email (V2)*
+body — for both emails.
 
-#### Fix
+### Reading the run history
 
-Set Parse JSON's **Content** to convert the string into an object first:
+All three were diagnosed from the flow's run history rather than by
+guesswork, and it is the first place to look next time:
 
-```
-json(triggerBody())
-```
+| Action | What its Inputs/Outputs tell you |
+|---|---|
+| Parse JSON — *Inputs* | Whether the body arrived as a string or an object |
+| Parse JSON — *Outputs* | Whether fields resolved, or came back null |
+| Condition — *Inputs* | The resolved values on **each row** and the operator applied |
 
-Enter it through the **Expression** tab. The schema in §3 stays as it is,
-and nothing else changes — the condition and both email bodies keep
-referencing `body('Parse_JSON')` as they do now.
-
-Verify from the run history afterwards: Parse JSON's *Outputs* should show
-a real object with `firstName`, `email` and the rest as separate
-properties, not one quoted string.
+The HTTP status returned to the page narrows it before you even open the
+run: a clean `400` with `{"ok":false}` means the flow ran and chose the
+False branch, while a `502` means it errored before reaching a Response.
 
 ---
 

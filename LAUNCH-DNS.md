@@ -13,7 +13,7 @@ Audited against live DNS on 2026-09-15.
 | Static Web App | **Live** — `mygbi-home`, at `https://polite-forest-0d5b1771e.3.azurestaticapps.net` |
 | Deploy pipeline | Green on push to `main`, with a pre-publish verification gate |
 | Security headers, caching, sitemap, robots, 404 | Verified live |
-| Contact form | **Blocked** — flow trigger requires OAuth. See `FORM-INTEGRATION.md` §4b |
+| Contact form | **Working** end to end — submission, both emails, `200`. See `FORM-INTEGRATION.md` §4b |
 | Enterprise Grade Edge | Enabling in progress — **$17.52/app/month** |
 | `www.mygbi.com` | Validating. Ownership TXT **published** |
 | `mygbi.com` (apex) | Validating. Ownership TXT **published**. Needs the routing record |
