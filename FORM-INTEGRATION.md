@@ -244,50 +244,37 @@ Note it returns a *clean* 400 with the configured body, not a `502`. Parse
 JSON is therefore **succeeding** — it is just producing nulls for every
 declared property.
 
-#### Most likely cause: the `$content` envelope
+#### Cause, confirmed from the run history
 
-For a content type Logic Apps does not parse natively — which `text/plain`
-is — the trigger wraps the body rather than handing it over as a string:
+The Parse JSON action's *Inputs* show `content` arriving as a clean JSON
+**string**:
 
-```json
-{ "$content-type": "text/plain", "$content": "eyJmaXJzdE5hbWUiOiJC..." }
+```
+"content": "{\"firstName\":\"Brandon\",\"lastName\":\"Halliday - Testing Form\",…}"
 ```
 
-`$content` is **base64**. Parse JSON validates that object happily against
-our schema and returns null for `email`, `projectDescription` and
-everything else, because none of those keys exist at the top level. The
-condition then correctly evaluates false.
-
-**Confirm it in one click:** open the failed run → the **Parse JSON**
-action → *Inputs*. If you see `$content-type` and a long base64 string,
-this is it.
+So the body reaches the flow intact — no base64, no `$content` envelope.
+The problem is the *type*. `triggerBody()` on a `text/plain` request
+returns a **string**, and Parse JSON handed a string does not reliably
+produce an object. Every `body('Parse_JSON')?['field']` lookup then returns
+null, the condition evaluates false, and the flow takes the False branch
+exactly as written.
 
 #### Fix
 
-Set Parse JSON's **Content** to decode the envelope first:
+Set Parse JSON's **Content** to convert the string into an object first:
 
 ```
-json(base64ToString(triggerBody()?['$content']))
+json(triggerBody())
 ```
 
-Leave the schema in §3 as-is. If you would rather not depend on the
-envelope always being present, this form handles both shapes:
+Enter it through the **Expression** tab. The schema in §3 stays as it is,
+and nothing else changes — the condition and both email bodies keep
+referencing `body('Parse_JSON')` as they do now.
 
-```
-json(if(contains(string(triggerBody()), '$content'), base64ToString(triggerBody()?['$content']), string(triggerBody())))
-```
-
-#### If the run history shows something else
-
-Two other causes produce identical symptoms:
-
-- **The action is not named `Parse JSON`.** The reference
-  `body('Parse_JSON')` is built from the action's name with spaces as
-  underscores. Rename the action back, or update every reference — the
-  condition *and* both email bodies.
-- **Parse JSON ran but the condition reads a different field.** Check the
-  Condition's *Inputs* in the run history; it shows the resolved values
-  either side of the operator, which makes a null obvious.
+Verify from the run history afterwards: Parse JSON's *Outputs* should show
+a real object with `firstName`, `email` and the rest as separate
+properties, not one quoted string.
 
 ---
 
