@@ -200,92 +200,86 @@ WAF can be bypassed by anyone who finds it.
 
 ## 6. Conversion checklist
 
-### Done — build script rewrite, 2026-09-14
+### Done
 
-- [x] **1. Decide URL shape** — directory-style (§5).
-- [x] **2. Render the header per page.** Six nav variants keyed off
+- [x] **1. URL shape decided** — directory-style (§5).
+- [x] **2. Header rendered per page.** Six nav variants keyed off
       `$NAV_ACTIVE`, parsed from each page's include line.
-- [x] **3. Strip the transitive widget include** carried in by the footer.
-- [x] **4. Exclude the five review-tooling files** from the build (§1),
-      `tag-review.php` included.
-- [x] **5. Rewrite `.php` links inside the partials** — all 43.
-- [x] **6. Assert zero `<?php` / `?>` in the build output.** The build
-      exits non-zero if any survives. This check caught the docblock bug
-      in §4 that had been shipping silently.
-- [x] **7. Port the `.htaccess` rules** into `staticwebapp.config.json`.
-      One-year immutable caching on `/assets/*`, revalidate on HTML.
-      Neither Azure path reads `.htaccess` — SWA uses its own config, and
-      App Service on PHP 8 is nginx, not Apache.
-- [x] **8. Add security headers** — `X-Content-Type-Options`,
-      `X-Frame-Options`, `Referrer-Policy`, HSTS, and a report-only CSP.
-- [x] **9. Drop the SPA `navigationFallback`.** It returned **200** for
+- [x] **3. Transitive widget include stripped** from the inlined footer.
+- [x] **4. Review tooling excluded** from the build (§1), `tag-review.php`
+      included.
+- [x] **5. `.php` links inside the partials rewritten** — all 43.
+- [x] **6. Zero `<?php` / `?>` asserted in the output.** The build exits
+      non-zero if any survives. Caught the docblock bug in §4.
+- [x] **7. `.htaccess` rules ported** into `staticwebapp.config.json` —
+      one-year immutable caching on `/assets/*`, revalidate on HTML.
+- [x] **8. Security headers added** — `X-Content-Type-Options`,
+      `X-Frame-Options`, `Referrer-Policy`, HSTS, report-only CSP.
+- [x] **9. SPA `navigationFallback` dropped.** It returned **200** for
       every bad URL. Replaced with a real `404` response override.
-- [x] **10. Update `CLAUDE.md`** — see §8.
-
-- [x] **11. Author a 404 page.** `site/404.php` added. Every path on it
-      is **absolute** — Azure serves `/404.html` for a missing URL at any
-      directory depth, so relative paths would resolve against the broken
-      URL and fail. Carries `robots: noindex`.
-- [x] **12. Strip the prototype markers at build time.** Corrected from
-      an earlier note: these were never visible — `styles.css` already
-      hides `.wf-strip`, `.photo-direction`, `.photo-note`, `.wf-note`
-      and `.photo-specs-toggle` with `display: none !important`. But the
-      text still shipped in the HTML source, where view-source exposed
-      internal photo shot-lists and agency notes. 43 blocks across 21
-      files. The build now removes them, which preserves the intent in
-      the `styles.css` comment: keep them in source for internal review,
-      keep them out of production. Removal balances nested `<div>`s —
-      `.wf-strip` wraps a `.container`, so a naive match to the first
-      `</div>` would orphan a closing tag.
-
-- [x] **13. Resolve every internal URL to an absolute path at build time.**
-      Caught in preview: directory-style output moves each page one level
-      deeper, so a page's own `../assets/css/styles.css` resolved to
-      `/about/assets/...` and 404'd -- pages rendered completely unstyled.
-      The same depth shift broke relative page links (`our-story.php` from
-      `/about/quality/` resolved to `/about/quality/our-story/`). Scope was
-      504 asset refs, 61 inline `url()`, ~110 page links. The build now
-      resolves all of them against each page's own source location.
-      Verified: 534 distinct internal URLs across 29 pages all resolve.
+- [x] **10. `CLAUDE.md` corrected** — see §8.
+- [x] **11. 404 page authored.** Every path on it is absolute; Azure serves
+      `/404.html` for a missing URL at any depth.
+- [x] **12. Prototype markers stripped at build time.** Never visible
+      (`display: none !important`), but the text shipped in the HTML
+      source — internal photo shot-lists and agency notes. 43 blocks
+      across 21 files.
+- [x] **13. Every internal URL resolved to an absolute path at build time.**
+      Caught in preview: directory-style output moves each page a level
+      deeper, so `../assets/css/styles.css` resolved to `/about/assets/...`
+      and pages rendered completely unstyled. 504 asset refs, 61 inline
+      `url()`, ~110 page links. 534 URLs now verified to resolve.
+- [x] **14. Favicon added.** Built from the blue mountain mark — the
+      wordmark is illegible at 16px. Every page previously logged a 404
+      for `/favicon.ico`.
+- [x] **15. SRI added** to the two cdnjs tags, with
+      `crossorigin="anonymous"` — SRI is not enforced on a cross-origin
+      script without it.
+- [x] **16. Images compressed** — 133.6 MB → 98 MB, none corrupted. The
+      nine largest were **MPO**, not JPEG, so a naive format check skipped
+      exactly the files that mattered; nine "PNGs" were opaque photos,
+      11.4 MB that became 1.4 MB. Heroes: 3.5–3.9 MB → 0.6–1.2 MB.
+- [x] **17. `canonical`, `sitemap.xml`, `robots.txt`** generated at build
+      time from each page's own output path, so they cannot drift.
+- [x] **18. Contact form wired** to a Power Automate HTTP-trigger flow,
+      with on-screen confirmation, a mailto fallback carrying what the
+      user typed, a honeypot, and proper labels. See
+      **`FORM-INTEGRATION.md`**.
+- [x] **19. Deploy workflow enabled** on push to `main`, with a
+      verification gate that fails *before* publishing if raw PHP
+      survived, the form endpoint was not injected, review tooling leaked,
+      or an expected file is missing. Confirmed green on run
+      `34911205673`: 29 pages, 28 sitemap URLs, form endpoint injected.
 
 ### Open
 
-- [x] **13a. Add a favicon.** Generated from the blue mountain mark in
-      `gbi-logo.png` (the wordmark is illegible at 16px). `favicon.ico` at
-      the site root plus a PNG for higher-DPI and apple-touch. Link tags are
-      injected at build time, because the shared header partial sits inside
-      `<body>` and cannot carry `<head>` tags.
-- [x] **14. Add SRI** to the two cdnjs tags in `site/projects/index.php`
-      (d3 7.8.5, topojson 3.0.2), with `crossorigin="anonymous"` — SRI is
-      not enforced on a cross-origin script without it.
-- [x] **15. Compress images** — 133.6 MB → 98 MB across 518 files, none
-      corrupted. Two findings made most of the difference:
-      the nine largest files were **MPO**, not JPEG (iPhone multi-picture
-      images named `.jpg`), so a naive format check skipped exactly the
-      files that mattered; and nine "PNGs" were opaque photos, 11.4 MB that
-      became 1.4 MB as JPEG. Heroes went from 3.5–3.9 MB to 0.6–1.2 MB,
-      which is the number that drives page weight and bandwidth cost.
-      `scripts/optimize-images.py` is re-runnable and idempotent.
-- [x] **16. Add `canonical` tags, `sitemap.xml`, `robots.txt`.** All
-      generated at build time from each page's own output path, so they
-      cannot drift from reality. Canonical origin is `https://www.mygbi.com`,
-      overridable with `GBI_SITE_ORIGIN`. The 404 page is excluded from both
-      the sitemap and canonical tagging.
-- [ ] **16a. Build the old → new redirect map.** Still outstanding and still
-      the biggest launch risk. `sitemap.xml` now says where every page
-      *will* live; what is missing is where each page *currently* lives on
-      the live site. Crawl `mygbi.com` or pull the URL list from Search
-      Console, then map old → new in `staticwebapp.config.json` or the Front
-      Door rules engine.
-- [ ] **16b. Review 17 unreferenced assets (9.8 MB).** Nothing on the site
-      links to them. **Do not bulk-delete**: `logos/gbi.png` and
-      `logos/hti.png` are in that list and are deliberately unreferenced —
-      other GBI projects hot-link them. The rest (`project-jervois-nyzai.png`
-      at 2.2 MB, `project-musket-nyzai.png` at 2.2 MB, `project-apache.png`,
-      `staff/joe.png`) need a human decision.
-- [ ] **20. Keep `/assets/images/logos/gbi.png` and `hti.png`
-      resolving.** Not referenced by any page; other GBI projects
-      hot-link them as public URLs. Do not prune as "unused assets".
+- [ ] **20. Build the old → new redirect map.** **Biggest launch risk.**
+      `sitemap.xml` says where every page *will* live; nothing says where
+      each page *currently* lives. Crawl `mygbi.com` or pull the URL list
+      from Search Console, then map old → new in
+      `staticwebapp.config.json` or the Front Door rules engine. Without
+      it, every ranked page 404s on cutover day.
+- [ ] **21. Add `AZURE_STATIC_WEB_APPS_API_TOKEN`.** The only thing
+      standing between the current pipeline and a live deploy. Azure
+      portal → the Static Web App → Manage deployment token. No file
+      edits needed once it exists.
+- [ ] **22. Verify the report-only CSP, then enforce it.** Watch the
+      browser console on a deployed preview, fix violations, then rename
+      the header to `content-security-policy`. Do not enforce untested —
+      a wrong CSP breaks the site silently.
+- [ ] **23. Lock the origin to Front Door** via
+      `forwardingGateway.requiredHeaders` (§5), once Front Door exists.
+      Without it the `*.azurestaticapps.net` hostname stays publicly
+      reachable and the WAF can be bypassed.
+- [ ] **24. Review 17 unreferenced assets (9.8 MB).** **Do not
+      bulk-delete**: `logos/gbi.png` and `logos/hti.png` are in that list
+      and are deliberately unreferenced. The rest
+      (`project-jervois-nyzai.png`, `project-musket-nyzai.png`,
+      `project-apache.png`, `staff/joe.png`) need a human decision.
+- [ ] **25. Standing constraint: keep `/assets/images/logos/gbi.png` and
+      `hti.png` resolving.** Other GBI projects hot-link them as public
+      URLs, and the email templates in `email-templates/` depend on them.
+      Never prune as "unused assets".
 
 ---
 
