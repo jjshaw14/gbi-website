@@ -223,6 +223,31 @@ only `CNAME` is exclusive. That is why `mygbi.com` happily carries 13 TXT
 records and can still take the A record for the site. The conflict exists
 at `www` and nowhere else.
 
+### Why "Adding" can sit there for a while
+
+A custom domain cannot finish provisioning until **Enterprise Grade Edge
+has finished enabling**. The domain has to be registered across Front
+Door's edge, so the two are sequenced: EGE first, domain second.
+
+Check whether EGE is actually live by looking for its fingerprint on the
+default hostname:
+
+```bash
+curl -sI https://polite-forest-0d5b1771e.3.azurestaticapps.net/ | grep -i x-azure-ref
+```
+
+No `x-azure-ref` means Front Door is not yet in front of the app, and any
+custom domain stuck on *Adding* is most likely waiting on exactly that.
+Nothing to fix — it is a rollout across 118+ points of presence.
+
+**Do not delete the TXT records while this is in progress.** They are the
+ownership proof being checked. Removing one mid-flight fails the
+validation and restarts the wait.
+
+If it is still *Adding* after a couple of hours with EGE showing enabled,
+that is the point to remove the custom domain and re-add it, or raise a
+support case — not before.
+
 ### The sequence
 
 The TXT is a **one-time ownership proof**, not a permanent fixture. Once
