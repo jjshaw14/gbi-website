@@ -204,6 +204,39 @@ sends `text/plain`, the browser never issues a preflight, so there is no
 
 ---
 
+## 4b. BLOCKER: the trigger requires OAuth
+
+Tested against the live deploy on 2026-09-15. The POST reaches the flow and
+CORS is correct, but it is rejected:
+
+```
+401  {"error":{"code":"DirectApiAuthorizationRequired",
+      "message":"The OAuth authorization scheme is required."}}
+```
+
+The trigger is set to **"Any user in my tenant"**. That requires every
+caller to present an OAuth token — which a member of the public browsing
+mygbi.com does not have and cannot get. No form submission will ever
+succeed while that setting stands.
+
+**Fix:** open the *When an HTTP request is received* trigger → **Who Can
+Trigger The Flow?** (under the trigger's advanced parameters — click
+**Show all** if it is collapsed) → change to **Anyone**.
+
+Then **re-copy the HTTP POST URL and update the `GBI_FORM_ENDPOINT`
+secret.** The URL changes when this setting changes: the tenant-auth form
+is a `*.environment.api.powerplatform.com` address with no signature, while
+the anonymous form carries a `?...&sig=...` SAS signature that *is* the
+authorisation. Keeping the old URL in the secret leaves the form broken.
+
+Push any commit afterwards to rebuild with the new value.
+
+The good news from the same test: `Access-Control-Allow-Origin: *` came
+back on the response, so the CORS design in §2 works exactly as intended.
+Authentication is the only thing in the way.
+
+---
+
 ## 4a. Email templates
 
 Both bodies are in `email-templates/`, ready to paste into the **code view**

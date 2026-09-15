@@ -28,6 +28,7 @@ scripts/build-static.py      ← PHP → HTML converter (Static Web Apps path)
 AZURE_SETUP.md               ← full Azure migration guide
 STATIC-CONVERSION.md         ← include map + static conversion checklist
 FORM-INTEGRATION.md          ← contact form → Power Automate contract
+LAUNCH-DNS.md                ← domain/DNS runbook + live zone inventory
 ```
 
 ## The shared partials
