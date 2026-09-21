@@ -106,6 +106,74 @@ for the full setup story.
   GBI-SHARE brand logos and partner logos, `case-studies/` for gallery
   images, `gallery/` for the Projects page grid.
 
+## Removed content and how to restore it
+
+### Advanced Facilities / Instrumentation & Electrical gallery images
+
+**Removed 2026-09-21 in commit `0d7a2ad`** — 14 images published without
+final approval. Removed from the live site at the client's request.
+
+If approval later comes through, this is fully reversible. Everything —
+image bytes, tile markup, tags, `alt` text and overlay captions — is in
+git at `0d7a2ad^`.
+
+**The files** (`site/assets/images/gallery/`):
+
+```
+gbi-electrical-advancedfacilities-001.jpg … -014.jpg
+```
+
+Sequential, `-001` through `-014`. Original sources are in
+`OneDrive_2026-09-02/GBI_Electrical_AdvancedFacilities_001…_014`
+(`.png`, except `_008` which is `.jpg`) — in the repo but never deployed,
+since that folder sits outside `site/`.
+
+**To restore all 14:**
+
+```bash
+git revert 0d7a2ad && git push origin main
+```
+
+One commit brings back the image files, all 14 gallery tiles with their
+`data-industry="advanced-facilities" data-product="ie"` tags and captions,
+*and* resets the gallery total from 279 to 293. Push deploys it.
+
+**To restore only some**, do **not** revert — that returns all 14. Pull the
+specific files and tiles out of the parent commit instead:
+
+```bash
+# one file
+git checkout 0d7a2ad^ -- site/assets/images/gallery/gbi-electrical-advancedfacilities-003.jpg
+
+# see the tile markup to paste back into site/projects/index.php
+git show 0d7a2ad^:site/projects/index.php | grep 'data-product="ie"'
+```
+
+Then adjust the hardcoded total in `site/projects/index.php` by however
+many were restored (see the caveat below).
+
+### Things that will trip you up
+
+- **The tiles must come back with the files.** Restoring images alone
+  leaves them invisible; restoring tiles alone leaves 14 broken
+  thumbnails. They are removed and restored together.
+- **A plain `git revert` only stays conflict-free while nothing else edits
+  `site/projects/index.php`.** If the gallery has been touched since, git
+  will ask you to resolve that file. It is a small manual merge, not a
+  reconstruction — the tiles are one contiguous 14-line block.
+- **Four other `advancedfacilities` images were deliberately NOT removed**
+  and are still live. They are different product categories, not part of
+  the unapproved set:
+  `gbi-smp-advancedfacilities-001…003` (SMP) and
+  `gbi-tank-advancedfacilities-001` (Tank).
+- **The gallery total is hardcoded and was already wrong.**
+  `site/projects/index.php` carries the count in two places (a comment and
+  the `of N images` text next to `<span class="js-count">`). It read 293
+  against 384 actual tiles *before* this removal, and was decremented to
+  279 to stay self-consistent rather than rebased. The `js-count` span
+  itself is overwritten by script on load; only the static total is
+  authored. If you correct that number properly, do it as its own change.
+
 ## Do NOT
 
 - Do not commit `deploy.config` — it contains Cloudways SFTP credentials
