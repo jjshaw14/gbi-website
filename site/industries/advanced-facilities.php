@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'industries'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-oil.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-advanced-facilities.jpg')"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · Data center chiller plant / MV switchgear / fab utility building</strong>
-    <span>Full-bleed footage from GBI advanced facilities work &mdash; data center chiller plant, MV switchgear yard, structural steel erection, or fab utility building. Video preferred where available. [Placeholder photo pending from client.]</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Advanced Facilities</div>
     <span class="eyebrow on-dark">Industries / Advanced Facilities</span>
@@ -39,11 +35,7 @@
         <p>That is the environment GBI was built for. The tank, structural, mechanical, piping, and electrical work these facilities require is the same work GBI has self-performed for oil and gas, mining, and power owners for over two decades &mdash; under the same code stack, the same QA program, and the same accountability model.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/industry-oil.jpg');">
-        <div class="photo-direction">
-          <strong>Photo</strong>
-          <span>Data center chiller plant, chip fab utility building, MV switchgear yard, or structural steel erection on an advanced facilities project. [Placeholder photo pending from client.]</span>
-        </div>
+      <div class="editorial-photo" style="background-image:url('../assets/images/industry-advanced-facilities.jpg');">
       </div>
     </div>
   </div>
@@ -119,16 +111,16 @@
     </div>
     <ul class="proj-list">
       <li>
-        <div class="proj-meta">[Project Name Pending]<span class="proj-loc">[Location Pending]</span></div>
-        <div class="proj-scope">[Scope description pending from client &mdash; will link to full project detail page once available.]</div>
+        <div class="proj-meta">Undisclosed<span class="proj-loc">Texas</span></div>
+        <div class="proj-scope">Data center new construction. Structural steel and piping erection. Installation of 192 dry coolers. Flush and fill. Electrical installation of HAC units.</div>
       </li>
       <li>
-        <div class="proj-meta">[Project Name Pending]<span class="proj-loc">[Location Pending]</span></div>
-        <div class="proj-scope">[Scope description pending from client &mdash; will link to full project detail page once available.]</div>
+        <div class="proj-meta">Undisclosed<span class="proj-loc">Texas</span></div>
+        <div class="proj-scope">Critical-power electrical construction and maintenance inside live data centers. UPS, distribution, standby generation, and white-space rebuilds.</div>
       </li>
       <li>
-        <div class="proj-meta">[Project Name Pending]<span class="proj-loc">[Location Pending]</span></div>
-        <div class="proj-scope">[Scope description pending from client &mdash; will link to full project detail page once available.]</div>
+        <div class="proj-meta">Undisclosed</div>
+        <div class="proj-scope">Chip fab facility new construction. Fabrication and erection of 20+ large diameter stainless tanks.</div>
       </li>
     </ul>
   </div>
