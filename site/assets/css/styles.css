@@ -3230,3 +3230,32 @@ body.hide-photo-specs .photo-specs-toggle::before { color: rgba(255,255,255,.25)
 @media (max-width: 640px) {
   .form-actions { align-items: flex-start; }
 }
+
+/* Press entries whose source article has gone offline. Keeps the reference
+   visible and the row layout identical to a live one, but greys it back and
+   swaps the ↗ for a plain label so it reads as deliberate rather than broken.
+   Restore the <a> when a working URL is found — see the comment on each <li>. */
+.resource-list .no-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+.resource-list .no-link::after {
+  content: "Link unavailable";
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .resource-list .no-link::after { content: ""; }
+}

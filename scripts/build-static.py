@@ -204,9 +204,16 @@ HAS_ICON_RE = re.compile(r"""<link[^>]+rel=["'][^"']*icon[^"']*["']""", re.IGNOR
 # -----------------------------------------------------------------------------
 
 # External origins the site actually loads from, collected from the source.
-# CSP ships as Report-Only so it cannot break the site: verify against real
-# traffic in the browser console, then rename the header to enforce it.
-CSP_REPORT_ONLY = (
+#
+# ENFORCING since 2026-09-28. Shipped report-only first, then verified zero
+# violations on the live domain across the homepage (Vimeo background),
+# Projects (d3 + topojson from cdnjs, us-atlas fetched from jsdelivr),
+# Contact (Turnstile widget and the form POST), Careers, Our Story and
+# Literature & Press. Every directive below is exercised by one of those.
+#
+# If a new third-party script, iframe, font or stylesheet is ever added, it
+# MUST be added here too or the browser will silently refuse to load it.
+CSP = (
     "default-src 'self'; "
     "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net "
     "https://challenges.cloudflare.com; "
@@ -244,7 +251,7 @@ STATICWEBAPP_CONFIG = {
         "x-frame-options": "SAMEORIGIN",
         "referrer-policy": "strict-origin-when-cross-origin",
         "strict-transport-security": "max-age=31536000; includeSubDomains",
-        "content-security-policy-report-only": CSP_REPORT_ONLY,
+        "content-security-policy": CSP,
     },
 }
 
