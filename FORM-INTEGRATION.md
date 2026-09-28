@@ -25,7 +25,9 @@ A single `POST` with a JSON string body:
   "projectDescription": "Two API 650 tanks, 60ft diameter...",
   "referralSource": "Referral from Barrick",
   "submittedAt": "2026-09-14T23:01:02.561Z",
-  "sourcePage": "https://www.mygbi.com/contact/"
+  "sourcePage": "https://www.mygbi.com/contact/",
+  "turnstileToken": "0.abc123...",
+  "companyWebsite": ""
 }
 ```
 
@@ -35,9 +37,14 @@ and `projectDescription` — the browser enforces those before the POST.
 
 Empty optional fields arrive as empty strings, not `null`.
 
-The honeypot field (`companyWebsite`) is **never** sent. A submission
-with it filled is dropped in the browser, as is one submitted within 3
-seconds of page load. Bots see no difference either way.
+`companyWebsite` is the honeypot and is **always sent**, empty from a real
+submission. It used to be stripped in the browser, which meant the flow
+could not enforce it — see §4c. `turnstileToken` is the Cloudflare token.
+
+A submission with the honeypot filled is dropped in the browser, as is one
+submitted within 3 seconds of page load. Bots see no difference either
+way — but those checks only stop bots that drive the form, which is why
+both fields are re-checked in the flow.
 
 ---
 
@@ -86,10 +93,18 @@ Two consequences for the flow:
     "projectDescription": { "type": "string" },
     "referralSource":     { "type": "string" },
     "submittedAt":        { "type": "string" },
-    "sourcePage":         { "type": "string" }
+    "sourcePage":         { "type": "string" },
+    "turnstileToken":     { "type": "string" },
+    "companyWebsite":     { "type": "string" }
   }
 }
 ```
+
+`turnstileToken` and `companyWebsite` must be declared here. They were added
+to the payload when Turnstile went in (§4c) and are read by the
+verification HTTP action and by the condition's honeypot row. Leaving them
+out of the schema is the first thing to check if a valid submission is
+being rejected.
 
 ---
 
