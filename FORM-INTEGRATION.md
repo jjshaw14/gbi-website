@@ -422,18 +422,27 @@ Finally extend the existing Condition to **three rows joined with And**:
 
 | # | Left | Operator | Right |
 |---|---|---|---|
-| 1 | `string(body('Parse_verification')?['success'])` | is equal to | `true` |
+| 1 | `toLower(string(body('Parse_verification')?['success']))` | is equal to | `true` |
 | 2 | `length(coalesce(body('Parse_JSON')?['companyWebsite'], ''))` | is equal to | `0` |
 | 3 | `length(coalesce(body('Parse_JSON')?['email'], ''))` | is greater than | `0` |
 
 Row 1 is the real gate. Row 2 is the honeypot, now enforced where it
 cannot be skipped. Row 3 is the existing sanity check.
 
-The `string()` wrapper on row 1 is deliberate. Cloudflare returns a real
-boolean, but typing `true` into the designer's value box produces the
-*text* `"true"` — and boolean-versus-string comparison is the same
-ambiguity that cost two rounds on the operator direction. Wrapping makes
-both sides text, so there is nothing to coerce.
+The wrapping on row 1 is deliberate, and both halves matter. Cloudflare
+returns a real boolean, but typing `true` into the designer's value box
+produces the *text* `"true"`, so `string()` makes both sides text and
+removes the coercion question.
+
+**`toLower()` is not optional.** Power Automate's `string(true)` returns
+`"True"` with a **capital T**, and string comparison is case-sensitive, so
+`string(...) is equal to true` evaluates **false on a successful
+verification** — rejecting every legitimate submission while Cloudflare is
+reporting success. `toLower()` settles it regardless of how the platform
+cases its booleans.
+
+Either half alone is a trap: without `string()` you are comparing a boolean
+to text; without `toLower()` you are comparing `"True"` to `"true"`.
 
 ### Two places to get the Parse JSON right
 
