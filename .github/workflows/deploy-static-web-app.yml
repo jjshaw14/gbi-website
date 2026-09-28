@@ -65,6 +65,10 @@ jobs:
           # signature, so it is a secret rather than committed. If unset, the
           # form falls back to mailto instead of posting. See FORM-INTEGRATION.md
           GBI_FORM_ENDPOINT: ${{ secrets.GBI_FORM_ENDPOINT }}
+          # Cloudflare Turnstile site key. Public once deployed, but kept in a
+          # secret so it can be rotated without editing markup. Without this the
+          # widget never renders and the form blocks every submission.
+          GBI_TURNSTILE_SITEKEY: ${{ secrets.GBI_TURNSTILE_SITEKEY }}
         run: python scripts/build-static.py site dist
 
       # Fails the run before anything is published if the build produced
@@ -86,6 +90,17 @@ jobs:
             fail=1
           else
             echo "Contact form endpoint injected."
+          fi
+
+          # A secret existing in the repo is not enough -- it must also be mapped
+          # into the build step's env. Missing that mapping once shipped a form
+          # that blocked every submission, so this fails the build rather than
+          # warning past it.
+          if grep -rl '__GBI_TURNSTILE_SITEKEY__' dist --include='*.html' | head -1 | grep -q .; then
+            echo "::error::Turnstile site key placeholder was not replaced. Is GBI_TURNSTILE_SITEKEY set AND mapped into the build step env?"
+            fail=1
+          else
+            echo "Turnstile site key injected."
           fi
 
           for f in dist/404.html dist/sitemap.xml dist/robots.txt dist/staticwebapp.config.json dist/index.html; do
