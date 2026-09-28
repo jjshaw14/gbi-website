@@ -88,6 +88,13 @@ ROOT_HTML_PAGES = {"404.php"}
 FORM_ENDPOINT_PLACEHOLDER = "__GBI_FORM_ENDPOINT__"
 FORM_ENDPOINT = os.environ.get("GBI_FORM_ENDPOINT", "").strip()
 
+# Cloudflare Turnstile site key for the contact form. Public by design -- it
+# ships in the page and is useless without the secret key, which lives only in
+# the Power Automate flow. Injected here so it stays configurable and can be
+# rotated without editing markup. See FORM-INTEGRATION.md.
+TURNSTILE_PLACEHOLDER = "__GBI_TURNSTILE_SITEKEY__"
+TURNSTILE_SITEKEY = os.environ.get("GBI_TURNSTILE_SITEKEY", "").strip()
+
 # Canonical origin. Every URL on the site changes in this migration, so
 # canonical tags and a sitemap are how search engines are told which host and
 # which URL shape is authoritative. www is canonical because the apex cannot
@@ -201,11 +208,12 @@ HAS_ICON_RE = re.compile(r"""<link[^>]+rel=["'][^"']*icon[^"']*["']""", re.IGNOR
 # traffic in the browser console, then rename the header to enforce it.
 CSP_REPORT_ONLY = (
     "default-src 'self'; "
-    "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
+    "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net "
+    "https://challenges.cloudflare.com; "
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
     "font-src 'self' https://fonts.gstatic.com; "
     "img-src 'self' data: https:; "
-    "frame-src https://player.vimeo.com https://apply.workable.com; "
+    "frame-src https://player.vimeo.com https://apply.workable.com https://challenges.cloudflare.com; "
     "connect-src 'self' https:; "
     "base-uri 'self'; "
     "form-action 'self' https://apply.workable.com; "
@@ -410,6 +418,8 @@ def rewrite_page(text: str, header_src: str, footer_html: str, base_dir: str) ->
         # Escaped: the flow URL carries &api-version=...&sig=..., and a raw &
         # in an HTML attribute value is invalid markup.
         text = text.replace(FORM_ENDPOINT_PLACEHOLDER, html.escape(FORM_ENDPOINT, quote=True))
+    if TURNSTILE_SITEKEY:
+        text = text.replace(TURNSTILE_PLACEHOLDER, html.escape(TURNSTILE_SITEKEY, quote=True))
     return rewrite_links(text, base_dir)
 
 
@@ -507,6 +517,9 @@ def build(src_dir: Path, out_dir: Path) -> int:
     if not FORM_ENDPOINT:
         print("WARNING: GBI_FORM_ENDPOINT not set. The contact form will show its "
               "mailto fallback instead of posting to Power Automate.")
+    if not TURNSTILE_SITEKEY:
+        print("WARNING: GBI_TURNSTILE_SITEKEY not set. The Turnstile widget will not "
+              "render, and the form will block submission asking for verification.")
 
     # --- safety net: no PHP may survive into the output -----------------------
     leaked = [

@@ -595,6 +595,13 @@
   }
 
   function failed(data, message) {
+    // Turnstile tokens are single-use. Without a reset, a second attempt
+    // submits a spent token and is rejected server-side no matter what the
+    // user does.
+    if (window.turnstile) {
+      try { window.turnstile.reset(); } catch (_) { /* widget not ready */ }
+    }
+
     const link = document.createElement('a');
     link.href = mailtoFallback(data);
     link.textContent = 'send it to ' + FALLBACK_EMAIL + ' instead';
@@ -611,9 +618,25 @@
 
     // Bot checks. Both fail silently: a real person never trips them, and a
     // bot learns nothing from the response.
+    //
+    // These only stop bots that drive the actual form. Anything posting
+    // straight to the endpoint never runs this code at all, which is why the
+    // honeypot is now SENT rather than deleted -- the flow re-checks it
+    // server-side, where it cannot be skipped. Do not reinstate the delete.
     if (data.companyWebsite) return;
     if (Date.now() - renderedAt < 3000) return;
-    delete data.companyWebsite;
+
+    // Turnstile injects cf-turnstile-response into the form once it has a
+    // token. Forwarded under a clearer name for the flow to verify against
+    // Cloudflare. A direct POST has no valid token and is rejected there.
+    data.turnstileToken = data['cf-turnstile-response'] || '';
+    delete data['cf-turnstile-response'];
+
+    const turnstileOnPage = !!form.querySelector('.cf-turnstile');
+    if (turnstileOnPage && !data.turnstileToken) {
+      setStatus('Please complete the verification check below, then submit again.', true);
+      return;
+    }
 
     if (!configured) {
       failed(data, 'The inquiry form is not connected yet.');

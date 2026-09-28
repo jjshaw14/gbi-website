@@ -298,6 +298,138 @@ checking specifically when someone runs one:
 
 ---
 
+## 4c. Bot protection — Cloudflare Turnstile
+
+### Why the original protections were not enough
+
+The form shipped with a honeypot field, a 3-second minimum time-on-page,
+and required-field validation. **All three ran in the browser only.**
+
+A bot that reads the page source, finds the Power Automate URL and POSTs
+straight to it never executes that JavaScript. It skips every check. Worse,
+the page used to `delete data.companyWebsite` before sending, so the flow
+never received the honeypot and could not re-check it server-side either.
+
+**Front Door / Enterprise Grade Edge cannot help here.** The form does not
+POST to the website; it POSTs to `*.environment.api.powerplatform.com`.
+Edge WAF rules protect the site and sit nowhere near the form endpoint.
+
+The fix is a token the **flow** verifies, because that is the one place a
+direct POST cannot avoid.
+
+### What the page now sends
+
+Two additions to the payload in §1:
+
+| Field | Meaning |
+|---|---|
+| `turnstileToken` | Cloudflare token. Empty or absent on a direct POST. |
+| `companyWebsite` | The honeypot, now **sent** rather than stripped. Always `""` from a real submission. |
+
+The page still blocks obvious bots client-side to save a flow run, but
+**the flow must enforce both** — that is the half a direct POST cannot skip.
+
+### Step 1 — Cloudflare
+
+1. dash.cloudflare.com → **Turnstile** → **Add widget**
+2. Name it something like `GBI website contact form`
+3. **Hostnames** — add all three, or preview builds break:
+   ```
+   www.mygbi.com
+   mygbi.com
+   polite-forest-0d5b1771e.3.azurestaticapps.net
+   ```
+4. **Widget Mode: Managed** — invisible for most visitors, challenges only
+   traffic it distrusts
+5. Copy both keys. **Site Key** is public and goes in the page. **Secret
+   Key** goes only in the flow and must never reach the repo.
+
+### Step 2 — GitHub
+
+Add a repository secret `GBI_TURNSTILE_SITEKEY` with the **site key**.
+The workflow already passes it to the build. It is public once deployed;
+it lives in a secret only so it can be rotated without editing markup.
+
+The build warns if it is unset, and the form then blocks submission asking
+for verification rather than silently accepting unverified traffic.
+
+### Step 3 — The flow
+
+Insert an **HTTP** action after Parse JSON and **before** the emails:
+
+| Field | Value |
+|---|---|
+| Method | `POST` |
+| URI | `https://challenges.cloudflare.com/turnstile/v0/siteverify` |
+| Headers | `Content-Type` → `application/x-www-form-urlencoded` |
+| Body | `secret=<YOUR_SECRET_KEY>&response=@{body('Parse_JSON')?['turnstileToken']}` |
+
+Then a **Parse JSON** on that action's `body` — name it
+`Parse verification` — with:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "success":     { "type": "boolean" },
+    "hostname":    { "type": "string"  },
+    "challenge_ts":{ "type": "string"  },
+    "error-codes": { "type": "array"   }
+  }
+}
+```
+
+Finally extend the existing Condition to **three rows joined with And**:
+
+| # | Left | Operator | Right |
+|---|---|---|---|
+| 1 | `body('Parse_verification')?['success']` | is equal to | `true` |
+| 2 | `length(coalesce(body('Parse_JSON')?['companyWebsite'], ''))` | is equal to | `0` |
+| 3 | `length(coalesce(body('Parse_JSON')?['email'], ''))` | is greater than | `0` |
+
+Row 1 is the real gate. Row 2 is the honeypot, now enforced where it
+cannot be skipped. Row 3 is the existing sanity check.
+
+> Watch the operator direction on every row. An inverted operator on row 2
+> silently rejects every legitimate submission, and it cost two debugging
+> rounds last time because the dropdown is clipped in a narrow panel.
+
+### Fail closed
+
+If the siteverify call itself errors, the flow must **reject**, not accept.
+Leave the HTTP action's *Configure run after* at **is successful** only, so
+a Cloudflare outage stops submissions rather than waving everything
+through. The page shows its mailto fallback, so inquiries still reach
+`sales@mygbi.com`.
+
+### Testing
+
+Cloudflare publishes keys that always give the same answer:
+
+| Purpose | Site key | Secret key |
+|---|---|---|
+| Always passes | `1x00000000000000000000AA` | `1x0000000000000000000000000000000AA` |
+| Always blocks | `2x00000000000000000000AB` | `2x0000000000000000000000000000000AA` |
+
+Use the blocking pair once to confirm the flow really rejects — a gate
+nobody has watched fail is not a gate.
+
+### Immediate relief, independent of all this
+
+**Rotate the trigger URL.** Regenerate it in the flow, update
+`GBI_FORM_ENDPOINT`, push. That instantly invalidates whatever URL the
+current bot has cached. Worth doing the moment an attack starts, before
+any of the above is in place.
+
+### CSP
+
+`challenges.cloudflare.com` is added to `script-src` and `frame-src` in
+the generated `staticwebapp.config.json`. If the CSP is ever switched from
+report-only to enforcing, that entry must survive or the widget silently
+fails to load.
+
+---
+
 ## 4a. Email templates
 
 Both bodies are in `email-templates/`, ready to paste into the **code view**

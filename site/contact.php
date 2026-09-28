@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css" />
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -118,6 +119,18 @@
         <div class="field full" hidden aria-hidden="true">
           <label for="cf-website">Website</label>
           <input type="text" id="cf-website" name="companyWebsite" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Cloudflare Turnstile. Renders itself and injects a hidden
+             cf-turnstile-response input into this form, which the submit
+             handler forwards to the flow for server-side verification.
+             Usually invisible; it only challenges traffic it distrusts.
+             data-sitekey is public and is injected at build time. -->
+        <div class="full">
+          <div class="cf-turnstile"
+               data-sitekey="__GBI_TURNSTILE_SITEKEY__"
+               data-theme="light"
+               data-refresh-expired="auto"></div>
         </div>
 
         <div class="full form-actions">
