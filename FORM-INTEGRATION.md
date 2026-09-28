@@ -383,12 +383,33 @@ Finally extend the existing Condition to **three rows joined with And**:
 
 | # | Left | Operator | Right |
 |---|---|---|---|
-| 1 | `body('Parse_verification')?['success']` | is equal to | `true` |
+| 1 | `string(body('Parse_verification')?['success'])` | is equal to | `true` |
 | 2 | `length(coalesce(body('Parse_JSON')?['companyWebsite'], ''))` | is equal to | `0` |
 | 3 | `length(coalesce(body('Parse_JSON')?['email'], ''))` | is greater than | `0` |
 
 Row 1 is the real gate. Row 2 is the honeypot, now enforced where it
 cannot be skipped. Row 3 is the existing sanity check.
+
+The `string()` wrapper on row 1 is deliberate. Cloudflare returns a real
+boolean, but typing `true` into the designer's value box produces the
+*text* `"true"` — and boolean-versus-string comparison is the same
+ambiguity that cost two rounds on the operator direction. Wrapping makes
+both sides text, so there is nothing to coerce.
+
+### Two places to get the Parse JSON right
+
+The verification **Parse JSON** action trips people up twice:
+
+- **Content** is the HTTP action's response — the expression `body('HTTP')`,
+  or whatever that action is named with spaces as underscores. It is *not*
+  the name of the Parse JSON action itself.
+- **Rename the action to `Parse verification` before referencing it.** It
+  defaults to `Parse JSON 1`, and renaming *after* wiring the condition
+  breaks `body('Parse_verification')`.
+
+An invalid Content also makes the designer report `'Schema' is required`
+even when the schema is perfectly good, which sends you looking in the
+wrong place.
 
 > Watch the operator direction on every row. An inverted operator on row 2
 > silently rejects every legitimate submission, and it cost two debugging
