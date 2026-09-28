@@ -483,6 +483,66 @@ Cloudflare publishes keys that always give the same answer:
 Use the blocking pair once to confirm the flow really rejects — a gate
 nobody has watched fail is not a gate.
 
+### Verifying the gate actually rejects
+
+Swapping the flow's secret to Cloudflare's always-blocks key works, but it
+means editing production and remembering to undo it. Posting straight to
+the endpoint is better: it needs **no flow changes** and reproduces the
+real attack rather than simulating it.
+
+From the browser console on `https://www.mygbi.com/contact/`:
+
+```js
+const ep = document.querySelector('[data-contact-form]').dataset.endpoint;
+const r = await fetch(ep, {
+  method: 'POST',
+  headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+  body: JSON.stringify({
+    firstName: 'GATE', lastName: 'TEST - IGNORE',
+    email: 'gate-test@example.invalid',
+    projectDescription: 'Gate check. If this reaches a mailbox, the gate is NOT working.',
+    companyWebsite: '', turnstileToken: '',          // <- what a bot sends
+    submittedAt: new Date().toISOString(), sourcePage: location.href
+  })
+});
+console.log(r.status, await r.text());   // want: 400 {"ok":false}
+```
+
+`400 {"ok":false}` is a pass. **`200 {"ok":true}` means bots are getting
+through** — and a test email will have landed in `sales@mygbi.com` proving
+it.
+
+Verified 2026-09-28. Three cases, all correctly rejected with
+`400 {"ok":false}`:
+
+| Case | `turnstileToken` | `companyWebsite` | Result |
+|---|---|---|---|
+| No token — what a bot sends | empty | empty | rejected |
+| Forged token | garbage string | empty | rejected |
+| Honeypot filled | empty | populated | rejected |
+
+These runs appear in flow history as Terminated. That is the False branch
+working, not a fault.
+
+#### What this does and does not prove
+
+Cases 1 and 2 prove the **Turnstile gate** outright: no valid token, no
+submission, no email — which is the whole defence against direct POSTs.
+
+Case 3 does **not** independently prove the honeypot row. Its token was
+also empty, so it fails row 3 before row 4 matters. Isolating row 4 needs a
+*valid* token plus a populated honeypot, which means grabbing a real token
+from a human browser session first:
+
+```js
+// after the widget shows Success on the page
+document.querySelector('[name="cf-turnstile-response"]').value
+```
+
+then posting that token with `companyWebsite` populated. Worth doing once
+if you want the belt-and-braces layer confirmed; the honeypot sits behind
+an already-proven primary gate, so it is not urgent.
+
 ### Immediate relief, independent of all this
 
 **Rotate the trigger URL.** Regenerate it in the flow, update
