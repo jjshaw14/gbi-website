@@ -379,6 +379,30 @@ Insert an **HTTP** action after Parse JSON and **before** the emails:
 | Headers | `Content-Type` → `application/x-www-form-urlencoded` |
 | Body | `secret=<YOUR_SECRET_KEY>&response=@{body('Parse_JSON')?['turnstileToken']}` |
 
+#### The body is one string, and one character breaks it
+
+The finished Body reads `secret=<key>&response=` followed by the
+expression chip. **Do not lose the `=` after `response`.**
+
+Without it, Cloudflare parses a parameter *named* `response<token>` with no
+value, sees no `response` parameter at all, and returns:
+
+```json
+{ "success": false, "error-codes": ["missing-input-response"] }
+```
+
+The HTTP action still reports success, the flow still runs, and the
+condition rejects a perfectly good submission. `missing-input-response`
+means the field was empty — distinct from `invalid-input-response` (a bad
+token) and `timeout-or-duplicate` (a spent one).
+
+#### Redact before sharing a run
+
+The HTTP action's **Inputs** contain the secret key in plaintext. When
+pasting run history for debugging, strip the `secret=` value. **Outputs**
+and the **Condition Inputs** are safe as-is, and are usually the more
+useful halves anyway.
+
 Then a **Parse JSON** on that action's `body` — name it
 `Parse verification` — with:
 
