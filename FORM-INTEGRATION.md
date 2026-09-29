@@ -463,6 +463,29 @@ wrong place.
 > silently rejects every legitimate submission, and it cost two debugging
 > rounds last time because the dropdown is clipped in a narrow panel.
 
+### The condition as built — six rows, all joined with And
+
+| # | Left | Operator | Right | Stops |
+|---|---|---|---|---|
+| 1 | `coalesce(body('Parse_JSON')?['email'], '')` | is not equal to | *(blank)* | junk payloads |
+| 2 | `coalesce(body('Parse_JSON')?['projectDescription'], '')` | is not equal to | *(blank)* | junk payloads |
+| 3 | `string(body('ParseCloudflareVerification')?['success'])` | is equal to | `True` | tokenless and forged POSTs |
+| 4 | `length(coalesce(body('Parse_JSON')?['companyWebsite'], ''))` | is equal to | `0` | naive form-fillers |
+| 5 | `indexOf(coalesce(body('Parse_JSON')?['projectDescription'], ''), ' ')` | is greater than | `0` | bare-phone-number spam |
+| 6 | `body('ParseCloudflareVerification')?['action']` | is equal to | `contact` | tokens replayed from other widgets |
+
+Note row 3's `True` is **capitalised** — Power Automate's `string(true)`
+returns `"True"`, and the comparison is case-sensitive. The `toLower()`
+variant elsewhere in this document is the alternative; do not mix them.
+
+Rows 1 and 2 use the older blank-compare form. They work and were left
+alone; new rows use the `length()` / `indexOf()` shapes, which have no
+ambiguous blank value to fumble.
+
+**Six rows joined with And is six ways to reject everything.** After any
+edit here, make one real submission from a freshly loaded page before
+walking away.
+
 ### Fail closed
 
 If the siteverify call itself errors, the flow must **reject**, not accept.
