@@ -543,6 +543,85 @@ then posting that token with `companyWebsite` populated. Worth doing once
 if you want the belt-and-braces layer confirmed; the honeypot sits behind
 an already-proven primary gate, so it is not urgent.
 
+### A bot that got through — 2026-09-28
+
+One submission reached `sales@mygbi.com` with a **valid** Turnstile token.
+The siteverify response:
+
+```json
+{
+  "success": true,
+  "hostname": "mygbi.com",
+  "challenge_ts": "2026-09-28T23:38:57.000Z",
+  "action": "", "cdata": "",
+  "error-codes": [],
+  "metadata": { "interactive": false }
+}
+```
+
+Read carefully, that says:
+
+- **Turnstile genuinely passed it.** Not a forged or replayed token.
+- **`hostname: mygbi.com`** — issued on the real apex page. The bot loaded
+  the page to obtain a token, then POSTed straight to the flow, skipping
+  the page's own JavaScript checks including the 3-second timer.
+- **`interactive: false`** — Turnstile never challenged it. Managed mode
+  decided the visitor looked fine.
+- **`challenge_ts` is 1.84 seconds before `submittedAt`.** Nine fields
+  filled in under two seconds.
+
+A tokenless POST was re-tested immediately afterwards and still returned
+`400`, so the gate was not broken. Turnstile is probabilistic: it raises
+the cost of spam, it does not eliminate it, and there is no sensitivity
+dial to turn up.
+
+#### What the payload looked like
+
+| Field | Value |
+|---|---|
+| Name | `Yjsxjg Bultpsd` |
+| Title | `fcrHAFpkkXLhQYYbxnFwyYf` |
+| Location | `Unysaibuyz` |
+| **Description** | **`8776834364`** |
+| Heard about us | `oBsiDWNmXtOoZvDDSoDNk` |
+
+Random filler around a bare phone number. The number is the payload — they
+want a callback.
+
+#### Defences that work against this
+
+**A space in the description.** A real project description always contains
+one; `8776834364` does not. Highest value, essentially no false positives.
+
+| Left | Operator | Right |
+|---|---|---|
+| `indexOf(coalesce(body('Parse_JSON')?['projectDescription'], ''), ' ')` | is greater than | `0` |
+
+**Token age.** Reject a token solved seconds before submission:
+
+| Left | Operator | Right |
+|---|---|---|
+| `div(sub(ticks(utcNow()), ticks(body('ParseCloudflareVerification')?['challenge_ts'])), 10000000)` | is greater than | `10` |
+
+Use `utcNow()`, not the payload's `submittedAt`, which a bot controls.
+Caveat: `data-refresh-expired="auto"` reissues a token every ~5 minutes, so
+a slow visitor could legitimately submit shortly after a refresh. Treat
+this as secondary to the description check.
+
+**Action scoping.** The widget now carries `data-action="contact"`, so
+siteverify returns `action: "contact"`. Checking it stops a token issued
+for any other Turnstile widget being replayed here:
+
+| Left | Operator | Right |
+|---|---|---|
+| `body('ParseCloudflareVerification')?['action']` | is equal to | `contact` |
+
+#### A defence that would NOT have worked
+
+Checking `hostname` was considered and dropped. It was genuinely
+`mygbi.com`. Hostname checks only defend against tokens farmed on other
+sites, which is not what happened here.
+
 ### Immediate relief, independent of all this
 
 **Rotate the trigger URL.** Regenerate it in the flow, update

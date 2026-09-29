@@ -158,7 +158,13 @@ NAV_CALL_RE = re.compile(
 #
 # The source keeps its relative paths (504 asset refs, 61 inline url(), ~110
 # page links); the build resolves them all against each page's own location.
-ATTR_URL_RE = re.compile(r'\b(href|src|action)\s*=\s*(["\'])([^"\']*)\2', re.IGNORECASE)
+# The lookbehind matters. A bare \b also matches INSIDE data-action,
+# data-video-src and similar, because a hyphen is a word boundary -- which
+# silently rewrote data-action="contact" into data-action="/contact".
+# Only genuine href/src/action attributes should be resolved.
+ATTR_URL_RE = re.compile(
+    r'(?<![\w-])(href|src|action)\s*=\s*(["\'])([^"\']*)\2', re.IGNORECASE
+)
 CSS_URL_RE = re.compile(r'url\(\s*(["\']?)([^"\')]+)\1\s*\)', re.IGNORECASE)
 
 EXTERNAL_PREFIXES = (

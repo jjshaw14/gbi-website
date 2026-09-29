@@ -129,6 +129,7 @@
         <div class="full">
           <div class="cf-turnstile"
                data-sitekey="__GBI_TURNSTILE_SITEKEY__"
+               data-action="contact"
                data-theme="light"
                data-refresh-expired="auto"></div>
         </div>
