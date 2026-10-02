@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'industries'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-mining.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-mining-sunset.jpg'); background-position:center 72%;"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · Active mine site</strong>
-    <span>Active mine site, processing plant, crusher structure, leach pad infrastructure, or aerial of mill complex.</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Mining & Minerals</div>
     <span class="eyebrow on-dark">Industries / Mining & Minerals</span>
@@ -125,7 +121,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

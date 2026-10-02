@@ -134,9 +134,10 @@ since that folder sits outside `site/`.
 git revert 0d7a2ad && git push origin main
 ```
 
-One commit brings back the image files, all 14 gallery tiles with their
-`data-industry="advanced-facilities" data-product="ie"` tags and captions,
-*and* resets the gallery total from 279 to 293. Push deploys it.
+One commit brings back the image files and all 14 gallery tiles with their
+`data-industry="advanced-facilities" data-product="ie"` tags and captions.
+Push deploys it. (It also reverts an old hand-typed total in the HTML; that
+number is now only a no-JS fallback, so it no longer matters.)
 
 **To restore only some**, do **not** revert — that returns all 14. Pull the
 specific files and tiles out of the parent commit instead:
@@ -149,8 +150,7 @@ git checkout 0d7a2ad^ -- site/assets/images/gallery/gbi-electrical-advancedfacil
 git show 0d7a2ad^:site/projects/index.php | grep 'data-product="ie"'
 ```
 
-Then adjust the hardcoded total in `site/projects/index.php` by however
-many were restored (see the caveat below).
+No count edit is needed; the gallery counts its own tiles.
 
 ### Things that will trip you up
 
@@ -166,13 +166,15 @@ many were restored (see the caveat below).
   the unapproved set:
   `gbi-smp-advancedfacilities-001…003` (SMP) and
   `gbi-tank-advancedfacilities-001` (Tank).
-- **The gallery total is hardcoded and was already wrong.**
-  `site/projects/index.php` carries the count in two places (a comment and
-  the `of N images` text next to `<span class="js-count">`). It read 293
-  against 384 actual tiles *before* this removal, and was decremented to
-  279 to stay self-consistent rather than rebased. The `js-count` span
-  itself is overwritten by script on load; only the static total is
-  authored. If you correct that number properly, do it as its own change.
+- **The gallery counts are computed, not authored** (since 2026-10-01).
+  `site.js` counts the tiles in the DOM and fills both numbers in
+  "Showing <span class="js-count"> of <span class="js-total"> images": the
+  first is what is on screen, the second is every tile matching the current
+  filters. Adding, removing or restoring tiles needs no count edit. The
+  numbers written in the HTML are only a no-JavaScript fallback; keep them
+  roughly right but nothing depends on them. (Before this, the total was a
+  hand-typed 279 against 370 real tiles, and the page read "Showing 370 of
+  279".)
 
 ## Do NOT
 

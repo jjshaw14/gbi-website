@@ -51,11 +51,11 @@ function __gbi_nav_active($key, $current) {
         <a href="/industries/index.php" class="nav-parent<?php echo __gbi_nav_active('industries', $__nav_active); ?>" aria-haspopup="true" aria-expanded="false">Industries <span class="caret">▾</span></a>
         <div class="nav-dropdown" role="menu">
           <a href="/industries/index.php" class="dd-overview" role="menuitem"><strong>All Industries</strong><span>Deep experience across the industries that power America.</span></a>
+          <a href="/industries/advanced-facilities.php" role="menuitem"><strong>Advanced Facilities</strong><span>Data centers and semiconductor plants. Power, water, and precision at industrial scale.</span></a>
+          <a href="/industries/oil-gas.php" role="menuitem"><strong>Oil, Gas &amp; Chemicals</strong><span>Maximum-consequence environments. Process safety as the operating standard.</span></a>
           <a href="/industries/mining.php" role="menuitem"><strong>Mining &amp; Minerals</strong><span>Built for the most demanding environments in industrial construction.</span></a>
           <a href="/industries/power-renewables.php" role="menuitem"><strong>Power &amp; Renewables</strong><span>Carbon capture, renewables, and the next generation of energy infrastructure.</span></a>
-          <a href="/industries/oil-gas.php" role="menuitem"><strong>Oil, Gas &amp; Chemicals</strong><span>Maximum-consequence environments. Process safety as the operating standard.</span></a>
           <a href="/industries/water-other.php" role="menuitem"><strong>Water &amp; Other</strong><span>The work communities depend on. Built to last.</span></a>
-          <a href="/industries/advanced-facilities.php" role="menuitem"><strong>Advanced Facilities</strong><span>Data centers and semiconductor plants. Power, water, and precision at industrial scale.</span></a>
         </div>
       </div>
 

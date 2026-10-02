@@ -88,12 +88,14 @@
       <p>GBI works in compliance with the following professional industry standards:</p>
     </div>
     <div class="cert-grid">
+      <div class="cell"><img src="../assets/images/quality/ASME%20U%20stamp.png" alt="ASME U Stamp" /></div>
+      <div class="cell"><img src="../assets/images/quality/ASME%20U2%20stamp.png" alt="ASME U2 Stamp" /></div>
+      <div class="cell"><img src="../assets/images/quality/R%20stamp%20certification.png" alt="National Board R Stamp" /></div>
+      <div class="cell"><img src="../assets/images/quality/ASME%20S%20stamp.png" alt="ASME S Stamp" /></div>
       <div class="cell"><img src="../assets/images/quality/ANSI%20official%20logo.png" alt="ANSI" /></div>
       <div class="cell"><img src="../assets/images/quality/API%20official%20logo.jpg" alt="API" /></div>
       <div class="cell"><img src="../assets/images/quality/ASM%20International%20logo.png" alt="ASM International" /></div>
       <div class="cell"><img src="../assets/images/quality/ASME%20official%20logo.png" alt="ASME" /></div>
-      <div class="cell"><img src="../assets/images/quality/ASME%20U%20stamp.png" alt="ASME U Stamp" /></div>
-      <div class="cell"><img src="../assets/images/quality/ASME%20U2%20stamp.png" alt="ASME U2 Stamp" /></div>
       <div class="cell"><img src="../assets/images/quality/ASNT%20official%20logo.png" alt="ASNT" /></div>
       <div class="cell"><img src="../assets/images/quality/ASTM%20International%20logo.png" alt="ASTM International" /></div>
       <div class="cell"><img src="../assets/images/quality/AWS%20official%20logo.png" alt="AWS" /></div>
@@ -104,7 +106,6 @@
       <div class="cell"><img src="../assets/images/quality/NCCER%20official%20logo.png" alt="NCCER" /></div>
       <div class="cell"><img src="../assets/images/quality/NFPA%20official%20logo.png" alt="NFPA" /></div>
       <div class="cell"><img src="../assets/images/quality/NSPE%20official%20logo.png" alt="NSPE" /></div>
-      <div class="cell"><img src="../assets/images/quality/R%20stamp%20certification.png" alt="National Board R Stamp" /></div>
       <div class="cell"><img src="../assets/images/quality/SSPC%20official%20logo.png" alt="SSPC" /></div>
     </div>
   </div>
@@ -151,7 +152,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

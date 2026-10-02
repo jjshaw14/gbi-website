@@ -39,11 +39,11 @@
       <div>
         <h5>Industries</h5>
         <ul>
+          <li><a href="/industries/advanced-facilities.php">Advanced Facilities</a></li>
+          <li><a href="/industries/oil-gas.php">Oil, Gas &amp; Chemicals</a></li>
           <li><a href="/industries/mining.php">Mining &amp; Minerals</a></li>
           <li><a href="/industries/power-renewables.php">Power &amp; Renewables</a></li>
-          <li><a href="/industries/oil-gas.php">Oil, Gas &amp; Chemicals</a></li>
           <li><a href="/industries/water-other.php">Water &amp; Other</a></li>
-          <li><a href="/industries/advanced-facilities.php">Advanced Facilities</a></li>
         </ul>
       </div>
       <div>

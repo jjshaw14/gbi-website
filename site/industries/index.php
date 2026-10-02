@@ -36,6 +36,18 @@
       <p class="lead">That breadth of experience means our teams understand how different facilities operate, how different owners make decisions, and what it takes to deliver in environments where the margin for error is low.</p>
     </div>
     <div class="tile-grid tile-grid--fill">
+      <a class="tile" href="advanced-facilities.php">
+        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="7" y1="8" x2="7" y2="16"/><line x1="11" y1="8" x2="11" y2="16"/><line x1="15" y1="8" x2="15" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+        <h3>Advanced Facilities</h3>
+        <p>Data centers and semiconductor plants. Power, water, and precision at industrial scale.</p>
+        <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
+      </a>
+      <a class="tile" href="oil-gas.php">
+        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/></svg></div>
+        <h3>Oil, Gas &amp; Chemicals</h3>
+        <p>Maximum-consequence environments. Process safety as the operating standard. Tanks, piping, structural, I&amp;E, and rail.</p>
+        <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
+      </a>
       <a class="tile" href="mining.php">
         <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 20 8 10 12 16 16 6 22 20"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
         <h3>Mining &amp; Minerals</h3>
@@ -48,22 +60,10 @@
         <p>Carbon capture, renewable fuels, conventional power, and the next generation of energy infrastructure.</p>
         <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
       </a>
-      <a class="tile" href="oil-gas.php">
-        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/></svg></div>
-        <h3>Oil, Gas &amp; Chemicals</h3>
-        <p>Maximum-consequence environments. Process safety as the operating standard. Tanks, piping, structural, I&amp;E, and rail.</p>
-        <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
-      </a>
       <a class="tile" href="water-other.php">
         <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
         <h3>Water &amp; Other</h3>
         <p>Work communities depend on, AWWA tanks, clarifiers, digesters, reservoir covers. Built to last.</p>
-        <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
-      </a>
-      <a class="tile" href="advanced-facilities.php">
-        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="7" y1="8" x2="7" y2="16"/><line x1="11" y1="8" x2="11" y2="16"/><line x1="15" y1="8" x2="15" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
-        <h3>Advanced Facilities</h3>
-        <p>Data centers and semiconductor plants. Power, water, and precision at industrial scale.</p>
         <div class="tile-link"><span>Explore</span><span>&rarr;</span></div>
       </a>
     </div>
@@ -73,7 +73,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

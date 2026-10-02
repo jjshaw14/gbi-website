@@ -203,8 +203,13 @@
         }
       });
 
+      // "Showing X of Y": X is what is on screen right now, Y is every tile
+      // that matches the current filters. Both are counted from the DOM, so
+      // adding or removing gallery tiles never needs a hand-edited total.
       const countEl = document.querySelector('.js-count');
-      if (countEl) countEl.textContent = totalMatches;
+      if (countEl) countEl.textContent = shownMatches;
+      const totalEl = document.querySelector('.js-total');
+      if (totalEl) totalEl.textContent = totalMatches;
       const noResults = document.querySelector('.js-no-results');
       if (noResults) noResults.style.display = totalMatches === 0 ? 'block' : 'none';
       grid.style.display = totalMatches === 0 ? 'none' : '';

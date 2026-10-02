@@ -33,7 +33,7 @@
     <span class="eyebrow">GBI Literature</span>
     <h2>Brochures &amp; Line Cards</h2>
     <p class="lead">Downloadable capability briefs for GBI's services, facilities, and regional operations.</p>
-    <ul class="resource-list"><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/ajbiehj/GBILineSheet0720.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>GBI Corporate e-Brochure</span></a></li><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/jaDVMge/2021FabricationLineCard.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>Fabrication Line Card</span></a></li><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/je8z5ib/2021RailroadLineSheetPermian.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>Railroad Services Line Sheet</span></a></li><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/jfja4sL/2021PermianLineCard.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>Permian Basin Line Card</span></a></li></ul>
+    <ul class="resource-list"><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/ajbiehj/GBILineSheet0720.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>GBI Corporate e-Brochure</span></a></li><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/jaDVMge/2021FabricationLineCard.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>Fabrication Line Card</span></a></li><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/je8z5ib/2021RailroadLineSheetPermian.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>Railroad Services Line Sheet</span></a></li><li><a href="https://cdn-west.sqhk.co/greatbasinindustrial/jfja4sL/2021PermianLineCard.pdf" target="_blank" rel="noopener"><span><span class="meta">Brochure · PDF</span><br/>Electrical and Instrumentation Line Card</span></a></li></ul>
   </div>
 </section>
 
@@ -49,7 +49,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>

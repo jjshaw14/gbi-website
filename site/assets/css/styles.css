@@ -1790,6 +1790,9 @@ body.video-modal-open { overflow: hidden; }
   line-height: 1.65;
   margin: 0;
 }
+/* Consecutive paragraphs need a visible break; margin: 0 above made them
+   read as one block. */
+.cs-narrative p + p { margin-top: 1em; }
 .cs-by-numbers {
   background: var(--white);
   padding: 32px;
@@ -2859,7 +2862,8 @@ body.hide-photo-specs .photo-specs-toggle::before { color: rgba(255,255,255,.25)
 }
 
 /* Fill variant: a short last row stretches to the full width instead of
-   leaving an empty cell. Works for any tile count. */
+   leaving an empty cell. Works for any tile count, on any 3-column grid that
+   drops to 2 columns at 980px (.tile-grid, .project-grid). */
 @media (min-width: 981px) {
   .tile-grid--fill { grid-template-columns: repeat(6, 1fr); }
   .tile-grid--fill > * { grid-column: span 2; }

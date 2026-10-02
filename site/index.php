@@ -135,6 +135,18 @@
       <h2>The Industries We Serve</h2>
     </div>
     <div class="tile-grid tile-grid--fill">
+      <a class="photo-tile" href="industries/advanced-facilities.php" style="background-image:url('assets/images/industry-power.jpg')">
+        <div>
+          <h3>Advanced Facilities</h3>
+          <div class="tile-link">Explore →</div>
+        </div>
+      </a>
+      <a class="photo-tile" href="industries/oil-gas.php" style="background-image:url('assets/images/industry-oil.jpg')">
+        <div>
+          <h3>Oil, Gas &amp; Chemicals</h3>
+          <div class="tile-link">Explore →</div>
+        </div>
+      </a>
       <a class="photo-tile" href="industries/mining.php" style="background-image:url('assets/images/industry-mining.jpg')">
         <div>
           <h3>Mining &amp; Minerals</h3>
@@ -147,21 +159,9 @@
           <div class="tile-link">Explore →</div>
         </div>
       </a>
-      <a class="photo-tile" href="industries/oil-gas.php" style="background-image:url('assets/images/industry-oil.jpg')">
-        <div>
-          <h3>Oil, Gas &amp; Chemicals</h3>
-          <div class="tile-link">Explore →</div>
-        </div>
-      </a>
       <a class="photo-tile" href="industries/water-other.php" style="background-image:url('assets/images/industry-water.jpg')">
         <div>
           <h3>Water &amp; Other</h3>
-          <div class="tile-link">Explore →</div>
-        </div>
-      </a>
-      <a class="photo-tile" href="industries/advanced-facilities.php" style="background-image:url('assets/images/industry-power.jpg')">
-        <div>
-          <h3>Advanced Facilities</h3>
           <div class="tile-link">Explore →</div>
         </div>
       </a>
@@ -244,7 +244,7 @@
       <h2>Featured Projects</h2>
     </div>
 
-    <div class="project-grid">
+    <div class="project-grid tile-grid--fill">
       <a class="project-card" href="projects/gold-mine-processing.php" style="background-image:url('assets/images/project-gold-mine.jpg')">
         <div class="pc-tag">Gold Processing</div>
         <div>
@@ -264,6 +264,13 @@
         <div>
           <h3>62&prime;&Oslash; &times; 155&prime; FGD Wet Scrubber</h3>
           <div class="pc-meta">CPS Energy J.K. Spruce, San Antonio, TX</div>
+        </div>
+      </a>
+      <a class="project-card" href="projects/elevated-tanks.php" style="background-image:url('assets/images/project-elevated-tanks.jpg')">
+        <div class="pc-tag">Tanks</div>
+        <div>
+          <h3>(2) 62&prime;&Oslash; Elevated Tanks</h3>
+          <div class="pc-meta">Onsite fabrication and erection</div>
         </div>
       </a>
       <a class="project-card" href="projects/coors-g150.php" style="background-image:url('assets/images/case-studies/coors-g150-hero.jpg')">
@@ -348,7 +355,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
     <div class="actions">
       <a class="btn btn-lime" href="contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="contact.php">Contact Us <span class="arr">→</span></a>

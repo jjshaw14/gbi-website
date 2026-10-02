@@ -30,7 +30,7 @@
       <h2>The Work Behind the Stories</h2>
       <p class="lead">Five flagship projects — with full narrative, spec, and image detail.</p>
     </div>
-    <div class="project-grid">
+    <div class="project-grid tile-grid--fill">
       <a class="project-card" href="gold-mine-processing.php"
          style="background-image:url('../assets/images/project-gold-mine.jpg')">
         <div class="pc-tag">Haile, SC</div>
@@ -75,7 +75,7 @@
   </div>
 </section>
 
-<!-- ============ PROJECT GALLERY (279 images, filterable) ============ -->
+<!-- ============ PROJECT GALLERY (filterable; counts are computed by site.js) ============ -->
 <section class="bg-offwhite" data-project-filters style="padding-top:80px;">
   <div class="container">
     <div class="section-head">
@@ -92,7 +92,7 @@
           <span class="filter-caret" aria-hidden="true">&#9662;</span>
         </button>
         <div class="filter-dropdown-menu" role="listbox" aria-multiselectable="true">
-          <label class="filter-option" data-value="mining"><input type="checkbox" data-value="mining" /><span class="check"></span><span class="label">Mining</span></label><label class="filter-option" data-value="oil-gas-chemical"><input type="checkbox" data-value="oil-gas-chemical" /><span class="check"></span><span class="label">Oil, Gas &amp; Chemical</span></label><label class="filter-option" data-value="power"><input type="checkbox" data-value="power" /><span class="check"></span><span class="label">Power</span></label><label class="filter-option" data-value="water-other"><input type="checkbox" data-value="water-other" /><span class="check"></span><span class="label">Water &amp; Other</span></label><label class="filter-option" data-value="advanced-facilities"><input type="checkbox" data-value="advanced-facilities" /><span class="check"></span><span class="label">Advanced Facilities</span></label>
+          <label class="filter-option" data-value="advanced-facilities"><input type="checkbox" data-value="advanced-facilities" /><span class="check"></span><span class="label">Advanced Facilities</span></label><label class="filter-option" data-value="oil-gas-chemical"><input type="checkbox" data-value="oil-gas-chemical" /><span class="check"></span><span class="label">Oil, Gas &amp; Chemical</span></label><label class="filter-option" data-value="mining"><input type="checkbox" data-value="mining" /><span class="check"></span><span class="label">Mining</span></label><label class="filter-option" data-value="power"><input type="checkbox" data-value="power" /><span class="check"></span><span class="label">Power</span></label><label class="filter-option" data-value="water-other"><input type="checkbox" data-value="water-other" /><span class="check"></span><span class="label">Water &amp; Other</span></label>
         </div>
       </div>
 
@@ -113,11 +113,10 @@
     <div class="filter-active-pills" data-active-pills hidden></div>
 
     <div class="project-results-count" style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:700; margin: 24px 0 16px;">
-      Showing <span class="js-count">279</span> of 279 images
+      Showing <span class="js-count">367</span> of <span class="js-total">367</span> images
     </div>
 
     <div class="gallery-grid" data-gallery-grid>
-<div class="gallery-tile" data-industry="water-other" data-product=""><a href="coors-g150.php"><img src="../assets/images/case-studies/coors-g150-hero.jpg" alt="Coors G150 Brewery Tank Project" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Coors G150 Brewery Tank Project</div><div class="gtd">Ziemann Holvrieka / Molson Coors &middot; Golden, CO. On-site fabrication &amp; installation of 118 stainless steel process tanks to ASME and food-grade sanitary standards.</div></div></a></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="ie"><img src="../assets/images/gallery/gbi-electrical-oilgaschem-001.jpg" alt="Oil, Gas & Chemical — Instrumentation and Electrical work" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil, Gas & Chemical</div><div class="gtd">Instrumentation and Electrical work</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="ie"><img src="../assets/images/gallery/gbi-electrical-oilgaschem-002.jpg" alt="Oil, Gas & Chemical — Instrumentation and Electrical work" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil, Gas & Chemical</div><div class="gtd">Instrumentation and Electrical work</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="ie"><img src="../assets/images/gallery/gbi-electrical-oilgaschem-003.jpg" alt="Oil, Gas & Chemical — Instrumentation and Electrical work" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil, Gas & Chemical</div><div class="gtd">Instrumentation and Electrical work</div></div></div>
@@ -317,7 +316,6 @@
 <div class="gallery-tile" data-industry="oil-gas-chemical power" data-product="smp"><img src="../assets/images/gallery/IMG_0219-min-1-scaled.jpg" alt="Power Generation" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Power Generation</div><div class="gtd">1/2 mile elevated coal conveyor demo and rebuild</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="tanks"><img src="../assets/images/gallery/bruderheim.jpg" alt="Oil Gas &amp; Chemical" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil Gas &amp; Chemical</div><div class="gtd">(2) 128′ x 56′ API 650 Tanks with EFR-Canada</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product=""><img src="../assets/images/gallery/111-scaled.jpg" alt="Power Generation" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Power Generation</div><div class="gtd">Air Cooled Condenser Rebundling. Fabrication of steam distribution and condensate collection manifolds. Onsite demolition of existing manifolds, tube bundles and structural and replacement with new.</div></div></div>
-<div class="gallery-tile" data-industry="mining oil-gas-chemical" data-product="ie"><img src="../assets/images/gallery/2016-09-0111.17.40-1.jpg" alt="Mining &amp; Aggregates" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Mining &amp; Aggregates</div><div class="gtd">(18) tanks, (400) tons structural, (14) agitators and drives, (3) thickeners &amp; mechanisms, (8) intermediate screens, (4) 3-deck shakers, 10-ton OH crane &amp; rail, (8) pumps, (3) MCC buildings, (8000′) stainless piping, Plant pre-commissioning crew</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="tanks"><img src="../assets/images/gallery/11-scaled.jpg" alt="Oil Gas &amp; Chemical" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil Gas &amp; Chemical</div><div class="gtd">(2) 120’Ø x 60′ SCRT’s; (2) 40’Ø x 40′ SCRT’s; (14) 14’Ø x 40′ CRT’s Asphalt Plant</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product=""><img src="../assets/images/gallery/23-scaled.jpg" alt="Oil Gas &amp; Chemical" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil Gas &amp; Chemical</div><div class="gtd">(6) 280′ Flare Stacks and Ignitors for STAR, world’s largest crude oil refinery in Turkey</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="tanks"><img src="../assets/images/gallery/21.jpg" alt="Oil Gas &amp; Chemical" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil Gas &amp; Chemical</div><div class="gtd">(2) 55’d x 50′ API 650 Tanks</div></div></div>
@@ -446,7 +444,6 @@
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product=""><img src="../assets/images/gallery/IMG_1071-1.jpg" alt="Oil Gas &amp; Chemical" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Oil Gas &amp; Chemical</div><div class="gtd"></div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="tanks"><img src="../assets/images/gallery/IMG_1070.jpg" alt="Permian Basin" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Permian Basin</div><div class="gtd">Center Column and Umbrella on API 650 Tank</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="smp"><img src="../assets/images/gallery/IMG_0377-min-1-scaled.jpg" alt="Power Generation" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Power Generation</div><div class="gtd">1/2 mile elevated coal conveyor demo and rebuild</div></div></div>
-<div class="gallery-tile" data-industry="oil-gas-chemical" data-product="smp"><img src="../assets/images/gallery/IMG_0228-min-scaled.jpg" alt="Power Generation" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Power Generation</div><div class="gtd">1/2 mile elevated coal conveyor demo and rebuild</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="smp"><img src="../assets/images/gallery/IMG_0294-min-1-scaled.jpg" alt="Power Generating Station" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Power Generating Station</div><div class="gtd">1/2 mile elevated coal conveyor demo and rebuild</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="tanks"><img src="../assets/images/gallery/StainlessThickner-1.jpg" alt="Stainless Steel Clarifier" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Stainless Steel Clarifier</div><div class="gtd">155′ x 35′ Clarifier, including internal mechanism and platform</div></div></div>
 <div class="gallery-tile" data-industry="oil-gas-chemical" data-product="coatings"><img src="../assets/images/gallery/DSCN01592-1.jpg" alt="Industrial Coatings" loading="lazy" /><div class="gallery-tile-overlay"><div class="gtl">Industrial Coatings</div><div class="gtd"></div></div></div>
@@ -537,7 +534,7 @@
 <section class="final-cta">
   <div class="container">
     <span class="eyebrow on-dark">Ready to Build Something?</span>
-    <h2>Tell us about your project. We'll tell you how we'd build it</h2>
+    <h2>Tell us about your project. We'll tell you how we'd build it.</h2>
     <div class="actions">
       <a class="btn btn-lime" href="../contact.php">Start a Project <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="../contact.php">Contact Us <span class="arr">→</span></a>
