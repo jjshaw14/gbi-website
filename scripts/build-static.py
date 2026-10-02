@@ -48,6 +48,7 @@ Usage
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import os
@@ -56,6 +57,7 @@ import re
 import shutil
 import sys
 from pathlib import Path
+from urllib.parse import unquote
 
 # -----------------------------------------------------------------------------
 # Files that must never reach production
@@ -326,6 +328,27 @@ def page_base_dir(rel: Path) -> str:
     return "/" if parent in (".", "") else f"/{parent}/"
 
 
+# /assets/* is served with a one-year immutable cache (STATICWEBAPP_CONFIG).
+# That is only safe if an asset's URL changes whenever its bytes do, so every
+# local asset reference gets a content hash: styles.css?v=3f9a1c2e. Without it
+# an edited styles.css or a replaced photo under the same filename never
+# reaches a returning visitor -- their browser keeps the old copy for a year.
+ASSET_SRC_DIR: Path | None = None
+_asset_hashes: dict[str, str | None] = {}
+
+
+def asset_version(abs_path: str) -> str | None:
+    """Short content hash for a file under /assets/, or None if it is not one."""
+    if ASSET_SRC_DIR is None or not abs_path.startswith("/assets/"):
+        return None
+    if abs_path not in _asset_hashes:
+        f = ASSET_SRC_DIR / unquote(abs_path.lstrip("/"))
+        _asset_hashes[abs_path] = (
+            hashlib.sha256(f.read_bytes()).hexdigest()[:8] if f.is_file() else None
+        )
+    return _asset_hashes[abs_path]
+
+
 def resolve_url(raw: str, base_dir: str) -> str:
     """Resolve one URL to an absolute site path, converting .php to directory style."""
     if not raw or raw.startswith(EXTERNAL_PREFIXES):
@@ -345,6 +368,10 @@ def resolve_url(raw: str, base_dir: str) -> str:
 
     if abs_path.lower().endswith(".php"):
         abs_path = php_link_to_url(abs_path[: -len(".php")])
+
+    version = asset_version(abs_path)
+    if version and not tail.startswith("?"):
+        tail = f"?v={version}{tail}"
 
     return abs_path + tail
 
@@ -446,6 +473,10 @@ def build(src_dir: Path, out_dir: Path) -> int:
     for p in (header_partial, footer_partial):
         if not p.exists():
             sys.exit(f"ERROR: expected partial at {p} - is the source dir correct?")
+
+    global ASSET_SRC_DIR
+    ASSET_SRC_DIR = src_dir
+    _asset_hashes.clear()
 
     header_src = header_partial.read_text(encoding="utf-8")
     footer_html = render_footer(footer_partial.read_text(encoding="utf-8"))
