@@ -930,8 +930,8 @@ section.tight { padding: 64px 0; }
   text-transform: uppercase;
   color: var(--ink-soft);
 }
-/* 3-column variant — used for the "Pre-Approved Contractor" row on the
-   Quality page (Avetta / Browz / ISN). */
+/* 3-column variant. (Its original use, the Quality page's "Pre-Approved
+   Contractor" row, was removed: prequalification now lives on Safety only.) */
 .cert-grid--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 768px) {
   .cert-grid { grid-template-columns: repeat(2, 1fr); }

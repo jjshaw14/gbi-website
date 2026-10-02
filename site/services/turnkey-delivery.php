@@ -47,7 +47,7 @@
   <div class="container">
     <div class="material-band-grid">
       <div class="material-stat">
-        <div class="num">75<span class="suf">%</span></div>
+        <div class="num">80<span class="suf">%+</span></div>
         <div class="label">Repeat Customers · Multi-Project Owners</div>
       </div>
       <div class="material-copy">
@@ -174,7 +174,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Turnkey Projects</span>
-      <h2>Recent Turnkey Work</h2>
+      <h2>Turnkey Work</h2>
       
     </div>
     <ul class="proj-list">

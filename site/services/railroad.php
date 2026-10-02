@@ -62,7 +62,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Rail Work</h2>
+      <h2>Rail Work</h2>
       
     </div>
     <ul class="proj-list">

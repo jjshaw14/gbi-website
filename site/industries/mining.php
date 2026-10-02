@@ -91,7 +91,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Mining Work</h2>
+      <h2>Mining Work</h2>
       
     </div>
     <ul class="proj-list">

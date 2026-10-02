@@ -113,7 +113,6 @@
       <div class="cell cell--text"><span class="name">Veriforce</span><span class="sub">Pre-Qualified</span></div>
       <div class="cell cell--text"><span class="name">OSHA 10</span><span class="sub">All Craft Workers</span></div>
       <div class="cell cell--text"><span class="name">OSHA 30</span><span class="sub">PMs &amp; Supers</span></div>
-      <div class="cell cell--text"><span class="name">ASME U &amp; U2</span><span class="sub">Pressure Vessel</span></div>
     </div>
   </div>
 </section>

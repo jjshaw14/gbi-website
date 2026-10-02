@@ -106,8 +106,8 @@
 <section class="bg-offwhite">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Recent Work</span>
-      <h2>Featured Projects</h2>
+      <span class="eyebrow">Representative Projects</span>
+      <h2>Advanced Facilities Work</h2>
     </div>
     <ul class="proj-list">
       <li>

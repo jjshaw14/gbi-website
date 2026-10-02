@@ -81,7 +81,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Representative Projects</span>
-      <h2>Recent Oil, Gas & Chemicals Work</h2>
+      <h2>Oil, Gas & Chemicals Work</h2>
       
     </div>
     <ul class="proj-list">

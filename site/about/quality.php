@@ -74,16 +74,6 @@
     </div>
 
     <div class="cert-subhead">
-      <h3>Pre-Approved Contractor</h3>
-      <p>GBI is a pre-approved contractor with the following:</p>
-    </div>
-    <div class="cert-grid cert-grid--3">
-      <div class="cell"><img src="../assets/images/cert-avetta.png" alt="Avetta" /></div>
-      <div class="cell"><img src="../assets/images/cert-browz.png" alt="Browz Network Member" /></div>
-      <div class="cell"><img src="../assets/images/cert-isnetworld.png" alt="ISNetworld" /></div>
-    </div>
-
-    <div class="cert-subhead cert-subhead--spaced">
       <h3>Professional Industry Standards</h3>
       <p>GBI works in compliance with the following professional industry standards:</p>
     </div>
