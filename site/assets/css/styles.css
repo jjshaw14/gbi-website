@@ -1000,6 +1000,11 @@ section.tight { padding: 64px 0; }
   color: var(--ink-soft);
   margin-bottom: 20px;
 }
+/* Stretch variant: the photo matches the full height of a long text column
+   (e.g. a capability list) instead of sitting centered beside it. */
+.editorial-row--stretch { align-items: stretch; }
+.editorial-row--stretch .editorial-photo { min-height: 520px; }
+.cap-list.cap-list--single { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
 @media (max-width: 980px) {
   .editorial-row { grid-template-columns: 1fr; gap: 40px; }
   .editorial-row.flip { grid-template-areas: "photo" "text"; }

@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'services'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-ie.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-ie-skid.jpg')"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · Cable tray / MCC building / commissioning</strong>
-    <span>Clean, organized cable tray installation, or MCC building interior, or field tech commissioning panel.</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>I&E</div>
     <span class="eyebrow on-dark">Services / I&E</span>
@@ -30,26 +26,30 @@
 
 <section class="bg-offwhite">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Capabilities</span>
-      <h2>What Our I&E Group Builds</h2>
-      <p class="lead">The same craft discipline and attention to detail that defines every GBI trade, applied to the electrical backbone of industrial processes. That's our process. That's our signature.</p>
+    <div class="editorial-row editorial-row--stretch">
+      <div class="editorial-text">
+        <span class="eyebrow">Capabilities</span>
+        <h2>What Our I&E Group Builds</h2>
+        <p class="lead">The same craft discipline and attention to detail that defines every GBI trade, applied to the electrical backbone of industrial processes. That's our process. That's our signature.</p>
+        <ul class="cap-list cap-list--single">
+          <li>High and medium voltage electrical distribution</li>
+          <li>MCC buildings, design, fabrication, and installation</li>
+          <li>Cable tray, conduit, and wire pull</li>
+          <li>Instrumentation installation and termination</li>
+          <li>DCS / PLC field wiring</li>
+          <li>Process control system commissioning support</li>
+          <li>Industrial lighting systems</li>
+          <li>Data centers and certified facilities</li>
+          <li>UPS systems, generators</li>
+          <li>Surgery / imagery and technology labs</li>
+          <li>Grounding and cathodic protection systems</li>
+          <li>NFPA 70E, Arc Flash and electrical safety compliance</li>
+          <li>I&E commissioning and startup assistance</li>
+        </ul>
+      </div>
+
+      <div class="editorial-photo" style="background-image:url('../assets/images/ie-conduit-riser.jpg'); background-position:center 45%;" role="img" aria-label="Rigid conduit riser bank transitioning underground beside a pipe rack"></div>
     </div>
-    <ul class="cap-list" style="grid-template-columns:repeat(2,1fr);">
-      <li>High and medium voltage electrical distribution</li>
-      <li>MCC buildings, design, fabrication, and installation</li>
-      <li>Cable tray, conduit, and wire pull</li>
-      <li>Instrumentation installation and termination</li>
-      <li>DCS / PLC field wiring</li>
-      <li>Process control system commissioning support</li>
-      <li>Industrial lighting systems</li>
-      <li>Data centers and certified facilities</li>
-      <li>UPS systems, generators</li>
-      <li>Surgery / imagery and technology labs</li>
-      <li>Grounding and cathodic protection systems</li>
-      <li>NFPA 70E, Arc Flash and electrical safety compliance</li>
-      <li>I&E commissioning and startup assistance</li>
-    </ul>
   </div>
 </section>
 
