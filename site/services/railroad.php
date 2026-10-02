@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'services'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-rail.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-rail-loop.jpg')"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · GBI crew on rail spur install</strong>
-    <span>GBI crew on active rail spur installation, tamping equipment, or industrial track switch work.</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>Railroad</div>
     <span class="eyebrow on-dark">Services / Railroad</span>
@@ -40,12 +36,7 @@
 <p><strong>Emergency Response.</strong> Derailment response, rerailing, and track repair. The call you don't want to make is the one GBI is built to answer.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/hero-rail.jpg');">
-        <div class="photo-direction">
-          <strong>Photo</strong>
-          <span>Industrial rail spur / GBI rail crew at a facility offload.</span>
-        </div>
-      </div>
+      <div class="editorial-photo" style="background-image:url('../assets/images/rail-track-tamper.jpg'); background-position:center 18%;" role="img" aria-label="Tamper working a curved industrial rail spur beside loaded hopper cars"></div>
     </div>
   </div>
 </section>
