@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'industries'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-power.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-power-conveyor.jpg')"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · Power plant construction (Delta, UT preferred)</strong>
-    <span>Active power plant construction, structural steel being set, cooling towers in background, or carbon capture towers under crane. Scale and complexity visible. Real GBI project preferred, Delta, UT or similar.</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Power & Renewables</div>
     <span class="eyebrow on-dark">Industries / Power & Renewables</span>

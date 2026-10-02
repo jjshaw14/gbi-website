@@ -74,12 +74,7 @@
 <p>It runs under GBI's full quality management system: 100% material traceability, documented inspection records, and ASME code compliance on all stamped work.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/project-coors.jpg');">
-        <div class="photo-direction">
-          <strong>Photo</strong>
-          <span>Plymouth shop interior — pressure vessel or large tank under fabrication, overhead crane.</span>
-        </div>
-      </div>
+      <div class="editorial-photo editorial-photo--portrait" style="background-image:url('../assets/images/tanks-shop-tower-crane.jpg');" role="img" aria-label="Tower crane and boom lift beside a tall field-erected tank in a canyon"></div>
     </div>
   </div>
 </section>

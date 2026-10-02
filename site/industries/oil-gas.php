@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'industries'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-oil.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-oil-tank-farm.jpg')"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · Refinery at dusk / midstream</strong>
-    <span>Refinery complex at dusk or dawn, flare stacks visible, pipe racks, storage tanks. Alternatively, an active GBI midstream project showing tank farm construction or offload facility.</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Industries</a><span>/</span>Oil, Gas & Chemicals</div>
     <span class="eyebrow on-dark">Industries / Oil, Gas & Chemicals</span>
@@ -40,12 +36,7 @@
 <p>Today, GBI delivers full-scope turnkey construction for upstream, midstream, downstream, and chemical applications.</p>
       </div>
 
-      <div class="editorial-photo" style="background-image:url('../assets/images/industry-oil.jpg');">
-        <div class="photo-direction">
-          <strong>Photo</strong>
-          <span>Refinery / midstream gathering facility / tank farm — process piping, vessels, gas-handling infrastructure.</span>
-        </div>
-      </div>
+      <div class="editorial-photo editorial-photo--portrait" style="background-image:url('../assets/images/oil-flare-stacks.jpg'); background-position:center 35%;" role="img" aria-label="280-foot flare stack structures under construction at the STAR refinery in Turkey"></div>
     </div>
   </div>
 </section>

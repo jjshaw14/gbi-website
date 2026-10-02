@@ -14,12 +14,8 @@
 <?php $NAV_ACTIVE = 'services'; include $_SERVER['DOCUMENT_ROOT'] . '/partials/header.php'; ?>
 
 <section class="hero hero-sm">
-  <div class="hero-media" style="background-image:url('../assets/images/hero-smp.jpg')"></div>
+  <div class="hero-media" style="background-image:url('../assets/images/hero-smp-upright.jpg'); background-position:center 40%;"></div>
   <div class="hero-overlay"></div>
-  <div class="photo-direction">
-    <strong>Photo · Structural erection / process piping</strong>
-    <span>Structural steel erection, large crane, industrial complex background. Or process piping in a petro-chem facility.</span>
-  </div>
   <div class="container">
     <div class="crumbs"><a href="../index.php">Home</a><span>/</span><a href="index.php">Services</a><span>/</span>SMP</div>
     <span class="eyebrow on-dark">Services / SMP</span>
