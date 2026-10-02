@@ -197,7 +197,7 @@
         </div>
       </div>
       <div class="bio-card" data-color="4" data-card-id="bio-9"
-           data-name="Lawson Essig" data-role="Chief Financial Officer" data-bio="Bio coming soon.">
+           data-name="Lawson Essig" data-role="Chief Financial Officer" data-bio="Lawson spent the first five years of his career running skilled nursing and short-term rehabilitation facilities, including startups and turnarounds, carrying full P&amp;L responsibility and successfully leading them through COVID-19. He joined GBI in March 2024 as Finance Manager and was promoted to Chief Financial Officer in under two years, helping guide the company through a period of significant change. Today he oversees finance, accounting, IT, and project controls across GBI's consolidated operations. He is a strategic thinker and a close collaborator with GBI's operational teams, improving processes and leadership across the business. Lawson holds a BS from BYU-Idaho, graduating with High Honors. Outside of work, he coaches youth sports and spends his free time with family, friends, and Utah's mountains.">
         <div class="bio-portrait"><img src="../assets/images/staff/Lawson Essig.png" alt="Lawson Essig" /></div>
         <div class="bio-meta">
           <div class="text">

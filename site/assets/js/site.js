@@ -63,6 +63,42 @@
 })();
 
 
+// Inline video — reveal the Vimeo iframe once it is actually playing, so the
+// poster frame covers the player's own loading state. Talks to the player over
+// its postMessage API. If autoplay is blocked or the API never answers, the
+// iframe is shown anyway after a few seconds so its controls stay reachable.
+(function () {
+  const wraps = document.querySelectorAll('[data-inline-video]');
+  if (!wraps.length) return;
+
+  wraps.forEach((wrap) => {
+    const iframe = wrap.querySelector('iframe');
+    if (!iframe) return;
+    const reveal = () => wrap.classList.add('is-playing');
+    const fallback = setTimeout(reveal, 4000);
+
+    window.addEventListener('message', (e) => {
+      if (e.source !== iframe.contentWindow || !/vimeo\.com$/.test(new URL(e.origin).hostname)) return;
+      let data = e.data;
+      if (typeof data === 'string') {
+        try { data = JSON.parse(data); } catch (err) { return; }
+      }
+      if (data.event === 'ready') {
+        const send = (msg) => iframe.contentWindow.postMessage(JSON.stringify(msg), e.origin);
+        send({ method: 'addEventListener', value: 'playing' });
+        // autoplay=1 in the URL is not always honoured (slow buffering, a
+        // freshly uploaded video still transcoding), so ask explicitly too.
+        // Muted, so browsers permit it without a user gesture.
+        send({ method: 'play' });
+      } else if (data.event === 'playing') {
+        clearTimeout(fallback);
+        reveal();
+      }
+    });
+  });
+})();
+
+
 // Animate stats counters on scroll into view
 (function () {
   const els = document.querySelectorAll('[data-count]');

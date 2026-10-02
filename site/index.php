@@ -134,7 +134,7 @@
       <span class="eyebrow">Industries</span>
       <h2>The Industries We Serve</h2>
     </div>
-    <div class="tile-grid">
+    <div class="tile-grid tile-grid--fill">
       <a class="photo-tile" href="industries/mining.php" style="background-image:url('assets/images/industry-mining.jpg')">
         <div>
           <h3>Mining &amp; Minerals</h3>
@@ -162,12 +162,6 @@
       <a class="photo-tile" href="industries/advanced-facilities.php" style="background-image:url('assets/images/industry-power.jpg')">
         <div>
           <h3>Advanced Facilities</h3>
-          <div class="tile-link">Explore →</div>
-        </div>
-      </a>
-      <a class="photo-tile" href="industries/index.php" style="background-image:url('assets/images/industry-food-nyzai.jpg')">
-        <div>
-          <h3>Food, Beverage &amp; Agriculture</h3>
           <div class="tile-link">Explore →</div>
         </div>
       </a>
@@ -273,7 +267,7 @@
         </div>
       </a>
       <a class="project-card" href="projects/coors-g150.php" style="background-image:url('assets/images/case-studies/coors-g150-hero.jpg')">
-        <div class="pc-tag">Food &amp; Beverage</div>
+        <div class="pc-tag">Stainless Tanks</div>
         <div>
           <h3>Coors G150 Brewery Tank Project</h3>
           <div class="pc-meta">Golden, CO &middot; 118 stainless tanks, ~120K craft manhours</div>

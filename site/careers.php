@@ -87,25 +87,25 @@
       <div class="value-card">
         <div class="marker"></div>
         <div class="word">DRIVEN</div>
-        <h3>Find a way to win</h3>
+        <h3>Find a Way to Win</h3>
         <p>You bring the motor. Passionate, accountable, humbly confident. You own your results &mdash; the good ones and the ones that need fixing.</p>
       </div>
       <div class="value-card">
         <div class="marker"></div>
         <div class="word">BUILDING</div>
-        <h3>Build people, teams, and America</h3>
+        <h3>Build People, Teams and America</h3>
         <p>You learn, share, and grow. You pass it on. The apprentice next to you gets better because you're there.</p>
       </div>
       <div class="value-card">
         <div class="marker"></div>
         <div class="word">EXCELLENCE</div>
-        <h3>Skillfully execute, solve problems, stand firm</h3>
+        <h3>Skillfully Execute, Solve Problems and Stand Firm</h3>
         <p>Self-discipline plus proven process. Good enough isn't. The weld, the wire pull, the drawing, the pour &mdash; it has your name on it, and a plant is going to run on it for the next thirty years.</p>
       </div>
       <div class="value-card">
         <div class="marker"></div>
         <div class="word">TOGETHER</div>
-        <h3>Ride for the brand</h3>
+        <h3>Ride for the Brand</h3>
         <p>People first. Straight talk. Honest work. You lift the crew, not just yourself.</p>
       </div>
     </div>

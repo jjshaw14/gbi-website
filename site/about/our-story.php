@@ -39,13 +39,20 @@
 <p>That discipline built the company. The safety, quality controls, culture, the systematic pre-planning and crew formation that GBI developed in tank work became the foundation for everything else.</p>
       </div>
 
-      <button type="button" class="editorial-photo video-trigger" style="background-image:url('../assets/images/hero-tanks.jpg');"
-              data-video-src="https://player.vimeo.com/video/1199878784"
-              aria-label="Play Our Story video">
-        <span class="video-play-btn" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-      </button>
+      <!-- Inline video: autoplays muted on load, with controls so visitors can
+           unmute or pause. The poster (the "Built by Builders" title card) shows until
+           the player reports it is actually playing. -->
+      <div class="editorial-photo editorial-video" data-inline-video>
+        <img class="editorial-video-poster" src="../assets/images/our-story-video-poster.jpg" alt="" />
+        <iframe
+          src="https://player.vimeo.com/video/1231141603?autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1&api=1"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          title="Great Basin Industrial: Our Story"
+          loading="eager"></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -158,7 +165,7 @@
       <h2>Driven · Building · Excellence · Together</h2>
       <p class="lead">The values that shape every hire, every crew, every project.</p>
     </div>
-    <div class="values-grid"><div class="value-card"><div class="marker"></div><div class="word">DRIVEN</div><h3>Find a way to win</h3><p class="value-chips">Passionate <span class="chip-sep">|</span> Accountable <span class="chip-sep">|</span> Humbly Confident</p></div><div class="value-card"><div class="marker"></div><div class="word">BUILDING</div><h3>Build people, teams, and America</h3><p class="value-chips">Learn <span class="chip-sep">|</span> Share <span class="chip-sep">|</span> Grow</p></div><div class="value-card"><div class="marker"></div><div class="word">EXCELLENCE</div><h3>Skillfully execute, solve problems, stand firm</h3><p class="value-chips">Discipline <span class="chip-sep">|</span> Process <span class="chip-sep">|</span> Winning</p></div><div class="value-card"><div class="marker"></div><div class="word">TOGETHER</div><h3>Ride for the brand</h3><p class="value-chips">People first <span class="chip-sep">|</span> Straight talk <span class="chip-sep">|</span> Honest work</p></div></div>
+    <div class="values-grid"><div class="value-card"><div class="marker"></div><div class="word">DRIVEN</div><h3>Find a Way to Win</h3><p class="value-chips">Passionate <span class="chip-sep">|</span> Accountable <span class="chip-sep">|</span> Humbly Confident</p></div><div class="value-card"><div class="marker"></div><div class="word">BUILDING</div><h3>Build People, Teams and America</h3><p class="value-chips">Learn <span class="chip-sep">|</span> Share <span class="chip-sep">|</span> Grow</p></div><div class="value-card"><div class="marker"></div><div class="word">EXCELLENCE</div><h3>Skillfully Execute, Solve Problems and Stand Firm</h3><p class="value-chips">Self Discipline + Proven&nbsp;Process&nbsp;=&nbsp;Winning</p></div><div class="value-card"><div class="marker"></div><div class="word">TOGETHER</div><h3>Ride for the Brand</h3><p class="value-chips">People First <span class="chip-sep">|</span> Straight Talk <span class="chip-sep">|</span> Honest Work</p></div></div>
     <div class="inline-pullquote" style="margin-top:64px;">
       <p>'Priority number one is feeding families.' GBI has taken work at breakeven, and at times at a loss, to keep crews employed through slow seasons. Where other contractors cut deep, GBI keeps people working. That is who we are.</p>
 

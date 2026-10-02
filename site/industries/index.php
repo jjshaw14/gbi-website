@@ -35,7 +35,7 @@
       <h2>Where We've Built</h2>
       <p class="lead">That breadth of experience means our teams understand how different facilities operate, how different owners make decisions, and what it takes to deliver in environments where the margin for error is low.</p>
     </div>
-    <div class="tile-grid tile-grid--4col">
+    <div class="tile-grid tile-grid--fill">
       <a class="tile" href="mining.php">
         <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 20 8 10 12 16 16 6 22 20"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
         <h3>Mining &amp; Minerals</h3>
