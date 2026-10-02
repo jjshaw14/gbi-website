@@ -1942,9 +1942,7 @@ body.video-modal-open { overflow: hidden; }
 
 /* ---------- Final CTA ---------- */
 .final-cta {
-  background:
-    linear-gradient(rgba(9,25,51,.92), rgba(9,25,51,.92)),
-    url('../images/hero-home.jpg') center/cover;
+  background: #0D1E3B;
   color: var(--white);
   padding: 96px 0;
   text-align: center;
