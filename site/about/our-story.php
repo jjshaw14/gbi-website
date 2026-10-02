@@ -161,7 +161,7 @@
 <section class="bg-offwhite">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Four Values</span>
+      <span class="eyebrow">Core Values</span>
       <h2>Driven · Building · Excellence · Together</h2>
       <p class="lead">The values that shape every hire, every crew, every project.</p>
     </div>
